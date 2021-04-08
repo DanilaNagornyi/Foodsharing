@@ -27,16 +27,14 @@ const logUser = (data) => {
       },
       credentials: "include",
       body: JSON.stringify(data),
-    }).then((response) =>
-      response.status === 200
-        ? dispatch(userAuth(data.name))
-        : console.log("ошибка при регистрации")
-    );
+    })
+      .then((response) => response.json())
+      .then((res) => dispatch(userAuth(res.name)));
   };
 };
 const logout = (data) => {
   return (dispatch, getState) => {
-    fetch("http://localhost:3000/user/logout", {
+    fetch("http://localhost:3001/user/logout", {
       credentials: "include",
     }).then((response) =>
       response.status === 200

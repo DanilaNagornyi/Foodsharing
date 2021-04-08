@@ -1,15 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import AboutMe from '../../components/AboutMe/AboutMe'
 import MyProductList from '../../components/MyProductList/MyProductList'
 import Navbar from '../../components/Navbar/Navbar'
 
 function Profile() {
+  const [profile, setProfile] = useState({})
+  useEffect(() => {
+    fetch('http://localhost:3001/profile', {
+      credentials: 'include',
+    })
+      .then(response => response.json())
+      .then(response => setProfile(response))
+  }, [])
   return (
     <div>
       <Navbar />
       Profile
-      <AboutMe />
-      <MyProductList />
+      <AboutMe setProfile={setProfile} profile={profile} />
+      <MyProductList setProfile={setProfile} profile={profile} />
     </div>
   )
 }

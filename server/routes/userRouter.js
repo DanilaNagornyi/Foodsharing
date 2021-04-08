@@ -37,7 +37,7 @@ router.post("/login", (req, res, next) => {
         return res.send(info.message);
       }
       req.session.user = user._id;
-      return res.sendStatus(200);
+      return res.json({ name: user.name });
     });
   })(req, res, next);
 });

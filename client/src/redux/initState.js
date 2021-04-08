@@ -3,7 +3,8 @@ const initState = {
     name: '',
     isAuth: false,
   },
-  food: []
+  food: [],
+  curPost: {}
 }
 
 export default initState

@@ -1,16 +1,15 @@
-import { AUTH, LOGOUT } from "../types/userTypes"
+import { AUTH, LOGOUT } from "../types/userTypes";
 
 function userReducer(state = {}, action) {
+  console.log(action, state);
   switch (action.type) {
     case AUTH:
-      return { ...state, user: { name: action.payload, isAuth: true } }
+      return { name: action.payload, isAuth: true };
     case LOGOUT:
-      return { ...state, user: { name: '', isAuth: false } }
+      return { name: "", isAuth: false };
     default:
-      return state
+      return state;
   }
-
 }
 
-
-export default userReducer
+export default userReducer;
