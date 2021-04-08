@@ -2,6 +2,7 @@ const router = require("express").Router();
 const passport = require("passport");
 
 router.post("/register", (req, res, next) => {
+  console.log("тут был фетч");
   passport.authenticate("local", (err, user, info) => {
     if (err) {
       return next(info.message);
