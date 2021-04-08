@@ -1,6 +1,7 @@
 import React from 'react'
 
-function AboutMe() {
+function AboutMe({ profile }) {
+  //Туть надо достать данные из profile.user
   return (
     <div>
       AboutMe

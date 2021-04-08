@@ -12,7 +12,7 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(logUser(inputs))
-    setInputs({ name: '', surname: '', email: '', password: '', phone: '', city: '', telegram: '' })
+    setInputs({ email: '', password: '' })
   }
   return (
     <div>
