@@ -3,7 +3,7 @@ import { AUTH, LOGOUT } from "../types/userTypes"
 const regUser = (data) => {
   console.log(data, 'from AC');
   return (dispatch, getState) => {
-    fetch('http://localhost:3001/register', {
+    fetch('http://localhost:3001/user/register', {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -17,7 +17,7 @@ const regUser = (data) => {
 
 const logUser = (data) => {
   return (dispatch, getState) => {
-    fetch('http://localhost:3001/login', {
+    fetch('http://localhost:3001/user/login', {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -30,7 +30,7 @@ const logUser = (data) => {
 }
 const logout = (data) => {
   return (dispatch, getState) => {
-    fetch('http://localhost:3000/logout', {
+    fetch('http://localhost:3001/user/logout', {
       credentials: 'include'
     })
       .then(response => response.status === 200 ? dispatch(userLogout()) : console.log('ошибка при logout'))
