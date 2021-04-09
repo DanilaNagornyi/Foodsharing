@@ -9,6 +9,7 @@ const userSchema = new Schema({
   phone: { type: String, required: true, unique: true },
   telegram: String,
   city: { type: String, required: true },
+  photo: { type: String },
   products: { type: Array, default: [] },
   password: { type: String, required: true },
 });

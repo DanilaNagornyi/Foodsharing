@@ -2,7 +2,6 @@ const router = require("express").Router();
 const passport = require("passport");
 
 router.post("/register", (req, res, next) => {
-  console.log("тут был фетч");
   passport.authenticate("local", (err, user, info) => {
     if (err) {
       return next(info.message);
@@ -20,10 +19,6 @@ router.post("/register", (req, res, next) => {
   })(req, res, next);
 });
 
-// router.post("/register", (req, res) => {
-//   res.json(req.body);
-// });
-
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (err) {
@@ -36,7 +31,6 @@ router.post("/login", (req, res, next) => {
       if (err) {
         return res.send(info.message);
       }
-      req.session.user = user._id;
       return res.json({ name: user.name });
     });
   })(req, res, next);
@@ -49,15 +43,23 @@ router.get(
   })
 );
 
-router.get(
-  "/google/callback",
-  passport.authenticate("google", {
-    failureRedirect: "/login",
-  }),
-  (req, res) => {
-    res.json(res);
-  }
-);
+router.get("/google/callback", (req, res, next) => {
+  passport.authenticate("google", (err, user, info) => {
+    if (err) {
+      return res.sendStatus(503);
+    }
+    if (!user) {
+      return res.sendStatus(400);
+    }
+    req.logIn(user, (err) => {
+      if (err) {
+        return res.sendStatus(400);
+      }
+      req.session.user = user._id;
+      return res.json(user);
+    });
+  })(req, res, next);
+});
 
 router.get("/logout", (req, res) => {
   req.session.destroy();
