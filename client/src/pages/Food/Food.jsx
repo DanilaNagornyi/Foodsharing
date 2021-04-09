@@ -14,8 +14,6 @@ function Food() {
   }, [])
   return (
     <div>
-      Food
-      <Navbar />
       <Categories />
       <Postlist />
       <Map />

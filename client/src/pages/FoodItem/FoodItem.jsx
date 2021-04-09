@@ -5,6 +5,7 @@ import AuthorInfo from '../../components/AuthorInfo/AuthorInfo'
 import MapMini from '../../components/MapMini/MapMini'
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
+import Footer from '../../components/Footer/Footer'
 
 function FoodItem() {
   let { id } = useParams();
@@ -15,11 +16,12 @@ function FoodItem() {
   }, [])
   return (
     <div>
-      FoodItem
-      <Navbar />
+
+
       <AboutProduct />
       <AuthorInfo />
       <MapMini />
+
     </div>
   )
 }

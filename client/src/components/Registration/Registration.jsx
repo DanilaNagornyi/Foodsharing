@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { regUser } from '../../redux/AC/userAC'
+import './styleForm.css'
+
 
 function Registration() {
   const dispatch = useDispatch()
@@ -14,8 +16,9 @@ function Registration() {
     setInputs({ name: '', surname: '', email: '', password: '', phone: '', city: '', telegram: '' })
   }
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <>
+      <main id="main"></main>
+      {/* <form onSubmit={handleSubmit}>
         <input type="text" onChange={handleChange} value={inputs.name} placeholder="name" name="name" />
         <input type="text" onChange={handleChange} value={inputs.surname} placeholder="surname" name="surname" />
         <input type="tel" onChange={handleChange} value={inputs.phone} placeholder="phone" name="phone" />
@@ -24,8 +27,60 @@ function Registration() {
         <input type="text" onChange={handleChange} value={inputs.city} placeholder="city" name="city" />
         <input type="password" onChange={handleChange} value={inputs.password} placeholder="password" name="password" />
         <button>Зарегаться</button>
-      </form>
-    </div>
+      </form> */}
+
+{/* <!-- main --> */}
+	<div className="main-w3layouts wrapper maindiv">
+		<h1>Регистрация</h1>
+		<div className="main-agileinfo">
+			<div className="agileits-top formdesign">
+				<form className="" action="#" method="post">
+
+					<input className="text inputformdecor" type="text" name="name" placeholder="Имя" required="" />
+					<input className="text email inputformdecor" type="text" name="surname" placeholder="Фамилия" required="" />
+					<input className="text email inputformdecor" type="email" name="email" placeholder="Email" required="" />
+
+					<input className="text email inputformdecor inputphoto input-file" id="file" type="file" name="photo" multiple accept="image/*" placeholder="Загрузить фото" required="" />
+          <label for="file" className="btn btn-tertiary js-labelFile">
+            <i className="icon fa fa-check"></i>
+            <span className="js-fileName"> Загрузить фото</span>
+        </label>
+
+					<input className="text email inputformdecor" type="text" name="phone" placeholder="Телефон" required="" />
+					<input className="text email inputformdecor" type="text" name="telegram" placeholder="Telegram user name @" required="" />
+					<input className="text email inputformdecor" type="text" name="city" placeholder="Город" required="" />
+					<input className="text inputformdecor" type="password" name="password" placeholder="Пароль" required="" />
+
+					<input className="text w3lpass inputformdecor" type="password" name="password" placeholder="Повторите пароль" required="" />
+					<div className="wthree-text">
+						<label className="anim">
+							<input type="checkbox" className="checkbox" required="" />
+							<span className="textoncheckbox">Я согласен с условиями платформы!</span>
+						</label>
+						<div className="clear"> </div>
+					</div>
+          <button className="btnlogin">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+          <button className="btngoogle">ВОЙТИ ЧЕРЕЗ <img src="../../../assets/img/google-logo.png" width="27%"></img></button>
+
+				</form>
+				<p>У вас есть аккаунт? <a href="#"> Авторизация</a></p>
+			</div>
+		</div>
+		<ul className="colorlib-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	{/* <!-- //main --> */}
+    </>
   )
 }
 
