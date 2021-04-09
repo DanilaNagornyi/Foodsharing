@@ -13,33 +13,58 @@ import Registration from './components/Registration/Registration'
 import Login from './components/Login/Login'
 import NewFoodForm from './components/NewFoodForm/NewFoodFrom'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import Contacts from './pages/Contacts/Contacts';
+import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
     <Router>
+      <Navbar />
       <Switch>
+
         <Route exact path="/">
           <MainPage />
         </Route>
+
         <Route exact path="/food">
           <Food />
         </Route>
+
         <Route exact path="/registration">
           <Registration />
         </Route>
+
         <Route exact path="/login">
           <Login />
         </Route>
-        <PrivateRoute exact path="/food/:id">
+
+        <Route exact path="/contacts">
+          <Contacts />
+        </Route>
+
+
+        {/* <PrivateRoute exact path="/food/:id">
           <FoodItem />
-        </PrivateRoute>
-        <PrivateRoute exact path="/profile">
+        </PrivateRoute> */}
+
+        <Route exact path="/fooditem">
+          <FoodItem />
+        </Route>
+
+        <Route exact path="/profile">
           <Profile />
-        </PrivateRoute>
+        </Route>
+
+        {/* <PrivateRoute exact path="/profile">
+          <Profile />
+        </PrivateRoute> */}
+
         <PrivateRoute exact path="/addform">
           <NewFoodForm />
         </PrivateRoute>
       </Switch>
+      <Footer />
     </Router>
   );
 }
