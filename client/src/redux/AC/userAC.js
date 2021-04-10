@@ -32,7 +32,8 @@ const logUser = (data) => {
       .then((res) => dispatch(userAuth(res.name)));
   };
 };
-const logout = (data) => {
+export const logout = () => {
+  console.log();
   return (dispatch, getState) => {
     fetch("http://localhost:3001/user/logout", {
       credentials: "include",
@@ -43,7 +44,7 @@ const logout = (data) => {
     );
   };
 };
-const userAuth = (name) => {
+const userAuth = (name = '') => {
   return {
     type: AUTH,
     payload: name,
@@ -54,4 +55,4 @@ const userLogout = () => {
     type: LOGOUT,
   };
 };
-export { userAuth, regUser, logout, logUser };
+export { userAuth, regUser, logUser };

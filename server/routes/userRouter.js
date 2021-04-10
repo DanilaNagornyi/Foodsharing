@@ -1,6 +1,10 @@
 const router = require("express").Router();
 const passport = require("passport");
 
+
+
+
+
 router.post("/register", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (err) {
@@ -20,6 +24,7 @@ router.post("/register", (req, res, next) => {
 });
 
 router.post("/login", (req, res, next) => {
+  console.log('back');
   passport.authenticate("local", (err, user, info) => {
     if (err) {
       return res.send(info.message);
@@ -61,7 +66,11 @@ router.get("/google/callback", (req, res, next) => {
   })(req, res, next);
 });
 
+router.get("/checkAuth", (req, res) => {
+  req.session.passport ? res.sendStatus(200) : res.sendStatus(401)
+})
 router.get("/logout", (req, res) => {
+  console.log('Hi, logout');
   req.session.destroy();
   res.clearCookie(req.app.get("cookieName")).sendStatus(200);
 });
