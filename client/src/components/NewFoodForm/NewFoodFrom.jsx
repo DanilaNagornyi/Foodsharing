@@ -12,7 +12,7 @@ function NewFoodFrom() {
     e.preventDefault()
     dispatch(addFood(inputs))
     setInputs({ category: '', name: '', description: '', photo: '', geolocation: '', quantity: '' })
-    //Дописать логику хистори пуш
+    
   }
 
   return (

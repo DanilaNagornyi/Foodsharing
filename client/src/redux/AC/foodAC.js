@@ -1,6 +1,9 @@
 import { ADD_FOOD, GET_ALL_FOOD, SET_CUR_POST } from "../types/foodTypes"
 
 export const addFood = (data) => {
+
+  let { category, name, description, photo, quantity, validUntil, geolocation, city } = data
+  geolocation = `${geolocation}, ${city}`
   return (dispatch, getState) => {
     fetch('http://localhost:3001/products', {
       method: "POST",
@@ -8,7 +11,7 @@ export const addFood = (data) => {
         "Content-Type": "application/json"
       },
       credentials: 'include',
-      body: JSON.stringify(data)
+      body: JSON.stringify({ category, name, description, photo, quantity, validUntil, geolocation })
     })
       .then(response => response.json())
       .then(response => addFoodToState(response))
