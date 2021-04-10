@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const Products = require("../models/product");
+const User = require("../models/user");
+const Categories = require("../models/categories");
 
 router.get("/products", async (req, res) => {
   try {
@@ -28,6 +30,22 @@ router.post("/products", async (req, res) => {
         owner: req.session.passport.user,
       });
       await newProduct.save();
+      const user = await User.findByIdAndUpdate(
+        req.session.passport.user,
+        {
+          $push: { products: newProduct._id },
+        },
+        { safe: true, upsert: true, new: true }
+      );
+      const category = await Categories.findOneAndUpdate(
+        {
+          name: newProduct.name,
+        },
+        {
+          $push: { productsList: newProduct._id },
+        },
+        { safe: true, upsert: true, new: true }
+      );
       res.json(newProduct);
     } else {
       res.sendStatus(400);

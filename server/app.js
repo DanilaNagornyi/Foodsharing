@@ -22,10 +22,8 @@ app.use(
 );
 
 app.use(logger("dev"));
-app.use(express.json({limit: '50mb'}));
-app.use(express.urlencoded({limit: '50mb'}));
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.set("trust proxy", 1);
 app.set("cookieName", "sid");
 
@@ -75,6 +73,17 @@ app.listen(process.env.PORT, () => {
 //     status: true,
 //     validUntil: "15.07.2021",
 //     owner: "606ffb3ea9a18b216ae14627",
+//   });
+//   await a.save();
+// }
+
+// add();
+
+// const Categories = require("./models/categories");
+
+// async function add() {
+//   const a = new Categories({
+//     name: "Milk Products",
 //   });
 //   await a.save();
 // }
