@@ -1,4 +1,5 @@
 import './App.css';
+import { useEffect } from 'react'
 import {
   BrowserRouter as Router,
   Switch,
@@ -6,6 +7,7 @@ import {
   Link
 } from "react-router-dom";
 import FoodItem from './pages/FoodItem/FoodItem';
+import { useDispatch } from 'react-redux'
 import Profile from './pages/Profile/Profile';
 import Food from './pages/Food/Food';
 import MainPage from './pages/MainPage/MainPage'
@@ -16,8 +18,20 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Contacts from './pages/Contacts/Contacts';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
+import { userAuth } from './redux/AC/userAC';
 
 function App() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    fetch('http://localhost:3001/user/checkAuth', {
+      credentials: 'include'
+    })
+      .then(res => {
+        if (res.status === 200) {
+          dispatch(userAuth())
+        }
+      })
+  }, [])
   return (
     <Router>
       <Navbar />
@@ -44,21 +58,21 @@ function App() {
         </Route>
 
 
-        {/* <PrivateRoute exact path="/food/:id">
+        <PrivateRoute exact path="/food/:id">
           <FoodItem />
-        </PrivateRoute> */}
+        </PrivateRoute>
 
-        <Route exact path="/fooditem">
+        {/* <Route exact path="/fooditem">
           <FoodItem />
-        </Route>
+        </Route> */}
 
-        <Route exact path="/profile">
+        {/* <Route exact path="/profile">
           <Profile />
-        </Route>
+        </Route> */}
 
-        {/* <PrivateRoute exact path="/profile">
+        <PrivateRoute exact path="/profile">
           <Profile />
-        </PrivateRoute> */}
+        </PrivateRoute>
 
         <PrivateRoute exact path="/addform">
           <NewFoodForm />
