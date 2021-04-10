@@ -1,37 +1,35 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-function Post() {
+function Post({ post }) {
   return (
-    
-      <article className="entry">
 
-          <div className="entry-img">
-            <img src="assets/img/blog/blog-1.jpg" alt="" className="img-fluid" />
-          </div>
+    <article className="entry">
 
-          <h2 className="entry-title">
-            <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</a>
-          </h2>
+      <div className="entry-img">
+        <img src={post.photo} alt="" className="img-fluid" />
+      </div>
 
-          <div className="entry-meta">
-            <ul>
-              <li className="d-flex align-items-center"><i className="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
-              <li className="d-flex align-items-center"><i className="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-              <li className="d-flex align-items-center"><i className="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
-            </ul>
-          </div>
+      <h2 className="entry-title">
+        <a href="blog-single.html">{post.name}</a>
+      </h2>
 
-          <div className="entry-content">
-            <p>
-              Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-              Et eveniet enim. Qui velit est ea dolorem doloremque deleniti aperiam unde soluta. Est cum et quod quos aut ut et sit sunt. Voluptate porro consequatur assumenda perferendis dolore.
-            </p>
-            <div className="read-more">
-              <a href="blog-single.html">Read More</a>
-            </div>
-          </div>
+      <div className="entry-meta">
+        <ul>
+          <li className="d-flex align-items-center"><i className="bi bi-chat-dots"></i> <a href="blog-single.html">{post.category}</a></li>
+          <li className="d-flex align-items-center"><i className="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">{post.publishedBy}</time></a></li>
+          <li className="d-flex align-items-center"><i className="bi bi-person"></i> <a href="blog-single.html">12 Comments</a></li>
+        </ul>
+      </div>
 
-      </article>
+      <div className="entry-content">
+        <p>{post.description}</p>
+        <div className="read-more">
+          <Link to={`/food/${post._id}`}  >Read More</Link>
+        </div>
+      </div>
+
+    </article >
   )
 }
 

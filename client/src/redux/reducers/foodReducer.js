@@ -1,12 +1,15 @@
-import { ADD_FOOD, GET_ALL_FOOD } from "../types/foodTypes"
+import { ADD_FOOD, CHANGE_CATEGORY, FOOD_LENGTH, GET_ALL_FOOD } from "../types/foodTypes"
 
 
 function foodReducer(state = {}, action) {
+  console.log(action.payload);
   switch (action.type) {
     case ADD_FOOD:
       return { ...state, food: [...state.food, action.payload] }
     case GET_ALL_FOOD:
-      return { ...state, food: action.payload }
+      return action.payload.products
+    case CHANGE_CATEGORY:
+      return action.payload
     default:
       return state
   }

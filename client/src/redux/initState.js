@@ -4,7 +4,7 @@ const initState = {
     isAuth: false,
   },
   food: [],
-  curPost: {}
+  foodLength: []
 }
 
 export default initState

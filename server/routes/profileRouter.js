@@ -48,4 +48,26 @@ router.patch("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    console.log(req.params.id);
+    const user = await User.findById(req.params.id);
+    if (user) {
+      res.json({
+
+        name: user.name,
+        surname: user.surname,
+        phone: user.phone,
+        telegram: user.telegram,
+        city: user.city,
+        photo: user.photo,
+
+      });
+    } else {
+      res.sendStatus(404);
+    }
+  } catch (error) {
+    res.sendStatus(500);
+  }
+});
 module.exports = router;
