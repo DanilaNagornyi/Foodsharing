@@ -15,6 +15,7 @@ router.get("/products", async (req, res) => {
 });
 
 router.post("/products", async (req, res) => {
+  console.log(req.session.passport, req.body);
   try {
     if (req.session.passport) {
       const newProduct = new Products({
