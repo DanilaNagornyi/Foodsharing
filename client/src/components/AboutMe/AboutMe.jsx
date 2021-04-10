@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function AboutMe({ profile }) {
   //Туть надо достать данные из profile.user
@@ -43,7 +44,7 @@ function AboutMe({ profile }) {
         <div className="text-center">
           <h3>Добавить продукт</h3>
           <p> Добавьте продукт который котите отдать людям</p>
-          <a className="cta-btn" href="#">Добавить</a>
+          <Link className="cta-btn" to="/addfood">Добавить</Link>
         </div>
 
       </div>

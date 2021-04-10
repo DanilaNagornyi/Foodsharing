@@ -399,6 +399,7 @@ h1, h2, h3, h4, h5, h6 {
   #hero {
     background-attachment: fixed;
   }
+
 }
 
 @media (max-width: 768px) {
@@ -2197,4 +2198,18 @@ section {
   background-image: url(/assets/img/features-1.jpg);
 }
 
+.btnmap {
+  font-family: "Raleway", sans-serif ;
+  font-size: 15px;
+  margin-bottom: 15px;
+  color: #fff;
+  width: 100%;
+  height: 4vh;
+  background-color: rgba(148, 192, 69, 0.8);
+  border: none;
+  border-radius: 8px;
+}
 
+.btnmap:hover {
+  background-color: rgba(123, 158, 57, 0.8);
+}

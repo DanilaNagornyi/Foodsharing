@@ -16,6 +16,7 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Contacts from './pages/Contacts/Contacts';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
+import FoodForm from './components/FoodForm/FoodForm';
 
 function App() {
   return (
@@ -43,6 +44,9 @@ function App() {
           <Contacts />
         </Route>
 
+        <Route exact path="/addfood">
+          <FoodForm />
+        </Route>
 
         {/* <PrivateRoute exact path="/food/:id">
           <FoodItem />
