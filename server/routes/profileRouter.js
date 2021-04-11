@@ -30,9 +30,11 @@ router.get("/", async (req, res) => {
 });
 
 router.patch("/", async (req, res) => {
+  console.log(req.body);
   if (req.session.passport) {
     try {
       const user = await User.findById(req.session.passport.user);
+      console.log(user, "find");
       user.name = req.body.name;
       user.surname = req.body.surname;
       user.phone = req.body.phone;

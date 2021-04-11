@@ -18,7 +18,6 @@ router.get("/products", async (req, res) => {
   }
 });
 router.post("/products", async (req, res) => {
-  console.log(req.session.passport, req.body);
   try {
     if (req.session.passport) {
       const newProduct = new Products({
@@ -30,7 +29,9 @@ router.post("/products", async (req, res) => {
         quantity: req.body.quantity,
         validUntil: req.body.validUntil,
         owner: req.session.passport.user,
+        coordinate: req.body.coordinate,
       });
+      console.log(newProduct._id);
       await newProduct.save();
       const user = await User.findByIdAndUpdate(
         req.session.passport.user,
@@ -61,7 +62,6 @@ router.patch("/products", async (req, res) => {
   if (req.session.passport) {
     try {
       const product = await Products.findById(req.body.id).populate("owner");
-      console.log(String(req.session.passport.user) === String(product.owner._id));
       if (String(req.session.passport.user) === String(product.owner._id)) {
         product.status = false;
         await product.save();

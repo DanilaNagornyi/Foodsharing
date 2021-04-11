@@ -13,6 +13,7 @@ const productSchema = new Schema({
   publishedBy: { type: String, default: new Date().toLocaleString() },
   validUntil: { type: String, required: true },
   owner: { type: Schema.Types.ObjectId, ref: "users", required: true },
+  coordinate: { type: String, required: true },
 });
 
 module.exports = model("products", productSchema);

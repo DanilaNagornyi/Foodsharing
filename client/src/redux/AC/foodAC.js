@@ -5,18 +5,27 @@ export const addFood = (data) => {
   let { category, name, description, photo, quantity, validUntil, geolocation, city } = data
   geolocation = `${geolocation}, ${city}`
   return (dispatch, getState) => {
-    fetch('http://localhost:3001/products', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      credentials: 'include',
-      body: JSON.stringify({ category, name, description, photo, quantity, validUntil, geolocation })
-    })
+
+    fetch(`https://geocode-maps.yandex.ru/1.x/?apikey=c44f3c3e-02a3-4e09-8441-9da1eec78fa8&format=json&geocode=${geolocation}`)
+
+      .then(res => res.json())
+      .then(res => {
+        let coordinate = res.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
+        return coordinate
+      })
+      .then(coordinate => fetch('http://localhost:3001/products', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: 'include',
+        body: JSON.stringify({ category, name, description, photo, quantity, validUntil, geolocation, coordinate })
+      }))
       .then(response => response.json())
       .then(response => addFoodToState(response))
   }
 }
+
 
 export const addFoodToState = (data) => {
   console.log(data);
@@ -53,7 +62,7 @@ export const productSearch = (data) => {
       credentials: 'include',
     })
       .then(response => response.json())
-      .then(response => dispatch(getAllFood(response)))
+      .then(response => dispatch(changeCategoriesFromServer(response)))
   }
 }
 
@@ -66,7 +75,6 @@ export const getAllFood = (data) => {
 }
 
 export const changeCategoriesFromServer = (data) => {
-  console.log(data);
   return {
     type: CHANGE_CATEGORY,
     payload: data
@@ -80,3 +88,6 @@ export const setFoodLength = (data) => {
     payload: data
   }
 }
+
+
+

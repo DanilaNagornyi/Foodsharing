@@ -13,7 +13,7 @@ import Food from './pages/Food/Food';
 import MainPage from './pages/MainPage/MainPage'
 import Registration from './components/Registration/Registration'
 import Login from './components/Login/Login'
-import NewFoodForm from './components/NewFoodForm/NewFoodFrom'
+// import NewFoodForm from './components/NewFoodForm/NewFoodFrom'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Contacts from './pages/Contacts/Contacts';
 import Navbar from './components/Navbar/Navbar';
@@ -82,7 +82,7 @@ function App() {
         </PrivateRoute>
 
         <PrivateRoute exact path="/addform">
-          <NewFoodForm />
+          {/* <NewFoodForm /> */}
         </PrivateRoute>
       </Switch>
       <Footer />

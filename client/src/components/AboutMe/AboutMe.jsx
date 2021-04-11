@@ -1,22 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import EditUserForm from '../EditUserForm/EditUserForm.jsx'
 
-function AboutMe({ profile }) {
+function AboutMe({ profile, setProfile }) {
+  const [change, setChange] = useState(false)
   const { user } = profile
-
-  //Туть надо достать данные из profile.user
+  const changeHandler = (e) => {
+    e.preventDefault()
+    setChange(prev => !prev)
+  }
   return (
     <>
       <main id="main">
 
         {/* <!-- ======= Work Process Section ======= --> */}
         <section id="work-process" class="work-process">
-          {user ?
-            <div class="container">
-
+          {change ? <EditUserForm user={user} setChange={setChange} setProfile={setProfile} /> :
+            <div class="container" >
               <div class="section-title" data-aos="fade-up">
-                <h2>{user?.name}</h2>
-                <p>{user?.surname}</p>
+                <h2>{user?.name} {user?.surname}</h2>
+                <p></p>
               </div>
 
               <div class="row content">
@@ -24,18 +27,22 @@ function AboutMe({ profile }) {
                   <img src={user?.photo} class="img-fluid" alt="" />
                 </div>
                 <div class="col-md-7 pt-4" data-aos="fade-left">
-                  <h3>{user?.city}</h3>
-                  <p class="fst-italic">
-                    {user?.email}
-                  </p>
+                  {/* <h3>{user?.city}</h3> */}
+
                   <ul>
+                    <li><i class="bi bi-check"></i> {user?.city}</li>
+                    <li><i class="bi bi-check"></i> {user?.email}</li>
                     <li><i class="bi bi-check"></i> {user?.phone}</li>
                     <li><i class="bi bi-check"></i> t.me/{user?.telegram}</li>
+                    <button class="fst-italic" onClick={changeHandler}>
+                      Изменить личные данные
+                  </button>
                   </ul>
                 </div>
               </div>
 
-            </div> : <p>Данные загружаются</p>}
+            </div>
+          }
         </section>
         {/* <!-- End Work Process Section --> */}
 

@@ -18,6 +18,7 @@ function Profile() {
   if (profile?.user?.name) {
     userAuth(profile.user.name)
   }
+  console.log(profile);
   return (
     <div>
       Profile

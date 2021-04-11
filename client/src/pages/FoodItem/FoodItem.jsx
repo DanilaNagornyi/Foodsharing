@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Footer from '../../components/Footer/Footer'
 
 function FoodItem() {
+  console.log('fff');
   let { id } = useParams();
   const post = useSelector(state => state.food)
   const product = post.find(el => el._id === id)
@@ -22,7 +23,7 @@ function FoodItem() {
 
       <AboutProduct curProduct={product} />
       <AuthorInfo id={product.owner} />
-      <MapMini />
+      <MapMini coordinate={product.coordinate} />
 
     </div>
   )
