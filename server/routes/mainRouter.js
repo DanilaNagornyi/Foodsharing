@@ -6,8 +6,9 @@ const Categories = require("../models/categories");
 router.get("/products", async (req, res) => {
   try {
     const arrProducts = await Products.find();
-    if (arrProducts) {
-      res.json(arrProducts);
+    const categories = await Categories.find();
+    if (arrProducts.length && categories.length) {
+      res.json({ products: arrProducts, categories });
     } else {
       res.sendStatus(503);
     }
@@ -39,7 +40,7 @@ router.post("/products", async (req, res) => {
       );
       const category = await Categories.findOneAndUpdate(
         {
-          name: newProduct.name,
+          name: newProduct.category,
         },
         {
           $push: { productsList: newProduct._id },

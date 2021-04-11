@@ -15,6 +15,7 @@ passport.deserializeUser((id, done) => {
 });
 
 const authUser = async (req, email, pass, done) => {
+  console.log(req.path);
   try {
     if (/login/.test(req.path)) {
       const user = await User.findOne({ email }).lean().exec();
@@ -36,7 +37,7 @@ const authUser = async (req, email, pass, done) => {
             telegram: req.body.telegram,
             city: req.body.city,
             password: hashPass,
-            photo: req.body.photo
+            photo: req.body.photo,
           });
           await newUser.save();
           return done(null, newUser);
