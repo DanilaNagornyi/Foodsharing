@@ -53,14 +53,12 @@ router.get("/:id", async (req, res) => {
     const user = await User.findById(req.params.id);
     if (user) {
       res.json({
-        user: {
-          name: user.name,
-          surname: user.surname,
-          phone: user.phone,
-          telegram: user.telegram,
-          city: user.city,
-          photo: user.photo,
-        },
+        name: user.name,
+        surname: user.surname,
+        phone: user.phone,
+        telegram: user.telegram,
+        city: user.city,
+        photo: user.photo,
       });
     } else {
       res.sendStatus(404);

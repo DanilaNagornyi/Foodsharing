@@ -5,7 +5,8 @@ const Categories = require("../models/categories");
 
 router.get("/products", async (req, res) => {
   try {
-    const arrProducts = await Products.find();
+    let arrProducts = await Products.find();
+    arrProducts = arrProducts.filter((el) => el.status);
     const categories = await Categories.find();
     if (arrProducts.length && categories.length) {
       res.json({ products: arrProducts, categories });
@@ -16,7 +17,6 @@ router.get("/products", async (req, res) => {
     res.sendStatus(500);
   }
 });
-
 router.post("/products", async (req, res) => {
   try {
     if (req.session.passport) {
@@ -57,13 +57,13 @@ router.post("/products", async (req, res) => {
 });
 
 router.patch("/products", async (req, res) => {
-  if (res.session.passport) {
+  if (req.session.passport) {
     try {
       const product = await Products.findById(req.body.id).populate("owner");
-      if (res.session.passport.user === product.owner._id) {
+      if (String(req.session.passport.user) === String(product.owner._id)) {
         product.status = false;
         await product.save();
-        res.json(product);
+        res.json(200);
       } else {
         res.sendStatus(403);
       }
@@ -77,9 +77,10 @@ router.patch("/products", async (req, res) => {
 
 router.get("/products/:categories", async (req, res) => {
   try {
-    const categoriesProducts = await Products.find({
+    let categoriesProducts = await Products.find({
       category: `${req.params.categories}`,
     });
+    categoriesProducts = categoriesProducts.filter((el) => el.status);
     if (categoriesProducts.length) {
       res.json(categoriesProducts);
     } else {
@@ -106,6 +107,22 @@ router.get("/products/info/:id", async (req, res) => {
         telegram: product.owner.telegram,
         photo: product.owner.photo,
       });
+    }
+  } catch (error) {
+    res.sendStatus(500);
+  }
+});
+
+router.get("/products/search/:data", async (req, res) => {
+  const data = req.params.data;
+  try {
+    const nameRegexp = new RegExp(`^${data}.*`, "i");
+    const dataProducts = await Products.find();
+    let result = dataProducts.filter((el) => nameRegexp.test(el.name));
+    if (result) {
+      res.json(result);
+    } else {
+      return res.sendStatus(404);
     }
   } catch (error) {
     res.sendStatus(500);

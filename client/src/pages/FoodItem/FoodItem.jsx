@@ -10,6 +10,8 @@ import Footer from '../../components/Footer/Footer'
 function FoodItem() {
   let { id } = useParams();
   const post = useSelector(state => state.food)
+  const product = post.find(el => el._id === id)
+
   const dispatch = useDispatch()
   useEffect(() => {
 
@@ -18,8 +20,8 @@ function FoodItem() {
     <div>
 
 
-      <AboutProduct />
-      <AuthorInfo />
+      <AboutProduct curProduct={product} />
+      <AuthorInfo id={product.owner} />
       <MapMini />
 
     </div>

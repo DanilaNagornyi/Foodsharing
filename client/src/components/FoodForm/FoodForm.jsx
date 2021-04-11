@@ -1,64 +1,84 @@
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router'
+import FileBase from 'react-file-base64'
+import { Link } from 'react-router-dom'
+import { addFood } from '../../redux/AC/foodAC'
+
 const FoodForm = () => {
-  return ( 
+  const history = useHistory()
+  const dispatch = useDispatch()
+  const [inputs, setInputs] = useState({ name: '', description: '', photo: '', validUntil: '', geolocation: '', quantity: '', category: '', city: '' })
+  const handleChange = (e) => {
+    setInputs({ ...inputs, [e.target.name]: e.target.value })
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(addFood(inputs))
+    setInputs({ name: '', description: '', photo: '', validUntil: '', geolocation: '', quantity: '', category: '', city: '' })
+    history.push('/')
+  }
+  console.log(inputs);
+  return (
     <>
-    <main id="main"></main>
+      <main id="main"></main>
       {/* <!-- main --> */}
-	<div className="main-w3layouts wrapper maindiv">
-		<h1>Добавление продукта</h1>
-		<div className="main-agileinfo">
-			<div className="agileits-top formdesign">
-				<form className="" action="#" method="post">
+      <div className="main-w3layouts wrapper maindiv">
+        <h1>Добавление продукта</h1>
+        <div className="main-agileinfo">
+          <div className="agileits-top formdesign">
+            <form className="" onSubmit={handleSubmit} >
 
-					<input className="text inputformdecor" type="text" name="name" placeholder="Название" required="" />
+              <input className="text inputformdecor" type="text" name="name" placeholder="Название" required="" value={inputs.name} onChange={handleChange} />
+              <select className="text email selectformdecor" placeholder="Категория" value={inputs.category} onChange={handleChange} name="category">
+                <option disabled>Выберите категорию</option>
+                <option value="Fruits">Фрукты</option>
+                <option value="Vegetables">Овощи</option>
+                <option value="Cereals">Крупы</option>
+              </select>
 
-          <select className="text email selectformdecor" placeholder="Категория">
-            <option disabled>Выберите категорию</option>
-            <option>Фрукты</option>
-            <option>Овощи</option>
-            <option>Выпечка</option>
-          </select>
-          
-					<input className="text email inputformdecor" type="text" name="description" placeholder="Описание" required="" />
-					<input className="text email inputformdecor" type="text" name="geolocation" placeholder="Город" required="" />
-					<input className="text email inputformdecor" type="text" name="adress" placeholder="Адрес" required="" />
-					<input className="text email inputformdecor inputphoto input-file" id="file" type="file" name="photo" multiple accept="image/*" placeholder="Загрузить фото" required="" />
-          <label for="file" className="btn btn-tertiary js-labelFile">
-            <i className="icon fa fa-check"></i>
-            <span className="js-fileName"> Загрузить фото</span>
-        </label>
+              <input className="text email inputformdecor" type="text" name="description" placeholder="Описание" required="" value={inputs.description} onChange={handleChange} />
+              <input className="text email inputformdecor" type="text" name="geolocation" placeholder="Город" required="" value={inputs.geolocation} onChange={handleChange} />
+              <input className="text email inputformdecor" type="text" name="city" placeholder="Адрес" required="" value={inputs.city} onChange={handleChange} />
+              {/* <input className="text email inputformdecor inputphoto input-file" id="file" type="file" name="photo" multiple accept="image/*" placeholder="Загрузить фото" required="" />
+              <label for="file" className="btn btn-tertiary js-labelFile">
+                <i className="icon fa fa-check"></i>
+                <span className="js-fileName"> Загрузить фото</span>
+              </label> */}
+              <FileBase className="text email inputformdecor inputphoto input-file" id="file" type="file" multiple={false} onDone={({ base64 }) => setInputs({ ...inputs, photo: base64 })} />
 
-					<input className="text email inputformdecor" type="text" name="quantity" placeholder="Количество" required="" />
-					<input className="text email inputformdecor" type="text" name="validUntil" placeholder="Действительно до" required="" />
-					<div className="wthree-text">
-						<label className="anim">
-							<input type="checkbox" className="checkbox" required="" />
-							<span className="textoncheckbox">Я согласен с условиями платформы!</span>
-						</label>
-						<div className="clear"> </div>
-					</div>
-          <button className="btnlogin">ДОБАВИТЬ</button>
+              <input className="text email inputformdecor" type="text" name="quantity" placeholder="Количество" required="" value={inputs.quantity} onChange={handleChange} />
+              <input className="text email inputformdecor" type="date" name="validUntil" placeholder="Действительно до" required="" value={inputs.validUntil} onChange={handleChange} />
+              <div className="wthree-text">
+                <label className="anim">
+                  <input type="checkbox" className="checkbox" required="" />
+                  <span className="textoncheckbox">Я согласен с условиями платформы!</span>
+                </label>
+                <div className="clear"> </div>
+              </div>
+              <button className="btnlogin">ДОБАВИТЬ</button>
 
 
-				</form>
-				<p>Вы передумали? <a href="#"> Выйти</a></p>
-			</div>
-		</div>
-		<ul className="colorlib-bubbles">
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
-	</div>
-	{/* <!-- //main --> */}
+            </form>
+            <p>Вы передумали? <Link to="/profile"> Выйти</Link></p>
+          </div>
+        </div>
+        <ul className="colorlib-bubbles">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      {/* <!-- //main --> */}
     </>
-   );
+  );
 }
- 
+
 export default FoodForm;

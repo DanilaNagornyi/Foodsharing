@@ -45,6 +45,9 @@ function App() {
         <Route exact path="/food">
           <Food />
         </Route>
+        <Route exact path="/category/:name">
+          <Food />
+        </Route>
 
         <Route exact path="/registration">
           <Registration />
@@ -62,13 +65,13 @@ function App() {
           <FoodForm />
         </Route>
 
-        {/* <PrivateRoute exact path="/food/:id">
+        <PrivateRoute exact path="/food/:id">
           <FoodItem />
-        </PrivateRoute> */}
-
+        </PrivateRoute>
+        {/* 
         <Route exact path="/fooditem">
           <FoodItem />
-        </Route>
+        </Route> */}
 
         {/* <Route exact path="/profile">
           <Profile />
