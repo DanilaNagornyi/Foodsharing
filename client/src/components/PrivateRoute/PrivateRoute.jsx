@@ -12,7 +12,7 @@ function PrivateRoute({ children, ...rest }) {
         ) : (
           <Redirect
             to={{
-              pathname: "/registration",
+              pathname: "/",
               state: { from: location }
             }}
           />

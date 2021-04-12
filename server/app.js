@@ -8,6 +8,8 @@ const passport = require("passport");
 const mainRouter = require("./routes/mainRouter");
 const userRouter = require("./routes/userRouter");
 const profileRouter = require("./routes/profileRouter");
+const subscribeRouter = require('./routes/subscribeRouter')
+const { subscribe } = require("./routes/mainRouter");
 require("dotenv").config();
 require("./passport");
 
@@ -22,8 +24,8 @@ app.use(
 );
 
 app.use(logger("dev"));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.set("trust proxy", 1);
 app.set("cookieName", "sid");
 
@@ -44,6 +46,7 @@ app.use(passport.session());
 app.use("/", mainRouter);
 app.use("/user", userRouter);
 app.use("/profile", profileRouter);
+app.use("/subscribe", subscribeRouter)
 
 app.listen(process.env.PORT, () => {
   console.log("Server App on port", process.env.PORT);
@@ -52,8 +55,11 @@ app.listen(process.env.PORT, () => {
     {
       useNewUrlParser: true,
       useFindAndModify: false,
-      useUnifiedTopology: true,
       useCreateIndex: true,
+      useUnifiedTopology: true,
+      autoIndex: true,
+      poolSize: 10,
+      bufferMaxEntries: 0,
     },
     console.log("DB Started")
   );
@@ -75,6 +81,26 @@ app.listen(process.env.PORT, () => {
 //     owner: "606ffb3ea9a18b216ae14627",
 //   });
 //   await a.save();
+// }
+
+// add();
+
+// const Categories = require("./models/categories");
+
+// async function add() {
+//   const arr =
+//     [new Categories({ name: "Fruits" }),
+//     new Categories({ name: "Vegetables" }),
+//     new Categories({ name: "BabyFood" }),
+//     new Categories({ name: "BakeryProducts" }),
+//     new Categories({ name: "Beverages" }),
+//     new Categories({ name: "MilkProducts" }),
+//     new Categories({ name: "Canned" }),
+//     new Categories({ name: "Meet" }),
+//     new Categories({ name: "HomeFood" }),
+//     new Categories({ name: "Cereals" })
+//     ];
+//   await Categories.insertMany(arr)
 // }
 
 // add();

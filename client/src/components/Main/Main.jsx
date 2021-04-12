@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import './style.scss'
 
 function Main() {
   return (
@@ -6,14 +8,13 @@ function Main() {
        {/* <!-- ======= Hero Section ======= --> */}
   <section id="hero">
     <div className="hero-container" data-aos="fade-up">
-      <h1>Welcome to Foodsharing</h1>
-      <h2>We are team of talented designers making websites with Bootstrap</h2>
+      <h1>Welcome to FruitNinja</h1>
+      <h2>Шаг на пути к независимости от системы безумного потребления</h2>
       <a href="#about" className="btn-get-started scrollto">Присоединиться</a>
     </div>
   </section>
   {/* <!-- End Hero --> */}
   <main id="main">
-
       {/* <!-- ======= About Section ======= --> */}
       <section id="about" className="about">
         <div className="container">
@@ -26,6 +27,7 @@ function Main() {
                   <div className="count-box pb-5 pt-0 pt-lg-5">
                   </div>
                 </div>
+                 
 
               </div>
             </div>
@@ -39,21 +41,20 @@ function Main() {
             </div>
 
             <div className="col-lg-6 pt-3 pt-lg-0 content">
-              <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+              <h3>Учавствуя в проекте Фудшеринг, вы делаете значимый шаг на пути к независимости от системы безумного потребления.</h3>
               <p className="fst-italic">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                magna aliqua.
+              Фудшеринг — это социально-экологическое движение, которое помогает решить проблему нерационального использования ресурсов планеты и помогает организациям и простым людям перестать выбрасывать еду, а нуждающимся людям — получать её абсолютно бесплатно для себя и близких.
+
               </p>
               <ul>
-                <li><i className="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                <li><i className="bx bx-check-double"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                <li><i className="bx bx-check-double"></i> Voluptate repellendus pariatur reprehenderit corporis sint.</li>
-                <li><i className="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+                <li><i className="bx bx-check-double"></i> В мусорном ведре оказывается треть всех продуктов питания на планете.</li>
+                <li><i className="bx bx-check-double"></i> Глобальная экономика теряет из-за этого порядка триллиона долларов ежегодно.</li>
+                <li><i className="bx bx-check-double"></i> Каждый человек за день выбрасывает в среднем по бигмаку, следовательно за год это более 1 миллиарда  300 миллионов тонн еды</li>
+                <li><i className="bx bx-check-double"></i> А между тем  два миллиарда людей недоедают или вынуждены питаться некачественной едой.</li>
               </ul>
               <p>
-                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                culpa qui officia deserunt mollit anim id est laborum
+              Но самое печальное, что более 800 миллионов жителей Земли умирают от голода и цифра продолжает расти.
+
               </p>
             </div>
 
@@ -74,46 +75,47 @@ function Main() {
         <div className="row">
           <div className="col-md-6">
             <div className="icon-box" data-aos="fade-up">
-              <div className="icon"><i className="bi bi-briefcase" ></i></div>
-              <h4 className="title"><a href="">Lorem Ipsum</a></h4>
-              <p className="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <div className="icon"><i className="bi bi-cart-x" ></i></div>
+              <h4 className="title"><a href="">Разумное потребление</a></h4>
+              <p className="description">Мы продвигаем идею разумного потребления продуктов, ведь есть люди которые нуждаются</p>
             </div>
           </div>
           <div className="col-md-6">
             <div className="icon-box" data-aos="fade-up">
-              <div className="icon"><i className="bi bi-book" ></i></div>
-              <h4 className="title"><a href="">Dolor Sitema</a></h4>
-              <p className="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+              <div className="icon"><i className="bi bi-people" ></i></div>
+              <h4 className="title"><a href="">Миссия платформы</a></h4>
+              <p className="description">Мы помогаем организациям и простым людям перестать выбрасывать еду, а нуждающимся людям — получать её абсолютно бесплатно для себя и близких.
+</p>
             </div>
           </div>
 
           <div className="col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div className="icon-box">
-              <div className="icon"><i className="bi bi-card-checklist" ></i></div>
-              <h4 className="title"><a href="">Sed ut perspiciatis</a></h4>
-              <p className="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+              <div className="icon"><i className="bi bi-briefcase briefcasecolor" ></i></div>
+              <h4 className="title"><a href="">Вклад организаций</a></h4>
+              <p className="description">Мы предлагаем партнёрство ресторанам в нашем проекте, ведь рестораны выбрасывают тонны еды в год</p>
             </div>
           </div>
           <div className="col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div className="icon-box">
-              <div className="icon"><i className="bi bi-binoculars" ></i></div>
-              <h4 className="title"><a href="">Magni Dolores</a></h4>
-              <p className="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+              <div className="icon"><i className="bi bi-trash" ></i></div>
+              <h4 className="title"><a href="">Не выбрасывайте еду</a></h4>
+              <p className="description">Мы сможем забрать вашу еду и передать её нуждающимся пользователям нашей платформы</p>
             </div>
           </div>
 
           <div className="col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div className="icon-box">
               <div className="icon"><i className="bi bi-globe" ></i></div>
-              <h4 className="title"><a href="">Nemo Enim</a></h4>
-              <p className="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+              <h4 className="title"><a href="">Ресурсы планеты</a></h4>
+              <p className="description">Рациональный расход ресурсов нашей планеты - это наша общая миссия, мы должны позаботиться о наших потомках</p>
             </div>
           </div>
           <div className="col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div className="icon-box">
-              <div className="icon"><i className="bi bi-clock" ></i></div>
-              <h4 className="title"><a href="">Eiusmod Tempor</a></h4>
-              <p className="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+              <div className="icon"><i className="bi bi-bell" ></i></div>
+              <h4 className="title"><a href="">Правила платформы</a></h4>
+              <p className="description">Ознакомьтесь при регистрации с условиями нашей платформы, это небольшой свод правил которые мы соблюдаем</p>
             </div>
           </div>
         </div>
@@ -129,12 +131,14 @@ function Main() {
         <div className="text-center">
           <h3>Принять участие</h3>
           <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <a className="cta-btn" href="#">Принять участие</a>
+          <Link className="cta-btn" to="rules">Принять участие</Link>
         </div>
 
       </div>
     </section>
     {/* <!-- End Cta Section --> */}
+
+
 
     </main>
     </>
