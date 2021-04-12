@@ -8,7 +8,7 @@ const passport = require("passport");
 const mainRouter = require("./routes/mainRouter");
 const userRouter = require("./routes/userRouter");
 const profileRouter = require("./routes/profileRouter");
-const subscribeRouter = require('./routes/subscribeRouter')
+const subscribeRouter = require("./routes/subscribeRouter");
 const { subscribe } = require("./routes/mainRouter");
 require("dotenv").config();
 require("./passport");
@@ -46,7 +46,7 @@ app.use(passport.session());
 app.use("/", mainRouter);
 app.use("/user", userRouter);
 app.use("/profile", profileRouter);
-app.use("/subscribe", subscribeRouter)
+app.use("/subscribe", subscribeRouter);
 
 app.listen(process.env.PORT, () => {
   console.log("Server App on port", process.env.PORT);
@@ -64,26 +64,6 @@ app.listen(process.env.PORT, () => {
     console.log("DB Started")
   );
 });
-
-// const Products = require("./models/product");
-
-// async function add() {
-//   const a = new Products({
-//     category: "fruits",
-//     name: "Apple",
-//     description: "Free Apple",
-//     photo:
-//       "https://i2.wp.com/ceklog.kindel.com/wp-content/uploads/2013/02/firefox_2018-07-10_07-50-11.png?fit=641%2C618&ssl=1",
-//     geolocation: "Moscow",
-//     quantity: "5",
-//     status: true,
-//     validUntil: "15.07.2021",
-//     owner: "606ffb3ea9a18b216ae14627",
-//   });
-//   await a.save();
-// }
-
-// add();
 
 // const Categories = require("./models/categories");
 

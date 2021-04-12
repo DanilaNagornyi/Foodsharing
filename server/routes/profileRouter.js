@@ -3,16 +3,13 @@ const User = require("../models/user");
 const Products = require("../models/product");
 
 router.get("/", async (req, res) => {
-  console.log(req.session.passport);
   try {
     if (req.session.passport) {
       const user = await User.findById(req.session.passport.user);
-      console.log(user);
       if (user) {
         const productsArr = await Products.find({
           owner: req.session.passport.user,
         });
-        console.log(productsArr);
         res.json({
           user: {
             name: user.name,
@@ -37,11 +34,9 @@ router.get("/", async (req, res) => {
 });
 
 router.patch("/", async (req, res) => {
-  console.log(req.body);
   if (req.session.passport) {
     try {
       const user = await User.findById(req.session.passport.user);
-      console.log(user, "find");
       user.name = req.body.name;
       user.surname = req.body.surname;
       user.phone = req.body.phone;

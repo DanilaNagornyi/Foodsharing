@@ -71,11 +71,10 @@ router.get(
   "/google",
   passport.authenticate("google", {
     scope: ["profile", "email"],
-  }, console.log("brvevvaervearv"))
+  })
 );
 
 router.get("/google/callback", passport.authenticate("google"), (req, res) => {
-  console.log(req.user);
   if (req.user.city) {
     res.redirect("http://localhost:3000");
   } else {
