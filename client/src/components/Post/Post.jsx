@@ -7,7 +7,7 @@ function Post({ post }) {
     <article className="entry">
 
       <div className="entry-img">
-        <img src={post.photo} alt="" className="img-fluid" />
+       <Link to={`/food/${post._id}`}><img src={post.photo} alt="" className="img-fluid" /></Link> 
       </div>
 
       <h2 className="entry-title">
@@ -16,9 +16,9 @@ function Post({ post }) {
 
       <div className="entry-meta">
         <ul>
-          <li className="d-flex align-items-center"><i className="bi bi-chat-dots"></i> <a href="blog-single.html">{post.category}</a></li>
-          <li className="d-flex align-items-center"><i className="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">{post.publishedBy}</time></a></li>
-          <li className="d-flex align-items-center"><i className="bi bi-person"></i> <a href="blog-single.html">12 Comments</a></li>
+          <li className="d-flex align-items-center"><i className="bi bi-chat-dots"></i> <Link to={`/food/${post._id}`}>{post.category}</Link></li>
+          <li className="d-flex align-items-center"><i className="bi bi-clock"></i> <Link to={`/food/${post._id}`}><time datetime="2020-01-01">{post.publishedBy.slice(0, 17)}</time></Link></li>
+
         </ul>
       </div>
 

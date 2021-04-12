@@ -16,14 +16,15 @@ function Navbar() {
         <div className="container d-flex align-items-center justify-content-between">
 
           <div className="logo">
-            <h1 className="text-light"><a href="/">Foodsharing</a></h1>
+    
+            <h1 className="text-light"><img className="imglogo" src="assets/img/logo-harvest.svg"></img> <a className="navtext" href="/">Foodsharing</a></h1>
           </div>
 
           <nav id="navbar" className="navbar">
             <ul>
               <li><Link className="active" to="/">На главную</Link></li>
               <li><Link to="/food">Еда</Link></li>
-              <li className="dropdown"><Link to="/"><span>Личный кабинет</span> <i className="bi bi-chevron-down"></i></Link>
+              <li className="dropdown"><Link ><span>Личный кабинет</span> <i className="bi bi-chevron-down"></i></Link>
                 <ul>
                   {auth ?
                     <> <li><Link to="/profile">Кабинет</Link></li>
@@ -36,10 +37,9 @@ function Navbar() {
                 </ul>
               </li>
               <li><Link to="/contacts">Контакты</Link></li>
-              <li><Link to="/fooditem">FoodItem</Link></li>
 
 
-              <li><a className="getstarted" href="about.html">Принять участие</a></li>
+              <li><Link className="getstarted" to="rules">Принять участие</Link></li>
             </ul>
             <i className="bi bi-list mobile-nav-toggle"></i>
           </nav>

@@ -20,7 +20,6 @@ function FoodItem() {
   return (
     <div>
 
-
       <AboutProduct curProduct={product} />
       <AuthorInfo id={product.owner} />
       <MapMini coordinate={product.coordinate} />
