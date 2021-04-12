@@ -25,7 +25,7 @@ function Profile() {
       <AboutMe setProfile={setProfile} profile={profile} />
       <div className="div-btn-profile">
         <button className="btnproduct" >Актуальные</button>
-        <button className="btncustom" >Архивные</button>
+        <button className="btnproduct" >Архивные</button>
 
       </div>
       <MyProductList setProfile={setProfile} profile={profile} />
