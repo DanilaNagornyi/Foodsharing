@@ -17,6 +17,7 @@ router.get("/products", async (req, res) => {
     res.sendStatus(500);
   }
 });
+
 router.post("/products", async (req, res) => {
   try {
     if (req.session.passport) {
@@ -30,6 +31,7 @@ router.post("/products", async (req, res) => {
         validUntil: req.body.validUntil,
         owner: req.session.passport.user,
       });
+      console.log(newProduct);
       await newProduct.save();
       const user = await User.findByIdAndUpdate(
         req.session.passport.user,

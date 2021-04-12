@@ -2,6 +2,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const bcrypt = require("bcrypt");
+var ObjectID = require("mongodb").ObjectID;
 const User = require("./models/user");
 
 passport.serializeUser((user, done) => {
@@ -15,7 +16,6 @@ passport.deserializeUser((id, done) => {
 });
 
 const authUser = async (req, email, pass, done) => {
-  console.log(req.path);
   try {
     if (/login/.test(req.path)) {
       const user = await User.findOne({ email }).lean().exec();
@@ -78,7 +78,8 @@ passport.use(
         } else {
           new User({
             googleId: profile.id,
-            name: profile.displayName,
+            name: profile.name.familyName,
+            surname: profile.name.givenName,
             email: profile.emails[0].value,
             photo: profile.photos[0].value,
           })
@@ -91,3 +92,37 @@ passport.use(
     }
   )
 );
+
+// passport.use(
+//   new GoogleStrategy(
+//     {
+//       // options for google strategy
+//       clientID: process.env.GOOGLE_CLIENT_ID,
+//       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+//       callbackURL: "/auth/google/callback",
+//     },
+//     (accessToken, refreshToken, profile, done) => {
+//       // check if user already exists in our own db
+//       User.findOne({ googleId: profile.id }).then((currentUser) => {
+//         if (currentUser) {
+//           // already have this user
+//           // console.log('user is: ', currentUser)
+//           done(null, currentUser);
+//         } else {
+//           // if not, create user in our db
+//           const { givenName: firstname, familyName: lastname } = profile.name;
+//           new User({
+//             googleId: profile.id,
+//             firstname,
+//             lastname,
+//           })
+//             .save()
+//             .then((newUser) => {
+//               // console.log('created new user: ', newUser)
+//               done(null, newUser);
+//             });
+//         }
+//       });
+//     }
+//   )
+// );

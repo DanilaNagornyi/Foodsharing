@@ -52,8 +52,11 @@ app.listen(process.env.PORT, () => {
     {
       useNewUrlParser: true,
       useFindAndModify: false,
-      useUnifiedTopology: true,
       useCreateIndex: true,
+      useUnifiedTopology: true,
+      autoIndex: true,
+      poolSize: 10,
+      bufferMaxEntries: 0,
     },
     console.log("DB Started")
   );

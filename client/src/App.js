@@ -1,43 +1,37 @@
-import './App.css';
-import { useEffect } from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-import FoodItem from './pages/FoodItem/FoodItem';
-import { useDispatch } from 'react-redux'
-import Profile from './pages/Profile/Profile';
-import Food from './pages/Food/Food';
-import MainPage from './pages/MainPage/MainPage'
-import Registration from './components/Registration/Registration'
-import Login from './components/Login/Login'
-import NewFoodForm from './components/NewFoodForm/NewFoodFrom'
-import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-import Contacts from './pages/Contacts/Contacts';
-import Navbar from './components/Navbar/Navbar';
-import Footer from './components/Footer/Footer';
-import FoodForm from './components/FoodForm/FoodForm';
-import { userAuth } from './redux/AC/userAC';
+import "./App.css";
+import { useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import FoodItem from "./pages/FoodItem/FoodItem";
+import { useDispatch } from "react-redux";
+import Profile from "./pages/Profile/Profile";
+import Food from "./pages/Food/Food";
+import MainPage from "./pages/MainPage/MainPage";
+import Registration from "./components/Registration/Registration";
+import Login from "./components/Login/Login";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import Contacts from "./pages/Contacts/Contacts";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
+import FoodForm from "./components/FoodForm/FoodForm";
+import { userAuth } from "./redux/AC/userAC";
+import CompletionOfRegistration from "./components/CompletionOfRegistration/CompletionOfRegistration";
 
 function App() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
-    fetch('http://localhost:3001/user/checkAuth', {
-      credentials: 'include'
-    })
-      .then(res => {
-        if (res.status === 200) {
-          dispatch(userAuth())
-        }
-      })
-  }, [])
+    fetch("http://localhost:3001/user/checkAuth", {
+      credentials: "include",
+    }).then((res) => {
+      if (res.status === 200) {
+        dispatch(userAuth());
+      }
+    });
+  }, []);
+
   return (
     <Router>
       <Navbar />
       <Switch>
-
         <Route exact path="/">
           <MainPage />
         </Route>
@@ -68,6 +62,11 @@ function App() {
         <PrivateRoute exact path="/food/:id">
           <FoodItem />
         </PrivateRoute>
+
+        <Route exact path="/completionofregistration">
+          <CompletionOfRegistration />
+        </Route>
+
         {/* 
         <Route exact path="/fooditem">
           <FoodItem />
@@ -81,9 +80,9 @@ function App() {
           <Profile />
         </PrivateRoute>
 
-        <PrivateRoute exact path="/addform">
-          <NewFoodForm />
-        </PrivateRoute>
+        {/* <PrivateRoute exact path="/addform"> */}
+        {/* <NewFoodForm /> */}
+        {/* </PrivateRoute> */}
       </Switch>
       <Footer />
     </Router>
