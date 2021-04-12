@@ -81,12 +81,12 @@ function App() {
           <Profile />
         </PrivateRoute>
 
-        {/* <PrivateRoute exact path="/addform"> */}
-        {/* <NewFoodForm /> */}
-        {/* </PrivateRoute> */}
+        <PrivateRoute exact path="/addfood">
+          < FoodForm />
+        </PrivateRoute>
       </Switch>
       <Footer />
-    </Router>
+    </Router >
   );
 }
 
