@@ -75,7 +75,6 @@ router.get(
 );
 
 router.get("/google/callback", passport.authenticate("google"), (req, res) => {
-  console.log(req.user);
   if (req.user.city) {
     res.redirect("http://localhost:3000");
   } else {

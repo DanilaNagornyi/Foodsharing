@@ -21,7 +21,6 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   if (req.session.passport) {
     try {
-      console.log(req.session.passport);
       const user = await User.findById(req.session.passport.user);
       const category = await Categories.findOneAndUpdate(
         {
