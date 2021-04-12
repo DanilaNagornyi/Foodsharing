@@ -7,11 +7,11 @@ function Post({ post }) {
     <article className="entry">
 
       <div className="entry-img">
-       <Link to={`/food/${post._id}`}><img src={post.photo} alt="" className="img-fluid" /></Link> 
+        <Link to={`/food/${post._id}`}><img src={post.photo} alt="" className="img-fluid" /></Link>
       </div>
 
       <h2 className="entry-title">
-        <a href="blog-single.html">{post.name}</a>
+        <Link to={`/food/${post._id}`}>{post.name}</Link>
       </h2>
 
       <div className="entry-meta">

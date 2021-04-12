@@ -4,7 +4,8 @@ const initState = {
     isAuth: false,
   },
   food: [],
-  foodLength: []
+  foodLength: [],
+  subscribe: []
 }
 
 export default initState

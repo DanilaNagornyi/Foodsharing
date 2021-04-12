@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Products = require("../models/product");
 const User = require("../models/user");
 const Categories = require("../models/categories");
+const fetch = require('node-fetch');
 
 router.get("/products", async (req, res) => {
   try {
@@ -19,42 +20,48 @@ router.get("/products", async (req, res) => {
 });
 
 router.post("/products", async (req, res) => {
-  try {
-    if (req.session.passport) {
-      const newProduct = new Products({
-        category: req.body.category,
-        name: req.body.name,
-        description: req.body.description,
-        photo: req.body.photo,
-        geolocation: req.body.geolocation,
-        quantity: req.body.quantity,
-        validUntil: req.body.validUntil,
-        owner: req.session.passport.user,
-        coordinate: req.body.coordinate,
-      });
-      await newProduct.save();
-      const user = await User.findByIdAndUpdate(
-        req.session.passport.user,
-        {
-          $push: { products: newProduct._id },
-        },
-        { safe: true, upsert: true, new: true }
-      );
-      const category = await Categories.findOneAndUpdate(
-        {
-          name: newProduct.category,
-        },
-        {
-          $push: { productsList: newProduct._id },
-        },
-        { safe: true, upsert: true, new: true }
-      );
-      res.json(newProduct);
-    } else {
-      res.sendStatus(400);
-    }
-  } catch (error) {
-    res.sendStatus(500);
+  // try {
+  if (req.session.passport) {
+    const newProduct = new Products({
+      category: req.body.category,
+      name: req.body.name,
+      description: req.body.description,
+      photo: req.body.photo,
+      geolocation: req.body.geolocation,
+      quantity: req.body.quantity,
+      validUntil: req.body.validUntil,
+      owner: req.session.passport.user,
+      coordinate: req.body.coordinate,
+    });
+    // console.log(newProduct._id);
+    await newProduct.save();
+    const user = await User.findByIdAndUpdate(
+      req.session.passport.user,
+      {
+        $push: { products: newProduct._id },
+      },
+      { safe: true, upsert: true, new: true }
+    );
+    const category = await Categories.findOneAndUpdate(
+      {
+        name: newProduct.category,
+      },
+      {
+        $push: { productsList: newProduct._id },
+      },
+      { safe: true, upsert: true, new: true }
+    );
+    let curcategory = await Categories.findOne({ name: newProduct.category }).populate('subscribers')
+    let arr = curcategory.subscribers.map(el => el.telegramid)
+    Promise.all(arr.map(url =>
+      fetch(`https://api.telegram.org/bot1702408761:AAFxxnFr4THbk0BOR_Ht5HohI-rj0CDM_ZM/sendMessage?chat_id=${url}&text=New+post+in+your+selected+category+http://localhost:3000/food/${newProduct._id}`)
+    ))
+      .then(data => console.log(data))
+      .catch((e) => console.log(e))
+
+    res.json(newProduct);
+  } else {
+    res.sendStatus(400);
   }
 });
 
