@@ -33,7 +33,7 @@ function Profile() {
       <AboutMe setProfile={setProfile} profile={profile} />
       <div className="div-btn-profile">
         <button className="btnproduct" onClick={handlerActual}>Актуальные</button>
-        <button className="btncustom" onClick={handlerArchive}>Архивные</button>
+        <button className="btnproduct" onClick={handlerArchive}>Архивные</button>
 
       </div>
       {archive
