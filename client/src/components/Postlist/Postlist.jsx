@@ -4,6 +4,7 @@ import Map from '../../components/Map/Map'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeCategories, getAllFoodFromServer, productSearch } from '../../redux/AC/foodAC'
 import { Link, useParams } from "react-router-dom"
+import Loader from '../Loader/Loader'
 
 function Postlist() {
   const [value, setValue] = useState('')
@@ -62,7 +63,7 @@ function Postlist() {
                 {map
                   ? <Map />
                   :
-                  posts.length ? posts.map(el => <Post post={el} key={el._id} />) : <h1>Нет постов для отображения</h1>
+                  posts.length ? posts.map(el => <Post post={el} key={el._id} />) : <Loader/>
                 }
 
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import EditUserForm from '../EditUserForm/EditUserForm.jsx'
+import Loader from '../Loader/Loader.jsx'
 
 function AboutMe({ profile, setProfile }) {
   const [change, setChange] = useState(false)
@@ -14,32 +15,36 @@ function AboutMe({ profile, setProfile }) {
       <main id="main">
 
         {/* <!-- ======= Work Process Section ======= --> */}
-        <section id="work-process" class="work-process">
+        <section id="work-process" className="work-process">
           {change ? <EditUserForm user={user} setChange={setChange} setProfile={setProfile} /> :
-            <div class="container" >
-              <div class="section-title" data-aos="fade-up">
-                <h2>{user?.name} {user?.surname}</h2>
+            <div className="container" >
+               {user? (
+                 <>
+              <div className="section-title" data-aos="fade-up">
+               <h2>{user?.name} {user?.surname}</h2>
                 <p></p>
               </div>
 
-              <div class="row content">
-                <div class="col-md-5" data-aos="fade-right">
-                  <img src={user?.photo} class="img-fluid" alt="" />
+              <div className="row content">
+                <div className="col-md-5" data-aos="fade-right">
+                  <img src={user?.photo} className="img-fluid" alt="" />
                 </div>
-                <div class="col-md-7 pt-4" data-aos="fade-left">
+                <div className="col-md-7 pt-4" data-aos="fade-left">
                   {/* <h3>{user?.city}</h3> */}
 
                   <ul>
-                    <li><i class="bi bi-check"></i> {user?.city}</li>
-                    <li><i class="bi bi-check"></i> {user?.email}</li>
-                    <li><i class="bi bi-check"></i> {user?.phone}</li>
-                    <li><i class="bi bi-check"></i> t.me/{user?.telegram}</li>
-                    <button class="fst-italic" onClick={changeHandler}>
+                    <li><i className="bi bi-check"></i> {user?.city}</li>
+                    <li><i className="bi bi-check"></i> {user?.email}</li>
+                    <li><i className="bi bi-check"></i> {user?.phone}</li>
+                    <li><i className="bi bi-check"></i> Telegram: @{user?.telegram}</li>
+                    <button className="btncustom" onClick={changeHandler}>
                       Изменить личные данные
                   </button>
                   </ul>
                 </div>
               </div>
+                  </>)
+                  : <Loader/>} 
 
             </div>
           }

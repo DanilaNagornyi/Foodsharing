@@ -12,9 +12,10 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Contacts from "./pages/Contacts/Contacts";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
-import FoodForm from "./components/FoodForm/FoodForm";
 import { userAuth } from "./redux/AC/userAC";
 import CompletionOfRegistration from "./components/CompletionOfRegistration/CompletionOfRegistration";
+import FoodForm from './components/FoodForm/FoodForm';
+import Rules from './components/Rules/Rules';
 
 function App() {
   const dispatch = useDispatch();
@@ -55,8 +56,8 @@ function App() {
           <Contacts />
         </Route>
 
-        <Route exact path="/addfood">
-          <FoodForm />
+        <Route exact path="/rules">
+          <Rules />
         </Route>
 
         <PrivateRoute exact path="/food/:id">
