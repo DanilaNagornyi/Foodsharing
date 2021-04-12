@@ -3,8 +3,11 @@ const cors = require("cors");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo")(session);
+const { Telegraf } = require('telegraf');
 const logger = require("morgan");
+const User = require("./models/user");
 const passport = require("passport");
+const { getOrCreateUser } = require('./helpers/helpers');
 const mainRouter = require("./routes/mainRouter");
 const userRouter = require("./routes/userRouter");
 const profileRouter = require("./routes/profileRouter");
@@ -12,7 +15,6 @@ const subscribeRouter = require('./routes/subscribeRouter')
 const { subscribe } = require("./routes/mainRouter");
 require("dotenv").config();
 require("./passport");
-
 const app = express();
 
 app.use(
@@ -48,6 +50,24 @@ app.use("/user", userRouter);
 app.use("/profile", profileRouter);
 app.use("/subscribe", subscribeRouter)
 
+const bot = new Telegraf(process.env.BOT_TOKEN)
+bot.use(async (ctx, next) => {
+  try {
+    await next();
+  } catch (error) {
+    console.log(error);
+    await ctx.reply('Что-то пошло не так');
+  }
+});
+bot.start(async ctx => {
+  const { from: { id: telegramId, username } } = ctx.update.message;
+  const user = await getOrCreateUser(telegramId, username);
+  await user.save()
+  ctx.reply('Здорово, что ты хочешь поучаствовать в фудшеринге! Теперь бот будет присылать тебе уведомления о новых постах в избранных тобой категориях.')
+})
+
+
+
 app.listen(process.env.PORT, () => {
   console.log("Server App on port", process.env.PORT);
   mongoose.connect(
@@ -63,44 +83,7 @@ app.listen(process.env.PORT, () => {
     },
     console.log("DB Started")
   );
+  bot.launch();
 });
 
-// const Products = require("./models/product");
 
-// async function add() {
-//   const a = new Products({
-//     category: "fruits",
-//     name: "Apple",
-//     description: "Free Apple",
-//     photo:
-//       "https://i2.wp.com/ceklog.kindel.com/wp-content/uploads/2013/02/firefox_2018-07-10_07-50-11.png?fit=641%2C618&ssl=1",
-//     geolocation: "Moscow",
-//     quantity: "5",
-//     status: true,
-//     validUntil: "15.07.2021",
-//     owner: "606ffb3ea9a18b216ae14627",
-//   });
-//   await a.save();
-// }
-
-// add();
-
-// const Categories = require("./models/categories");
-
-// async function add() {
-//   const arr =
-//     [new Categories({ name: "Fruits" }),
-//     new Categories({ name: "Vegetables" }),
-//     new Categories({ name: "BabyFood" }),
-//     new Categories({ name: "BakeryProducts" }),
-//     new Categories({ name: "Beverages" }),
-//     new Categories({ name: "MilkProducts" }),
-//     new Categories({ name: "Canned" }),
-//     new Categories({ name: "Meet" }),
-//     new Categories({ name: "HomeFood" }),
-//     new Categories({ name: "Cereals" })
-//     ];
-//   await Categories.insertMany(arr)
-// }
-
-// add();

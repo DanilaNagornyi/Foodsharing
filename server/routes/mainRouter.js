@@ -53,8 +53,9 @@ router.post("/products", async (req, res) => {
     );
     let curcategory = await Categories.findOne({ name: newProduct.category }).populate('subscribers')
     let arr = curcategory.subscribers.map(el => el.telegramid)
+    console.log(arr);
     Promise.all(arr.map(url =>
-      fetch(`https://api.telegram.org/bot1702408761:AAFxxnFr4THbk0BOR_Ht5HohI-rj0CDM_ZM/sendMessage?chat_id=${url}&text=New+post+in+your+selected+category+http://localhost:3000/food/${newProduct._id}`)
+      fetch(`https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage?chat_id=${url}&text=New+post+in+your+selected+category+http://localhost:3000/food/${newProduct._id}`)
     ))
       .then(data => console.log(data))
       .catch((e) => console.log(e))

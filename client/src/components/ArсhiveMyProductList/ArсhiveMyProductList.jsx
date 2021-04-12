@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import ArhiveMyProductCard from "../ArhivMyProductCard/ArhivMyProductCard";
+import ArhiveMyProductCard from "../ArсhiveMyProductCard/ArсhiveMyProductCard";
 
-function ArhivMyProductList({ profile, setProfile }) {
- 
+function ArсhiveMyProductList({ profile, setProfile }) {
+
   return (
     <div>
       <main id="main">
@@ -41,4 +41,4 @@ function ArhivMyProductList({ profile, setProfile }) {
   );
 }
 
-export default ArhivMyProductList;
+export default ArсhiveMyProductList;
