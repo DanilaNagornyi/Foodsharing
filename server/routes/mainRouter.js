@@ -5,8 +5,8 @@ const Categories = require("../models/categories");
 
 router.get("/products", async (req, res) => {
   try {
-    let arrProducts = await Products.find()
-    arrProducts = arrProducts.filter(el => el.status);
+    let arrProducts = await Products.find();
+    arrProducts = arrProducts.filter((el) => el.status);
     const categories = await Categories.find();
     if (arrProducts.length && categories.length) {
       res.json({ products: arrProducts, categories });
@@ -17,6 +17,7 @@ router.get("/products", async (req, res) => {
     res.sendStatus(500);
   }
 });
+
 router.post("/products", async (req, res) => {
   try {
     if (req.session.passport) {
@@ -31,7 +32,6 @@ router.post("/products", async (req, res) => {
         owner: req.session.passport.user,
         coordinate: req.body.coordinate,
       });
-      console.log(newProduct._id);
       await newProduct.save();
       const user = await User.findByIdAndUpdate(
         req.session.passport.user,
@@ -81,8 +81,8 @@ router.get("/products/:categories", async (req, res) => {
   try {
     let categoriesProducts = await Products.find({
       category: `${req.params.categories}`,
-    })
-    categoriesProducts = categoriesProducts.filter(el => el.status)
+    });
+    categoriesProducts = categoriesProducts.filter((el) => el.status);
     if (categoriesProducts.length) {
       res.json(categoriesProducts);
     } else {
@@ -118,14 +118,13 @@ router.get("/products/info/:id", async (req, res) => {
 router.get("/products/search/:data", async (req, res) => {
   const data = req.params.data;
   try {
-    const nameRegexp = new RegExp(`^${data}.*`, 'i')
+    const nameRegexp = new RegExp(`^${data}.*`, "i");
     const dataProducts = await Products.find();
-    let result = dataProducts.filter(el => nameRegexp.test(el.name))
+    let result = dataProducts.filter((el) => nameRegexp.test(el.name));
     if (result) {
-      res.json(result)
-    }
-    else {
-      return res.sendStatus(404)
+      res.json(result);
+    } else {
+      return res.sendStatus(404);
     }
   } catch (error) {
     res.sendStatus(500);

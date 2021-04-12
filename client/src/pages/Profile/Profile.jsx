@@ -7,7 +7,6 @@ import { userAuth } from '../../redux/AC/userAC'
 
 function Profile() {
   const [profile, setProfile] = useState({})
-  console.log(profile);
   useEffect(() => {
     fetch('http://localhost:3001/profile', {
       credentials: 'include',
