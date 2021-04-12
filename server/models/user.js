@@ -12,6 +12,8 @@ const userSchema = new Schema({
   photo: { type: String },
   products: { type: Array, default: [] },
   password: { type: String, required: true },
+  telegramid: String,
+  subscribes: { type: Array, default: [] }
 });
 
 module.exports = model("users", userSchema);

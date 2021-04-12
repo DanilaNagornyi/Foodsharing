@@ -28,7 +28,6 @@ export const addFood = (data) => {
 
 
 export const addFoodToState = (data) => {
-  console.log(data);
   return {
     type: ADD_FOOD,
     payload: data
@@ -67,7 +66,6 @@ export const productSearch = (data) => {
 }
 
 export const getAllFood = (data) => {
-  console.log(data);
   return {
     type: GET_ALL_FOOD,
     payload: data

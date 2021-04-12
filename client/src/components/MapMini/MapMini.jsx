@@ -1,15 +1,20 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom';
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
 
 function MapMini({ coordinate }) {
+  const history = useHistory()
   let coordinateFromdb = coordinate.split(' ').map(el => Number(el)).reverse()
   const coordinates = [coordinateFromdb];
+  // const clickHandler = () => {
+  //   history.push('/')
+  // }
   return (
     <>
       <YMaps>
         <div>
-          <Map defaultState={{ center: [55.75, 37.57], zoom: 9 }}  width="100%" >
-            {coordinates.map(coordinate => <Placemark geometry={coordinate} />)}
+          <Map defaultState={{ center: [55.75, 37.57], zoom: 9 }} width="100%" >
+            {coordinates.map(coordinate => <Placemark geometry={coordinate}  />)}
           </Map>
         </div>
       </YMaps>

@@ -8,6 +8,8 @@ const passport = require("passport");
 const mainRouter = require("./routes/mainRouter");
 const userRouter = require("./routes/userRouter");
 const profileRouter = require("./routes/profileRouter");
+const subscribeRouter = require('./routes/subscribeRouter')
+const { subscribe } = require("./routes/mainRouter");
 require("dotenv").config();
 require("./passport");
 
@@ -44,6 +46,7 @@ app.use(passport.session());
 app.use("/", mainRouter);
 app.use("/user", userRouter);
 app.use("/profile", profileRouter);
+app.use("/subscribe", subscribeRouter)
 
 app.listen(process.env.PORT, () => {
   console.log("Server App on port", process.env.PORT);
@@ -82,10 +85,19 @@ app.listen(process.env.PORT, () => {
 // const Categories = require("./models/categories");
 
 // async function add() {
-//   const a = new Categories({
-//     name: "Milk Products",
-//   });
-//   await a.save();
+//   const arr =
+//     [new Categories({ name: "Fruits" }),
+//     new Categories({ name: "Vegetables" }),
+//     new Categories({ name: "BabyFood" }),
+//     new Categories({ name: "BakeryProducts" }),
+//     new Categories({ name: "Beverages" }),
+//     new Categories({ name: "MilkProducts" }),
+//     new Categories({ name: "Canned" }),
+//     new Categories({ name: "Meet" }),
+//     new Categories({ name: "HomeFood" }),
+//     new Categories({ name: "Cereals" })
+//     ];
+//   await Categories.insertMany(arr)
 // }
 
 // add();

@@ -5,7 +5,6 @@ import { YMaps, Map, Placemark } from 'react-yandex-maps';
 function Mapy() {
   const coordinateFromredux = useSelector(state => state.food)
   let coordinateFromdb = coordinateFromredux.map(el => el.coordinate).map(el => el.split(' ').map(el => Number(el)).reverse())
-  console.log(coordinateFromdb);
   let final = coordinateFromdb;
   //Тут необходимо тянуть все геометки из базы и отражать их на карте
   return (

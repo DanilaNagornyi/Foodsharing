@@ -4,11 +4,12 @@ import Map from '../../components/Map/Map'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeCategories, getAllFoodFromServer, productSearch } from '../../redux/AC/foodAC'
 import { Link, useParams } from "react-router-dom"
+import { getSubscribe, addSubscribe } from '../../redux/AC/subscribeAC'
 
 function Postlist() {
+  const dispatch = useDispatch()
   const [value, setValue] = useState('')
   const { name } = useParams();
-  const dispatch = useDispatch()
   const [map, setMap] = useState(false)
   const posts = useSelector(state => state.food)
   const foodLength = useSelector(state => state.foodLength)
@@ -16,7 +17,9 @@ function Postlist() {
     e.preventDefault()
     dispatch(productSearch(value))
   }
-
+  const subcribeHandler = (data) => {
+    dispatch(addSubscribe(data))
+  }
   useEffect(() => {
     name
       ?
@@ -24,6 +27,10 @@ function Postlist() {
       :
       dispatch(getAllFoodFromServer())
   }, [name])
+
+  useEffect(() => {
+    dispatch(getSubscribe())
+  }, [])
 
 
   const handleShow = () => {
@@ -106,39 +113,38 @@ function Postlist() {
                   {/* <!-- End sidebar categories--> */}
                   <button className="btnmap" onClick={handleShow}>{map ? "Скрыть карту" : "Посмотреть на карте"}</button>
 
-                  <h3 className="sidebar-title">По тэгам</h3>
+                  <h3 className="sidebar-title">Подписаться на категорию</h3>
                   <div className="sidebar-item tags">
                     <ul>
-                      <li><a href="#">App</a></li>
-                      <li><a href="#">IT</a></li>
-                      <li><a href="#">Business</a></li>
-                      <li><a href="#">Mac</a></li>
-                      <li><a href="#">Design</a></li>
-                      <li><a href="#">Office</a></li>
-                      <li><a href="#">Creative</a></li>
-                      <li><a href="#">Studio</a></li>
-                      <li><a href="#">Smart</a></li>
-                      <li><a href="#">Tips</a></li>
-                      <li><a href="#">Marketing</a></li>
-                    </ul>
-                  </div>
+                      <li><Link onClick={(e) => e.preventDefault(subcribeHandler(e.target.name))} name="Fruits" to="#">Фрукты</Link></li>
+                      <li><Link onClick={(e) => e.preventDefault(subcribeHandler(e.target.name))} name="Vegetables">Овощи</Link></li>
+                      <li><Link onClick={(e) => e.preventDefault(subcribeHandler(e.target.name))} name="BabyFood">Детское питание</Link></li>
+                      <li><Link onClick={(e) => e.preventDefault(subcribeHandler(e.target.name))} name="HomeFood">Домашняя кухня</Link></li>
+                      <li><Link onClick={(e) => e.preventDefault(subcribeHandler(e.target.name))} name="Cereals">Крупы</Link></li>
+                      <li><Link onClick={(e) => e.preventDefault(subcribeHandler(e.target.name))} name="BakeryProducts">Хлеб и выпечка</Link></li>
+                      <li><Link onClick={(e) => e.preventDefault(subcribeHandler(e.target.name))} name="MilkProducts">Молочные продукты</Link></li>
+                      <li><Link onClick={(e) => e.preventDefault(subcribeHandler(e.target.name))} name="Meet">Мясо,рыба</Link></li>
+                      <li><Link onClick={(e) => e.preventDefault(subcribeHandler(e.target.name))} name="Beverages">Напитки</Link></li>
+                      <li><Link onClick={(e) => e.preventDefault(subcribeHandler(e.target.name))} name="Canned">Консервированные продукты</Link></li >
+                    </ul >
+                  </div >
                   {/* <!-- End sidebar tags--> */}
 
-                </div>
+                </div >
                 {/* <!-- End sidebar --> */}
 
-              </div>
+              </div >
               {/* <!-- End blog sidebar --> */}
 
-            </div>
+            </div >
 
-          </div>
-        </section>
+          </div >
+        </section >
         {/* <!-- End Blog Section --> */}
 
 
 
-      </main>
+      </main >
 
 
     </>
