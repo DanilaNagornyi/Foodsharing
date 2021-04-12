@@ -10,7 +10,7 @@ function Main() {
     <div className="hero-container" data-aos="fade-up">
       <h1>Welcome to FruitNinja</h1>
       <h2>Шаг на пути к независимости от системы безумного потребления</h2>
-      <a href="#about" className="btn-get-started scrollto">Присоединиться</a>
+      <a href="#services" className="btn-get-started scrollto">Присоединиться</a>
     </div>
   </section>
   {/* <!-- End Hero --> */}
@@ -41,7 +41,7 @@ function Main() {
             </div>
 
             <div className="col-lg-6 pt-3 pt-lg-0 content">
-              <h3>Учавствуя в проекте Фудшеринг, вы делаете значимый шаг на пути к независимости от системы безумного потребления.</h3>
+              <h3>Участвуя в проекте Фудшеринг, вы делаете значимый шаг на пути к независимости от системы избыточного потребления.</h3>
               <p className="fst-italic">
               Фудшеринг — это социально-экологическое движение, которое помогает решить проблему нерационального использования ресурсов планеты и помогает организациям и простым людям перестать выбрасывать еду, а нуждающимся людям — получать её абсолютно бесплатно для себя и близких.
 
@@ -106,15 +106,15 @@ function Main() {
 
           <div className="col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div className="icon-box">
-              <div className="icon"><i className="bi bi-globe" ></i></div>
+              <div className="icon"><i className="bi bi-globe globe-color" ></i></div>
               <h4 className="title"><a href="">Ресурсы планеты</a></h4>
               <p className="description">Рациональный расход ресурсов нашей планеты - это наша общая миссия, мы должны позаботиться о наших потомках</p>
             </div>
           </div>
           <div className="col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div className="icon-box">
-              <div className="icon"><i className="bi bi-bell" ></i></div>
-              <h4 className="title"><a href="">Правила платформы</a></h4>
+              <div className="icon"><i className="bi bi-bell bell-color" ></i></div>
+              <h4 className="title"><Link to="rules">Правила платформы</Link></h4>
               <p className="description">Ознакомьтесь при регистрации с условиями нашей платформы, это небольшой свод правил которые мы соблюдаем</p>
             </div>
           </div>
@@ -130,7 +130,7 @@ function Main() {
 
         <div className="text-center">
           <h3>Принять участие</h3>
-          <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p> Выброшенной на планете еды хватило бы, чтобы накормить примерно 300 миллионов человек. Поэтому при участии в проекте Фудшеринг, вы делаете значимый шаг на пути к независимости от системы безумного потребления. Таким образом еда спасается от выбрасывания, а организации могут оказать помощь нуждающимся людям и всей планете.</p>
           <Link className="cta-btn" to="rules">Принять участие</Link>
         </div>
 

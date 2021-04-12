@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import AboutMe from '../../components/AboutMe/AboutMe'
+import ArhivMyProductList from '../../components/ArhivMyProductList/ArhiveMyProductList'
 import Footer from '../../components/Footer/Footer'
 import MyProductList from '../../components/MyProductList/MyProductList'
 import Navbar from '../../components/Navbar/Navbar'
@@ -22,7 +23,14 @@ function Profile() {
     <div>
       Profile
       <AboutMe setProfile={setProfile} profile={profile} />
+      <div className="div-btn-profile">
+        <button className="btnproduct" >Актуальные</button>
+        <button className="btncustom" >Архивные</button>
+
+      </div>
       <MyProductList setProfile={setProfile} profile={profile} />
+
+    <ArhivMyProductList setProfile={setProfile} profile={profile} />
     </div>
   )
 }

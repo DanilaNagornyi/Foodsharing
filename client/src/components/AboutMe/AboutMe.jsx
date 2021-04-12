@@ -37,6 +37,7 @@ function AboutMe({ profile, setProfile }) {
                     <li><i className="bi bi-check"></i> {user?.email}</li>
                     <li><i className="bi bi-check"></i> {user?.phone}</li>
                     <li><i className="bi bi-check"></i> Telegram: @{user?.telegram}</li>
+                    <li><i className="bi bi-check"></i> Мои подписки: <><br/> <i className="bi bi-bell"></i> {user?.telegram} <a href="/"> delete</a></> </li>
                     <button className="btncustom" onClick={changeHandler}>
                       Изменить личные данные
                   </button>

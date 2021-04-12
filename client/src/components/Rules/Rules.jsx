@@ -11,16 +11,11 @@ const Rules = () => {
             <div className="container">
               <div className="breadcrumb-hero">
                 <h2>ПРАВИЛА ПЛАТФОРМЫ</h2>
-                <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
+                <p>Ознакомьтесь с условиями нашей платформы, это небольшой свод правил которые мы соблюдаем</p>
               </div>
             </div>
           </div>
-          <div className="container">
-            <ol>
-              {/* <li><a href="index.html">Home</a></li>
-          <li>Blog</li> */}
-            </ol>
-          </div>
+          
         </section>
         {/* <!-- End Breadcrumbs --> */}
 
@@ -101,7 +96,7 @@ const Rules = () => {
       </div>
     </section>
     {/* <!-- End Frequently Asked Questions Section --> */}
-          <div lassName="btn-div">
+          <div сlassName="btn-div">
 
     <Link to='registration' className="btn-faq" >Регистрация</Link>
           </div>

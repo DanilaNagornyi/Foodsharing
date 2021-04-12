@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import MyProductCard from "../MyProductCard/MyProductCard";
 import { useDispatch } from "react-redux";
+import ArhiveMyProductCard from "../ArhivMyProductCard/ArhivMyProductCard";
 
-function MyProductList({ profile, setProfile }) {
+function ArhivMyProductList({ profile, setProfile }) {
  
   return (
     <div>
@@ -11,7 +11,7 @@ function MyProductList({ profile, setProfile }) {
         <section id="features" className="features">
           <div className="container">
             <div className="section-title" data-aos="fade-up">
-              <h2>Мои продукты</h2>
+              <h2>Архив продуктов</h2>
               <p>
                 Magnam dolores commodi suscipit. Necessitatibus eius consequatur
                 ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam
@@ -23,7 +23,7 @@ function MyProductList({ profile, setProfile }) {
             <div className="row">
               {profile?.product?.length ? (
                 profile.product.map((el) => (
-                  <MyProductCard
+                  <ArhiveMyProductCard
                     item={el}
                     key={el._id}
                     setProfile={setProfile}
@@ -41,4 +41,4 @@ function MyProductList({ profile, setProfile }) {
   );
 }
 
-export default MyProductList;
+export default ArhivMyProductList;

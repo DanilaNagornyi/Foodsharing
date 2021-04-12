@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import MyProductCard from "../MyProductCard/MyProductCard";
+import MyProductCard from "../ArhivMyProductCard/MyProductCard";
 import { useDispatch } from "react-redux";
 
 function MyProductList({ profile, setProfile }) {
