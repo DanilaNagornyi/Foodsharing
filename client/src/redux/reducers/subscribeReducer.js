@@ -5,7 +5,7 @@ function subscribeReducer(state = [], action) {
   console.log(state);
   switch (action.type) {
     case DELETE_SUBSCRIBE:
-      return state.filter(el => el.name !== action.payload)
+      return state.filter(el => el !== action.payload)
     case GET_SUBCRIBE:
       return action.payload
     case ADD_SUBSCRIBE:

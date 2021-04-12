@@ -47,8 +47,8 @@ router.delete("/", async (req, res) => {
     try {
       const user = await User.findById(req.session.passport.user);
       user.subscribes = user.subscribes.filter(el => el !== req.body.category)
-      const category = await Categories.findOne({ name: req.body.name });
-      category.subscribers = category.subscribers.filter(el => el !== req.session.passport.user)
+      const category = await Categories.findOne({ name: req.body.category });
+      category.subscribers = category.subscribers.filter(el => String(el) !== String(req.session.passport.user))
       await category.save()
       await user.save()
       res.sendStatus(200)
