@@ -75,14 +75,14 @@ function Main() {
         <div className="row">
           <div className="col-md-6">
             <div className="icon-box" data-aos="fade-up">
-              <div className="icon"><i className="bi bi-cart-x" ></i></div>
+              <div className="icon"><i className="bi bi-cart-x cartx-color" ></i></div>
               <h4 className="title"><a href="">Разумное потребление</a></h4>
               <p className="description">Мы продвигаем идею разумного потребления продуктов, ведь есть люди которые нуждаются</p>
             </div>
           </div>
           <div className="col-md-6">
             <div className="icon-box" data-aos="fade-up">
-              <div className="icon"><i className="bi bi-people" ></i></div>
+              <div className="icon"><i className="bi bi-people people-color" ></i></div>
               <h4 className="title"><a href="">Миссия платформы</a></h4>
               <p className="description">Мы помогаем организациям и простым людям перестать выбрасывать еду, а нуждающимся людям — получать её абсолютно бесплатно для себя и близких.
 </p>
@@ -98,7 +98,7 @@ function Main() {
           </div>
           <div className="col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div className="icon-box">
-              <div className="icon"><i className="bi bi-trash" ></i></div>
+              <div className="icon"><i className="bi bi-trash trash-color" ></i></div>
               <h4 className="title"><a href="">Не выбрасывайте еду</a></h4>
               <p className="description">Мы сможем забрать вашу еду и передать её нуждающимся пользователям нашей платформы</p>
             </div>
