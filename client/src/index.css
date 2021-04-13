@@ -100,6 +100,11 @@ code {
   border-radius: 50px;
   border: none;
   color: #fff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
 .btn-faq:hover {
@@ -107,7 +112,7 @@ code {
   background: #9fc658;
 }
 
-.btn-div {
+.btn-div  {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -115,8 +120,42 @@ code {
 }
 /* \Btn faq */
 
+/* Btn product */
+.btnproduct {
+  background: #94c045;
+  padding: 8px 25px;
+  margin: 10px;
+  
+  border-radius: 50px;
+  border: none;
+  color: #fff;
+}
+
+.btnproduct:hover {
+  color: #fff;
+  background: #9fc658;
+}
+
+.div-btn-profile {
+margin: 20px !important;
+display: flex;
+justify-content: center;
+}
+/* Btn product */
+
 /* logo navbar */
 .imglogo {
   margin-bottom: 10px !important;
 }
 /* \logo navbar */
+
+/* card-archive */
+.card-archive{
+  opacity: 0.4;
+  transition: 0.8s;
+}
+.card-archive:hover {
+  opacity: 1;
+}
+/* \card-archive */
+

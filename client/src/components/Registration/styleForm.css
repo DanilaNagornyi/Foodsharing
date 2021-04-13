@@ -248,28 +248,35 @@ input.email, input.text.w3lpass {
 .btn-tertiary:hover,.example-2 .btn-tertiary:focus{
   color: #fff;
   border-color:#fff;
+  /* unput file */
 }
-.input-file{
-  width:.1px;
-  height:.1px;
+#root > div > div > div > form > input[type=file]:nth-child(6){
+  width: 94.5%;
+  height:40px;
   opacity:0;
   overflow:hidden;
   position:absolute;
-  z-index:-1}
-.input-file + .js-labelFile{
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-  padding:0 ;
-  cursor:pointer
+  /* z-index:-1 */
 }
-.input-file + .js-labelFile .icon:before{
-  content:"\f093"
+#root > div > div > div > form > input[type=file]:nth-child(6):hover {
+  cursor: pointer
 }
-.input-file + .js-labelFile.has-file .icon:before{
-  content:"\f00c";
-  color:#5AAC7B
-}
+
+  #root > div > div > div > form > input[type=file]:nth-child(6) + .js-labelFile{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    padding:0 ;
+    cursor:pointer
+  }
+  #root > div > div > div > form > input[type=file]:nth-child(6) + .js-labelFile .icon:before{
+    content:"\f093"
+  }
+  #root > div > div > div > form > input[type=file]:nth-child(6) + .js-labelFile.has-file .icon:before{
+    content:"\f00c";
+    color:#5AAC7B
+  }
+  /* \unput file */
 
 
 
@@ -461,6 +468,14 @@ input.checkbox:checked:after {
   /* position: absolute; */
   z-index: 2;
 }
+/* img-bubbles */
+.img-bubbles{
+  opacity: 0.3;
+  width: 80%;
+  padding-left: 10px;
+  padding-top: 10px ;
+}
+/* \img-bubbles */
 
 .colorlib-bubbles {
   /* position: absolute; */
@@ -477,7 +492,7 @@ input.checkbox:checked:after {
   display: block;
   width: 40px;
   height: 40px;
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.10);
   bottom: -160px;
   -webkit-animation: square 20s infinite;
   -moz-animation: square 250s infinite;
@@ -577,8 +592,8 @@ input.checkbox:checked:after {
 
 .colorlib-bubbles li:nth-child(9) {
   left: 25%;
-  width: 10px;
-  height: 10px;
+  width: 30px;
+  height: 30px;
   -webkit-animation-delay: 2s;
   animation-delay: 2s;
   -webkit-animation-duration: 50s;

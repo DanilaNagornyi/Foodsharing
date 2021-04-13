@@ -5,6 +5,7 @@ import {
   GET_ALL_FOOD,
   SET_CUR_POST,
 } from "../types/foodTypes";
+import { setError } from "./errorAC";
 
 export const addFood = (data) => {
   let {
@@ -47,8 +48,7 @@ export const addFood = (data) => {
           }),
         })
       )
-      .then((response) => response.json())
-      .then((response) => addFoodToState(response));
+      .then(res => res.status === 400 ? dispatch(setError('Не удалось добавить публикацию')) : res.json().then(res => addFoodToState(res)))
   };
 };
 

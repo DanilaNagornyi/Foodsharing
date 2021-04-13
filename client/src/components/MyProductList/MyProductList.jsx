@@ -3,9 +3,7 @@ import MyProductCard from "../MyProductCard/MyProductCard";
 import { useDispatch } from "react-redux";
 
 function MyProductList({ profile, setProfile }) {
-  const backgroundImage = {
-    backgroundImage: "url(assets/img/features-2.jpg)",
-  };
+ 
   return (
     <div>
       <main id="main">
@@ -15,10 +13,7 @@ function MyProductList({ profile, setProfile }) {
             <div className="section-title" data-aos="fade-up">
               <h2>Мои продукты</h2>
               <p>
-                Magnam dolores commodi suscipit. Necessitatibus eius consequatur
-                ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam
-                quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
-                Quia fugiat sit in iste officiis commodi quidem hic quas.
+                Ниже отображается список добавленных вами продуктов, после завершения сделки кликните на кнопку - снять с публикации
               </p>
             </div>
 

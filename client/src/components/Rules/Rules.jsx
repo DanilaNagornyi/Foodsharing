@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 const Rules = () => {
   return ( 
     <>
@@ -11,16 +9,11 @@ const Rules = () => {
             <div className="container">
               <div className="breadcrumb-hero">
                 <h2>ПРАВИЛА ПЛАТФОРМЫ</h2>
-                <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
+                <p>Ознакомьтесь с условиями нашей платформы, это небольшой свод правил которые мы соблюдаем</p>
               </div>
             </div>
           </div>
-          <div className="container">
-            <ol>
-              {/* <li><a href="index.html">Home</a></li>
-          <li>Blog</li> */}
-            </ol>
-          </div>
+          
         </section>
         {/* <!-- End Breadcrumbs --> */}
 
@@ -29,18 +22,20 @@ const Rules = () => {
       <div class="container">
 
         <div class="section-title" data-aos="fade-up">
-          <h2>Frequently Asked Questions</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <h2>Здорово, что ты хочешь поучаствовать в фудшеринге!</h2>
+          <p>Поскольку еда сохраняет нам жизнь, мы также хотим относиться к ней с уважением. За прошедшее время мы определили некоторые правила поведения, чтобы все работало оптимально для нас. Передавать еду другим - очень человечное, но ответственное дело. В принципе, всегда применяется следующее: «Не передавайте другим ничего, что вы бы не съели сами». Пожалуйста, внимательно прочитайте этикет по обмену едой!</p>
+          <p></p>
+          <h3>Этикет совместного питания</h3>
         </div>
 
         <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up">
           <div class="col-lg-5">
-            <i class="bx bx-help-circle"></i>
-            <h4>Non consectetur a erat nam at lectus urna duis?</h4>
+            <i class="bx bx-bookmark"></i>
+            <h4>Будь честен</h4>
           </div>
           <div class="col-lg-7">
             <p>
-              Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+            Все мы, кто разработал фудшеринг и запустил веб-сайт, очень серьезно относятся к своей работе. Мы соблюдаем ряд законов и постановлений. Также будьте честны при заполнении своих данных и всех других данных, которые вы делаете на платформе, например, в страницах с едой и личных сообщениях.
             </p>
           </div>
         </div>
@@ -48,12 +43,15 @@ const Rules = () => {
 
         <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-5">
-            <i class="bx bx-help-circle"></i>
-            <h4>Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?</h4>
+            <i class="bx bx-bookmark"></i>
+            <h4>Соблюдайте правила по передаче еды.</h4>
           </div>
           <div class="col-lg-7">
             <p>
-              Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim.
+            Мы прямо указываем на то, что по юридическим причинам мы разрешаем предлагать и делиться определенными продуктами питания и другими товарами только при определенных условиях. В частности, это относится к скоропортящимся продуктам, таким как сырая рыба, сырое мясо, блюда из сырых яиц и полуфабрикаты. В общем, мы следим за тем, чтобы еда оставалась съедобной для всех наших органов чувств. Все подробности можно найти в правилах гигиены фудшеринга.
+            </p>
+            <p>
+            Передача лекарств (в том числе гомеопатических) исключена при совместном использовании продуктов питания. Одежду, косметику, бытовую химию, игрушки и другие непродовольственные товары нельзя обменивать или передавать через фудшеринг. Платформа фудшеринга оставляет за собой право удалять такие предложения.
             </p>
           </div>
         </div>
@@ -61,12 +59,12 @@ const Rules = () => {
 
         <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
           <div class="col-lg-5">
-            <i class="bx bx-help-circle"></i>
-            <h4>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi?</h4>
+            <i class="bx bx-bookmark"></i>
+            <h4>Быть ответственным</h4>
           </div>
           <div class="col-lg-7">
             <p>
-              Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus.
+            30  % всей еды попадает в мусор. Это должно, наконец, закончиться. Мы не хотим ничего выбрасывать! Мы хотим ответственно относиться к еде и рады, что вы принимаете участие.
             </p>
           </div>
         </div>
@@ -74,12 +72,12 @@ const Rules = () => {
 
         <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
           <div class="col-lg-5">
-            <i class="bx bx-help-circle"></i>
-            <h4>Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?</h4>
+            <i class="bx bx-bookmark"></i>
+            <h4>Будь надёжным</h4>
           </div>
           <div class="col-lg-7">
             <p>
-              Aperiam itaque sit optio et deleniti eos nihil quidem cumque. Voluptas dolorum accusantium sunt sit enim. Provident consequuntur quam aut reiciendis qui rerum dolorem sit odio. Repellat assumenda soluta sunt pariatur error doloribus fuga.
+            Во многих городах есть справедливые перегородки, где делятся едой. Вы можете встретиться там или в других нейтральных местах, чтобы поделиться. Если вы хотите передать или забрать продукты, будьте надежны и пунктуальны, не бросайте никого под «дождь».
             </p>
           </div>
         </div>
@@ -87,12 +85,12 @@ const Rules = () => {
 
         <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
           <div class="col-lg-5">
-            <i class="bx bx-help-circle"></i>
-            <h4>Tempus quam pellentesque nec nam aliquam sem et tortor consequat?</h4>
+            <i class="bx bx-bookmark"></i>
+            <h4>Сделайте предложения</h4>
           </div>
           <div class="col-lg-7">
             <p>
-              Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in
+            Мы хотим продолжать развиваться, становиться все лучше и лучше. Для этого нам нужно от вас много хороших идей и советов. Отправляете их на info@foodsharing.com
             </p>
           </div>
         </div>
@@ -101,11 +99,6 @@ const Rules = () => {
       </div>
     </section>
     {/* <!-- End Frequently Asked Questions Section --> */}
-          <div lassName="btn-div">
-
-    <Link to='registration' className="btn-faq" >Регистрация</Link>
-          </div>
-
     </>
    );
 }

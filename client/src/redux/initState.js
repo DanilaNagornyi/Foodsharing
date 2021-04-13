@@ -5,7 +5,10 @@ const initState = {
   },
   food: [],
   foodLength: [],
-  subscribe: []
+  subscribe: [],
+  loading: false,
+  isLoaded: false,
+  error: ''
 }
 
 export default initState

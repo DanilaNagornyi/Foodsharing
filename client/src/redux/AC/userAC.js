@@ -1,4 +1,5 @@
 import { AUTH, LOGOUT } from "../types/userTypes";
+import { setError } from "./errorAC";
 
 const regUser = (data) => {
   return (dispatch) => {
@@ -12,7 +13,7 @@ const regUser = (data) => {
     }).then((response) =>
       response.status === 200
         ? dispatch(userAuth(data.name))
-        : console.log("ошибка при регистрации")
+        : dispatch(setError('Ошибка при регистрации'))
     );
   };
 };
@@ -29,7 +30,7 @@ const regUserGoogle = (data) => {
     }).then((response) =>
       response.status === 200
         ? dispatch(userAuth(data.name))
-        : console.log("ошибка при регистрации")
+        : dispatch(setError("Ошибка при регистрации"))
     );
   };
 };
@@ -44,10 +45,11 @@ const logUser = (data) => {
       credentials: "include",
       body: JSON.stringify(data),
     })
-      .then((response) => response.json())
-      .then((res) => dispatch(userAuth(res.name)));
-  };
-};
+      .then(res => res.status)
+      .then(res => res === 404 ? dispatch(setError('Неправильно введен логин и/или пароль')) : res.JSON().then(dispatch(userAuth(res.name))))
+
+  }
+}
 
 export const logout = () => {
   return (dispatch) => {
@@ -56,7 +58,7 @@ export const logout = () => {
     }).then((response) =>
       response.status === 200
         ? dispatch(userLogout())
-        : console.log("ошибка при logout")
+        : dispatch(setError("Ошибка при выходе из системы"))
     );
   };
 };

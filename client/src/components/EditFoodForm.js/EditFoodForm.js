@@ -11,6 +11,7 @@ const EditFoodForm = ({ food }) => {
   const handleChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value })
   }
+  console.log(inputs);
   const handleSubmit = (e) => {
     e.preventDefault()
     let { name, description, quantity, validUntil, geolocation, city } = inputs
@@ -30,7 +31,7 @@ const EditFoodForm = ({ food }) => {
         body: JSON.stringify({ name, description, quantity, validUntil, geolocation, coordinate })
       }))
       .then(response => response.status)
-      ///Допилить логику!!!
+    ///Допилить логику!!!
   }
 
   // history.push('/')

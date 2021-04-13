@@ -1,29 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { logUser } from "../../redux/AC/userAC";
+import { clearError, setError } from "../../redux/AC/errorAC";
 
 function Login() {
+  const error = useSelector(state => state.error)
   const dispatch = useDispatch();
+  useEffect(() => {
+    return () => {
+      dispatch(setError(''))
+    }
+  }, [])
   const history = useHistory();
   const [inputs, setInputs] = useState({ email: "", password: "" });
   const handleChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
+  console.log(error);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputs);
     dispatch(logUser(inputs));
     setInputs({ email: "", password: "" });
-    history.push("/profile");
+    if (error) {
+      history.push("/profile")
+    }
   };
   return (
     <>
       <main id="main"></main>
 
       {/* <!-- main --> */}
+
       <div className="main-w3layouts wrapper maindiv">
+        <h1>{error}</h1>
         <h1>Авторизация</h1>
         <div className="main-agileinfo">
           <div className="agileits-top formdesign">

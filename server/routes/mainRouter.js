@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Products = require("../models/product");
 const User = require("../models/user");
 const Categories = require("../models/categories");
-const fetch = require('node-fetch');
+const fetch = require("node-fetch");
 
 router.get("/products", async (req, res) => {
   try {
@@ -29,11 +29,10 @@ router.post("/products", async (req, res) => {
       photo: req.body.photo,
       geolocation: req.body.geolocation,
       quantity: req.body.quantity,
-      validUntil: req.body.validUntil,
+      validUntil: req.body.validUntil.split("-").reverse().join("."),
       owner: req.session.passport.user,
       coordinate: req.body.coordinate,
     });
-    // console.log(newProduct._id);
     await newProduct.save();
     const user = await User.findByIdAndUpdate(
       req.session.passport.user,
@@ -51,17 +50,47 @@ router.post("/products", async (req, res) => {
       },
       { safe: true, upsert: true, new: true }
     );
-    let curcategory = await Categories.findOne({ name: newProduct.category }).populate('subscribers')
-    let arr = curcategory.subscribers.map(el => el.telegramid)
-    Promise.all(arr.map(url =>
-      fetch(`https://api.telegram.org/bot1702408761:AAFxxnFr4THbk0BOR_Ht5HohI-rj0CDM_ZM/sendMessage?chat_id=${url}&text=New+post+in+your+selected+category+http://localhost:3000/food/${newProduct._id}`)
-    ))
-      .then(data => console.log(data))
-      .catch((e) => console.log(e))
+    let curcategory = await Categories.findOne({
+      name: newProduct.category,
+    }).populate("subscribers");
+    let arr = curcategory.subscribers.map((el) => el.telegramid);
+    Promise.all(
+      arr.map((url) =>
+        fetch(
+          `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage?chat_id=${url}&text=New+post+in+your+selected+category+http://localhost:3000/food/${newProduct._id}`
+        )
+      )
+    )
+      .then((data) => console.log(data))
+      .catch((e) => console.log(e));
 
     res.json(newProduct);
   } else {
     res.sendStatus(400);
+  }
+});
+
+router.patch("/products/:id", async (req, res) => {
+  if (req.session.passport) {
+    try {
+      const product = await Products.findById(req.params.id);
+      if (String(req.session.passport.user) === String(product.owner)) {
+        product.geolocation = req.body.geolocation;
+        product.name = req.body.name;
+        product.description = req.body.description;
+        product.quantity = req.body.quantity;
+        product.coordinate = req.body.coordinate;
+        product.photo = req.body.photo;
+        product.save();
+        res.json(200);
+      } else {
+        res.sendStatus(403);
+      }
+    } catch (error) {
+      res.sendStatus(404);
+    }
+  } else {
+    res.sendStatus(401);
   }
 });
 
@@ -70,8 +99,13 @@ router.patch("/products", async (req, res) => {
     try {
       const product = await Products.findById(req.body.id).populate("owner");
       if (String(req.session.passport.user) === String(product.owner._id)) {
+        let category = await Categories.findOne({ name: product.category });
+        category.productsList = category.productsList.filter(
+          (el) => String(el) !== String(product._id)
+        );
         product.status = false;
         await product.save();
+        await category.save();
         res.json(200);
       } else {
         res.sendStatus(403);

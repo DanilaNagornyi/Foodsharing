@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FileBase from "react-file-base64";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import { clearError, setError } from "../../redux/AC/errorAC";
 import { regUser, regUserByGoogle } from "../../redux/AC/userAC";
 import "./styleForm.css";
 
 function Registration() {
+  const err = useSelector(state => state.error)
   const history = useHistory();
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
@@ -24,9 +26,12 @@ function Registration() {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(regUser(inputs));
+    await dispatch(regUser(inputs));
+    if (err) {
+      history.push("/profile");
+    }
     setInputs({
       name: "",
       surname: "",
@@ -36,15 +41,21 @@ function Registration() {
       city: "",
       telegram: "",
     });
-    history.push("/");
   };
 
+  useEffect(() => {
+    return () => {
+      dispatch(setError(''))
+    }
+  }, [])
   return (
     <>
       <main id="main"></main>
 
       {/* <!-- main --> */}
       <div className="main-w3layouts wrapper maindiv">
+        <h1>{err}</h1>
+
         <h1>Регистрация</h1>
         <div className="main-agileinfo">
           <div className="agileits-top formdesign">
@@ -91,8 +102,9 @@ function Registration() {
                 onDone={({ base64 }) => setInputs({ ...inputs, photo: base64 })}
               />
               <label for="file" className="btn btn-tertiary js-labelFile">
-                <i className="icon fa fa-check"></i>
-                <span className="js-fileName"> Загрузить фото</span>
+                {inputs.photo ? <i class="bi bi-check2-square"></i> : <i className="icon fa fa-check"></i>}
+
+                <span className="js-fileName">{inputs.photo ?" Фото загружено" :" Загрузить фото"}</span>
               </label>
 
               {/* <input className="text email inputformdecor inputphoto input-file" id="file" type="file" name="photo" multiple accept="image/*" placeholder="Загрузить фото" required="" value={inputs.photo}> */}
