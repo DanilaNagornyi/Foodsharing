@@ -35,20 +35,13 @@ const BUTTON_CLOUSE_STYLES = {
 }
 
 
-function EditUserModal({ open, children, onClose, user, setProfile }) {
-  console.log('user', user);
+function EditUserModal({ user, open, children, onClose, setProfile }) {
   const history = useHistory()
 
-  
-  const [inputs, setInputs] = useState({ name: user?.name, surname: user?.surname, phone: user?.phone, city: user?.city, telegram: user?.telegram })
+
+  const [inputs, setInputs] = useState({ name: user.name, surname: user.surname, phone: user.phone, city: user.city, })
 
 
- const handlerStateInput = () => {
-
-   setInputs({ name: user.name, surname: user.surname, phone: user.phone, city: user.city, telegram: user.telegram })
- }
-
- 
   const handleChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value })
   }
@@ -63,50 +56,48 @@ function EditUserModal({ open, children, onClose, user, setProfile }) {
       body: JSON.stringify(inputs)
     })
     if (resp.status === 200)
-    await setProfile(prev => {
-      let user = { ...prev.user, name: inputs.name, surname: inputs.surname, phone: inputs.phone, city: inputs.city, telegram: inputs.telegram }
-      return { ...prev, user }
-    })
-    await history.push('/profile')
+      await setProfile(prev => {
+        let user = { ...prev.user, name: inputs.name, surname: inputs.surname, phone: inputs.phone, city: inputs.city}
+        return { ...prev, user }
+      })
+    await onClose()
   }
-  
+
   if (!open) return null
-  console.log('inputs------->', inputs);
-  return ReactDom.createPortal (
-  <>
-  <div className="main-div main-w3layouts wrapper" style={OVERLAY_STYLES} />
-    <div className="two-div main-agileinfo" style={MODAL_STYLES}>
+  return ReactDom.createPortal(
+    <>
+      <div className="main-div main-w3layouts wrapper" style={OVERLAY_STYLES} />
+      <div className="two-div main-agileinfo" style={MODAL_STYLES}>
 
-    <div className="agileits-top formdesign">
+        <div className="agileits-top formdesign">
 
-      {children}
-      <form className="" onSubmit={handleSubmit}>
+          {children}
+          <form className="" onSubmit={handleSubmit}>
             <button onClick={onClose} style={BUTTON_CLOUSE_STYLES} ><i class="bi bi-x"></i></button>
-              <input className="text inputformdecor" type="text" name="name" placeholder="Имя" required="" value={inputs?.name} onChange={handleChange} />
-              <input className="text email inputformdecor" type="text" name="surname" placeholder="Фамилия" required="" value={inputs?.surname} onChange={handleChange} />
-              <input className="text email inputformdecor" type="text" name="phone" placeholder="Телефон" required="" value={inputs?.phone} onChange={handleChange} />
-              <input className="text email inputformdecor" type="text" name="telegram" placeholder="Telegram user name @" required="" value={inputs?.telegram} onChange={handleChange} />
-              <input className="text email inputformdecor" type="text" name="city" placeholder="Город" required="" value={inputs?.city} onChange={handleChange} />
-              <button onClick={handleSubmit} onClick={onClose} className="btnlogin"> Сохранить изменения</button>
-            </form>
-            <p>Вы передумали? <Link onClick={onClose} to="/profile"> Выйти</Link></p>
-      <ul className="colorlib-bubbles">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-    </div>
-    </div>
-  </>,
-  document.getElementById('portal')
-    
+            <input className="text inputformdecor" type="text" name="name" placeholder="Имя" required="" value={inputs?.name} onChange={handleChange} />
+            <input className="text email inputformdecor" type="text" name="surname" placeholder="Фамилия" required="" value={inputs?.surname} onChange={handleChange} />
+            <input className="text email inputformdecor" type="text" name="phone" placeholder="Телефон" required="" value={inputs?.phone} onChange={handleChange} />
+            <input className="text email inputformdecor" type="text" name="city" placeholder="Город" required="" value={inputs?.city} onChange={handleChange} />
+            <button onClick={handleSubmit} className="btnlogin"> Сохранить изменения</button>
+          </form>
+          <p>Вы передумали? <Link onClick={onClose} to="/profile"> Выйти</Link></p>
+          <ul className="colorlib-bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+      </div>
+    </>,
+    document.getElementById('portal')
+
   )
 }
 

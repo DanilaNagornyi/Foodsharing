@@ -27,7 +27,6 @@ function Profile() {
   const handlerArchive = () => {
     setArchive(true)
   }
-  console.log(profile, '========');
   return (
     <div>
       Profile

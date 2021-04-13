@@ -80,6 +80,7 @@ router.patch("/products/:id", async (req, res) => {
         product.description = req.body.description;
         product.quantity = req.body.quantity;
         product.coordinate = req.body.coordinate;
+        product.photo = req.body.photo;
         product.save();
         res.json(200);
       } else {

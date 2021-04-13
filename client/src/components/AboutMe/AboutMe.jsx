@@ -36,11 +36,11 @@ function AboutMe({ profile, setProfile }) {
   return (
     <>
       <main id="main">
-
-        <div style={BUTTON_WRAPPER_STYLES} >
-          <EditUserFormModal open={isOpen} onClose={() => setIsOpen(false)} user={user} setProfile={setProfile} />
-        </div>
-
+        {user ?
+          <div style={BUTTON_WRAPPER_STYLES} >
+            <EditUserFormModal open={isOpen} onClose={() => setIsOpen(false)} user={profile.user} setProfile={setProfile} />
+          </div>
+          : null}
         {/* <!-- ======= Work Process Section ======= --> */}
         <section id="work-process" className="work-process">
           <div className="container" >
