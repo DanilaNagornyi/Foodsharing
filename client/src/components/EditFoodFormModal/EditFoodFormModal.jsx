@@ -40,14 +40,14 @@ const EditFoodFormModal = ({ open, children, onClose, food, setProfile }) => {
   const err = useSelector(state => state.error)
   const history = useHistory()
   const dispatch = useDispatch()
-  const [inputs, setInputs] = useState({ name: food?.name, description: food?.description, validUntil: food?.validUntil, geolocation: food?.geolocation, quantity: food?.quantity, city: food?.city })
+  const [inputs, setInputs] = useState({ name: food?.name, description: food?.description, validUntil: food?.validUntil, geolocation: food?.geolocation, quantity: food?.quantity, photo: food?.photo })
   const handleChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value })
   }
   const handleSubmit = (e) => {
     console.log(food._id, '<<<<<<<=');
     e.preventDefault()
-    let { name, description, quantity, validUntil, geolocation } = inputs
+    let { name, description, quantity, validUntil, geolocation, photo } = inputs
     geolocation = `${geolocation}`
     fetch(`https://geocode-maps.yandex.ru/1.x/?apikey=c44f3c3e-02a3-4e09-8441-9da1eec78fa8&format=json&geocode=${geolocation}`)
       .then(res => res.json())
@@ -61,16 +61,17 @@ const EditFoodFormModal = ({ open, children, onClose, food, setProfile }) => {
           "Content-Type": "application/json"
         },
         credentials: 'include',
-        body: JSON.stringify({ name, description, quantity, validUntil, geolocation, coordinate })
+        body: JSON.stringify({ name, description, quantity, validUntil, geolocation, coordinate, photo })
       }))
       .then(response => {
         if (response.status === 200) {
           setProfile(prev => {
-            let product = prev.product.map(el => el._id === food._id ? { ...el, name, description, quantity, validUntil, geolocation } : el)
+            let product = prev.product.map(el => el._id === food._id ? { ...el, name, description, quantity, validUntil, geolocation, photo } : el)
             return {
               ...prev, product
             }
           })
+          onClose()
         } else { dispatch(setError('Не удалось сохранить изменения')) }
       })
     ///Допилить логику!!!
