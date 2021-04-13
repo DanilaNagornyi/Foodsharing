@@ -8,7 +8,6 @@ import { regUser, regUserByGoogle } from "../../redux/AC/userAC";
 import "./styleForm.css";
 
 function Registration() {
-  const err = useSelector(state => state.error)
   const history = useHistory();
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
@@ -29,9 +28,7 @@ function Registration() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await dispatch(regUser(inputs));
-    if (err) {
-      history.push("/profile");
-    }
+    history.push("/profile");
     setInputs({
       name: "",
       surname: "",
@@ -43,18 +40,13 @@ function Registration() {
     });
   };
 
-  useEffect(() => {
-    return () => {
-      dispatch(setError(''))
-    }
-  }, [])
+
   return (
     <>
       <main id="main"></main>
 
       {/* <!-- main --> */}
       <div className="main-w3layouts wrapper maindiv">
-        <h1>{err}</h1>
 
         <h1>Регистрация</h1>
         <div className="main-agileinfo">
@@ -98,7 +90,7 @@ function Registration() {
               <label for="file" className="btn btn-tertiary js-labelFile">
                 {inputs.photo ? <i class="bi bi-check2-square"></i> : <i className="icon fa fa-check"></i>}
 
-                <span className="js-fileName">{inputs.photo ?" Фото загружено" :" Загрузить фото"}</span>
+                <span className="js-fileName">{inputs.photo ? " Фото загружено" : " Загрузить фото"}</span>
               </label>
 
               {/* <input className="text email inputformdecor inputphoto input-file" id="file" type="file" name="photo" multiple accept="image/*" placeholder="Загрузить фото" required="" value={inputs.photo}> */}

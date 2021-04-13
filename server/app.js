@@ -50,21 +50,21 @@ app.use("/user", userRouter);
 app.use("/profile", profileRouter);
 app.use("/subscribe", subscribeRouter);
 
-const bot = new Telegraf(process.env.BOT_TOKEN)
-bot.use(async (ctx, next) => {
-  try {
-    await next();
-  } catch (error) {
-    console.log(error);
-    await ctx.reply('Что-то пошло не так');
-  }
-});
-bot.start(async ctx => {
-  const { from: { id: telegramId, username } } = ctx.update.message;
-  const user = await getOrCreateUser(telegramId, username);
-  await user.save()
-  ctx.reply('Здорово, что ты хочешь поучаствовать в фудшеринге! Теперь бот будет присылать тебе уведомления о новых постах в избранных тобой категориях.')
-})
+// const bot = new Telegraf(process.env.BOT_TOKEN)
+// bot.use(async (ctx, next) => {
+//   try {
+//     await next();
+//   } catch (error) {
+//     console.log(error);
+//     await ctx.reply('Что-то пошло не так');
+//   }
+// });
+// bot.start(async ctx => {
+//   const { from: { id: telegramId, username } } = ctx.update.message;
+//   const user = await getOrCreateUser(telegramId, username);
+//   await user.save()
+//   ctx.reply('Здорово, что ты хочешь поучаствовать в фудшеринге! Теперь бот будет присылать тебе уведомления о новых постах в избранных тобой категориях.')
+// })
 
 
 
@@ -83,7 +83,7 @@ app.listen(process.env.PORT, () => {
     },
     console.log("DB Started")
   );
-  bot.launch();
+ // bot.launch();
 });
 
 

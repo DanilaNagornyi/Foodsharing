@@ -23,9 +23,7 @@ function Login() {
     e.preventDefault();
     dispatch(logUser(inputs));
     setInputs({ email: "", password: "" });
-    if (error) {
-      history.push("/profile")
-    }
+    history.push("/profile")
   };
   return (
     <>

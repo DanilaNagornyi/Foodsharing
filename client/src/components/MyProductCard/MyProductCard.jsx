@@ -69,8 +69,8 @@ function MyProductCard({ item, setProfile }) {
       ) : null}
 
       {isOpen ? <div style={BUTTON_WRAPPER_STYLES}>
-          <EditUserFormModal open={isOpen} onClose={() => setIsOpen(false)} food={item} />
-        </div> : null}
+        <EditUserFormModal open={isOpen} onClose={() => setIsOpen(false)} food={item} setProfile={setProfile} />
+      </div> : null}
     </>
   );
 }
