@@ -1,3 +1,4 @@
+import { setError } from "./errorAC"
 import { ADD_SUBSCRIBE, DELETE_SUBSCRIBE, GET_SUBCRIBE } from "../types/subcribeTypes"
 
 export const addSubscribe = (category) => {
@@ -10,7 +11,7 @@ export const addSubscribe = (category) => {
       credentials: 'include',
       body: JSON.stringify({ category })
     })
-      .then(res => res.status === 200 ? dispatch(addSubscribetoState(category)) : console.log('не удалось подписаться на категорию'))
+      .then(res => res.status === 200 ? dispatch(addSubscribetoState(category)) : dispatch(setError('Не удалось подписаться на категорию')))
   }
 }
 
@@ -25,7 +26,7 @@ export const deleteSubscribe = (category) => {
       credentials: 'include',
       body: JSON.stringify({ category })
     })
-      .then(res => res.status === 200 ? dispatch(deleteSubscribefromState(category)) : console.log('не удалось отписаться от категории'))
+      .then(res => res.status === 200 ? dispatch(deleteSubscribefromState(category)) : dispatch(setError('Не удалось отписаться от категории')))
   }
 }
 export const getSubscribe = (category) => {

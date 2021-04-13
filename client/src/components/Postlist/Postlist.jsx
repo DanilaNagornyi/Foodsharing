@@ -10,6 +10,7 @@ import {
 import { Link, useParams } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import { getSubscribe, addSubscribe } from "../../redux/AC/subscribeAC";
+import { setError } from '../../redux/AC/errorAC'
 
 function Postlist() {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ function Postlist() {
   const { name } = useParams();
   const [map, setMap] = useState(false);
   const posts = useSelector((state) => state.food);
+  const err = useSelector((state) => state.error);
   const foodLength = useSelector((state) => state.foodLength);
   const submithandler = (e) => {
     e.preventDefault();
@@ -27,6 +29,9 @@ function Postlist() {
   };
   useEffect(() => {
     name ? dispatch(changeCategories(name)) : dispatch(getAllFoodFromServer());
+    return (
+      dispatch(setError(''))
+    )
   }, [name]);
 
   useEffect(() => {
@@ -112,7 +117,9 @@ function Postlist() {
                   </div>
                   {/* <!-- End sidebar search formn--> */}
 
+
                   <h3 className="sidebar-title">Категории</h3>
+
                   <div className="sidebar-item categories">
                     <ul>
                       <li>
@@ -121,9 +128,9 @@ function Postlist() {
                           <span>
                             (
                             {foodLength.reduce(
-                              (a, v) => v.productsList.length + a,
-                              0
-                            )}
+                            (a, v) => v.productsList.length + a,
+                            0
+                          )}
                             )
                           </span>
                         </Link>
@@ -196,6 +203,7 @@ function Postlist() {
                   </button>
 
                   <h3 className="sidebar-title">Подписаться на категорию</h3>
+                  <h3 className="sidebar-title">{err}</h3>
                   <div className="sidebar-item tags">
                     <ul>
                       <li>

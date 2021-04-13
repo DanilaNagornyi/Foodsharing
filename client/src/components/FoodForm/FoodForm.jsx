@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import FileBase from "react-file-base64";
 import { Link } from "react-router-dom";
 import { addFood } from "../../redux/AC/foodAC";
 
 const FoodForm = () => {
+  const err = useSelector(state => state.error)
   const history = useHistory();
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
@@ -34,14 +35,18 @@ const FoodForm = () => {
       category: "",
       city: "",
     });
-    history.push("/food");
+    if (err) {
+      history.push("/food");
+    }
   };
 
   return (
     <>
       <main id="main"></main>
       {/* <!-- main --> */}
+
       <div className="main-w3layouts wrapper maindiv">
+        <h1>{err}</h1>
         <h1>Добавление продукта</h1>
         <div className="main-agileinfo">
           <div className="agileits-top formdesign">

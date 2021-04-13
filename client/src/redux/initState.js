@@ -5,7 +5,8 @@ const initState = {
   },
   food: [],
   foodLength: [],
-  subscribe: []
+  subscribe: [],
+  error: ''
 }
 
 export default initState

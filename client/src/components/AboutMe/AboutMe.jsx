@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { setError } from '../../redux/AC/errorAC.js'
 import { deleteSubscribe, getSubscribe } from '../../redux/AC/subscribeAC.js'
 import EditUserForm from '../EditUserForm/EditUserForm.jsx'
 import Loader from '../Loader/Loader.jsx'
 
 function AboutMe({ profile, setProfile }) {
   const dispatch = useDispatch()
+  const err = useSelector(state => state.error)
   const subList = useSelector(state => state.subscribe)
   useEffect(() => {
     dispatch(getSubscribe())
+    return (
+      dispatch(setError(''))
+    )
   }, [])
   const [change, setChange] = useState(false)
   const { user } = profile
@@ -47,8 +52,8 @@ function AboutMe({ profile, setProfile }) {
                         <li><i className="bi bi-check"></i> {user?.email}</li>
                         <li><i className="bi bi-check"></i> {user?.phone}</li>
                         <li><i className="bi bi-check"></i> Telegram: @{user?.telegram}</li>
-                        <li><i className="bi bi-check"></i> Мои подписки:
-                        {subList.length ? subList.map(el => <><br /> <i className="bi bi-bell"></i> {el} <Link name={el} onClick={handlerDelete} > delete</Link></>) : "Нет подписок на категории"}
+                        <li><i className="bi bi-check"></i> Мои подписки:  {err}
+                          {subList.length ? subList.map(el => <><br /> <i className="bi bi-bell"></i> {el} <Link name={el} onClick={handlerDelete} > delete</Link></>) : "Нет подписок на категории"}
 
 
                         </li>
