@@ -24,18 +24,20 @@ router.post("/", async (req, res) => {
       const user = await User.findById(req.session.passport.user);
       let valid = false;
       user.subscribes.forEach((e) =>
-        e === req.body.category ? (valid = true) : null
+        String(e) === String(req.body.category) ? (valid = true) : null
       );
       if (valid) {
         const category = await Categories.findOne({ name: req.body.category });
         category.subscribers = category.subscribers.filter(
-          (e) => e !== user._id
+          (e) => String(e) !== String(user._id)
         );
-        user.subscribes.filter((e) => e !== req.body.category);
+        user.subscribes = user.subscribes.filter(
+          (e) => String(e) !== String(req.body.category)
+        );
         await category.save();
         await user.save();
       } else {
-        const category = await Categories.findOneAndUpdate(
+        await Categories.findOneAndUpdate(
           {
             name: req.body.category,
           },

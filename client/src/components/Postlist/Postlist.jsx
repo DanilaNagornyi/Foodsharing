@@ -10,7 +10,7 @@ import {
 import { Link, useParams } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import { getSubscribe, addSubscribe } from "../../redux/AC/subscribeAC";
-import { setError } from '../../redux/AC/errorAC'
+import { setError } from "../../redux/AC/errorAC";
 
 function Postlist() {
   const dispatch = useDispatch();
@@ -21,9 +21,9 @@ function Postlist() {
   const err = useSelector((state) => state.error);
   const foodLength = useSelector((state) => state.foodLength);
   const auth = useSelector((state) => state.user.isAuth);
-  const btnsubscribe = useSelector((state) => state.subscribe)
+  const btnsubscribe = useSelector((state) => state.subscribe);
 
-  console.log()
+  console.log();
 
   const submithandler = (e) => {
     e.preventDefault();
@@ -34,9 +34,7 @@ function Postlist() {
   };
   useEffect(() => {
     name ? dispatch(changeCategories(name)) : dispatch(getAllFoodFromServer());
-    return (
-      dispatch(setError(''))
-    )
+    return dispatch(setError(""));
   }, [name]);
 
   useEffect(() => {
@@ -57,7 +55,9 @@ function Postlist() {
               <div className="breadcrumb-hero">
                 <h2>ЕДА</h2>
                 <p>
-                Наш сервис помогает организациям и простым людям перестать выбрасывать еду, а нуждающимся людям — получать её абсолютно бесплатно для себя и близких.
+                  Наш сервис помогает организациям и простым людям перестать
+                  выбрасывать еду, а нуждающимся людям — получать её абсолютно
+                  бесплатно для себя и близких.
                 </p>
               </div>
             </div>
@@ -119,7 +119,6 @@ function Postlist() {
                   </div>
                   {/* <!-- End sidebar search formn--> */}
 
-
                   <h3 className="sidebar-title">Категории</h3>
 
                   <div className="sidebar-item categories">
@@ -130,9 +129,9 @@ function Postlist() {
                           <span>
                             (
                             {foodLength.reduce(
-                            (a, v) => v.productsList.length + a,
-                            0
-                          )}
+                              (a, v) => v.productsList.length + a,
+                              0
+                            )}
                             )
                           </span>
                         </Link>
@@ -204,122 +203,171 @@ function Postlist() {
                     {map ? "Скрыть карту" : "Посмотреть на карте"}
                   </button>
 
-                    {auth?
+                  {auth ? (
                     <>
-                  <h3 className="sidebar-title">Подписаться на категорию</h3>
-                  <h3 className="sidebar-title">{err}</h3>
-                  <div className="sidebar-item tags">
-                    
-                    <ul>
-                      <li>
-                        <Link className={`${btnsubscribe.find(e=>e==="Fruits")? 'btntagssub':''}`}
-                          onClick={(e) =>
-                            e.preventDefault(subcribeHandler(e.target.name))
-                          }
-                          name="Fruits"
-                          to="#"
-                        >
-                          Фрукты
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className={`${btnsubscribe.find(e=>e==="Vegetables")? 'btntagssub':''}`}
-                          onClick={(e) =>
-                            e.preventDefault(subcribeHandler(e.target.name))
-                          }
-                          name="Vegetables"
-                        >
-                          Овощи
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className={`${btnsubscribe.find(e=>e==="BabyFood")? 'btntagssub':''}`}
-                          onClick={(e) =>
-                            e.preventDefault(subcribeHandler(e.target.name))
-                          }
-                          name="BabyFood"
-                        >
-                          Детское питание
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className={`${btnsubscribe.find(e=>e==="HomeFood")? 'btntagssub':''}`}
-                          onClick={(e) =>
-                            e.preventDefault(subcribeHandler(e.target.name))
-                          }
-                          name="HomeFood"
-                        >
-                          Домашняя кухня
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className={`${btnsubscribe.find(e=>e==="Cereals")? 'btntagssub':''}`}
-                          onClick={(e) =>
-                            e.preventDefault(subcribeHandler(e.target.name))
-                          }
-                          name="Cereals"
-                        >
-                          Крупы
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className={`${btnsubscribe.find(e=>e==="BakeryProducts")? 'btntagssub':''}`}
-                          onClick={(e) =>
-                            e.preventDefault(subcribeHandler(e.target.name))
-                          }
-                          name="BakeryProducts"
-                        >
-                          Хлеб и выпечка
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className={`${btnsubscribe.find(e=>e==="MilkProducts")? 'btntagssub':''}`}
-                          onClick={(e) =>
-                            e.preventDefault(subcribeHandler(e.target.name))
-                          }
-                          name="MilkProducts"
-                        >
-                          Молочные продукты
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className={`${btnsubscribe.find(e=>e==="Meet")? 'btntagssub':''}`}
-                          onClick={(e) =>
-                            e.preventDefault(subcribeHandler(e.target.name))
-                          }
-                          name="Meet"
-                        >
-                          Мясо,рыба
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className={`${btnsubscribe.find(e=>e==="Beverages")? 'btntagssub':''}`}
-                          onClick={(e) =>
-                            e.preventDefault(subcribeHandler(e.target.name))
-                          }
-                          name="Beverages"
-                        >
-                          Напитки
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className={`${btnsubscribe.find(e=>e==="Canned")? 'btntagssub':''}`}
-                          onClick={(e) =>
-                            e.preventDefault(subcribeHandler(e.target.name))
-                          }
-                          name="Canned"
-                        >
-                          Консервированные продукты
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                  </>
-                    :
-                    null
-                  }
-                  </div>
-                  {/* <!-- End sidebar tags--> */}
+                      <h3 className="sidebar-title">
+                        Подписаться на категорию
+                      </h3>
+                      <h3 className="sidebar-title">{err}</h3>
+                      <div className="sidebar-item tags">
+                        <ul>
+                          <li>
+                            <Link
+                              className={`${
+                                btnsubscribe.find((e) => e === "Fruits")
+                                  ? "btntagssub"
+                                  : ""
+                              }`}
+                              onClick={(e) =>
+                                e.preventDefault(subcribeHandler(e.target.name))
+                              }
+                              name="Fruits"
+                              to="#"
+                            >
+                              Фрукты
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              className={`${
+                                btnsubscribe.find((e) => e === "Vegetables")
+                                  ? "btntagssub"
+                                  : ""
+                              }`}
+                              onClick={(e) =>
+                                e.preventDefault(subcribeHandler(e.target.name))
+                              }
+                              name="Vegetables"
+                            >
+                              Овощи
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              className={`${
+                                btnsubscribe.find((e) => e === "BabyFood")
+                                  ? "btntagssub"
+                                  : ""
+                              }`}
+                              onClick={(e) =>
+                                e.preventDefault(subcribeHandler(e.target.name))
+                              }
+                              name="BabyFood"
+                            >
+                              Детское питание
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              className={`${
+                                btnsubscribe.find((e) => e === "HomeFood")
+                                  ? "btntagssub"
+                                  : ""
+                              }`}
+                              onClick={(e) =>
+                                e.preventDefault(subcribeHandler(e.target.name))
+                              }
+                              name="HomeFood"
+                            >
+                              Домашняя кухня
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              className={`${
+                                btnsubscribe.find((e) => e === "Cereals")
+                                  ? "btntagssub"
+                                  : ""
+                              }`}
+                              onClick={(e) =>
+                                e.preventDefault(subcribeHandler(e.target.name))
+                              }
+                              name="Cereals"
+                            >
+                              Крупы
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              className={`${
+                                btnsubscribe.find((e) => e === "BakeryProducts")
+                                  ? "btntagssub"
+                                  : ""
+                              }`}
+                              onClick={(e) =>
+                                e.preventDefault(subcribeHandler(e.target.name))
+                              }
+                              name="BakeryProducts"
+                            >
+                              Хлеб и выпечка
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              className={`${
+                                btnsubscribe.find((e) => e === "MilkProducts")
+                                  ? "btntagssub"
+                                  : ""
+                              }`}
+                              onClick={(e) =>
+                                e.preventDefault(subcribeHandler(e.target.name))
+                              }
+                              name="MilkProducts"
+                            >
+                              Молочные продукты
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              className={`${
+                                btnsubscribe.find((e) => e === "Meet")
+                                  ? "btntagssub"
+                                  : ""
+                              }`}
+                              onClick={(e) =>
+                                e.preventDefault(subcribeHandler(e.target.name))
+                              }
+                              name="Meet"
+                            >
+                              Мясо,рыба
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              className={`${
+                                btnsubscribe.find((e) => e === "Beverages")
+                                  ? "btntagssub"
+                                  : ""
+                              }`}
+                              onClick={(e) =>
+                                e.preventDefault(subcribeHandler(e.target.name))
+                              }
+                              name="Beverages"
+                            >
+                              Напитки
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              className={`${
+                                btnsubscribe.find((e) => e === "Canned")
+                                  ? "btntagssub"
+                                  : ""
+                              }`}
+                              onClick={(e) =>
+                                e.preventDefault(subcribeHandler(e.target.name))
+                              }
+                              name="Canned"
+                            >
+                              Консервированные продукты
+                            </Link>
+                          </li>
+                        </ul>
+                      </div>
+                    </>
+                  ) : null}
+                </div>
+                {/* <!-- End sidebar tags--> */}
                 {/* <!-- End sidebar --> */}
               </div>
               {/* <!-- End blog sidebar --> */}
