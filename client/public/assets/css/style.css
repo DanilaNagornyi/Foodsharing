@@ -2003,6 +2003,16 @@ section {
   transition: 0.3s;
 }
 
+/* subscribe tag */
+
+.btntagssub {
+  color: #fff !important;
+  border: 1px solid #94c045;
+  background: #94c045;
+}
+
+/* \subscribe tag */
+
 .blog .sidebar .tags ul a:hover {
   color: #fff;
   border: 1px solid #94c045;

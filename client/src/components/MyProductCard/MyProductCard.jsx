@@ -17,7 +17,7 @@ function MyProductCard({ item, setProfile }) {
     setIsOpen(true)
   }
 
-  const [editProduct, setEditProduct] = useState(false);
+  // const [editProduct, setEditProduct] = useState(false);
 
   const handlerChangeStatus = async () => {
     const resp = await fetch("http://localhost:3001/products", {
@@ -45,10 +45,6 @@ function MyProductCard({ item, setProfile }) {
   return (
     <>
 
-        <div style={BUTTON_WRAPPER_STYLES}>
-          <EditUserFormModal open={isOpen} onClose={() => setIsOpen(false)} food={item} />
-        </div>
-
       {item.status ? (
         <div className="col-md-6 d-flex align-items-stretch" data-aos="fade-up">
           <div className="card" style={backgroundImage}>
@@ -72,7 +68,9 @@ function MyProductCard({ item, setProfile }) {
         </div>
       ) : null}
 
-      {editProduct ? <EditFoodForm food={item} /> : null}
+      {isOpen ? <div style={BUTTON_WRAPPER_STYLES}>
+          <EditUserFormModal open={isOpen} onClose={() => setIsOpen(false)} food={item} />
+        </div> : null}
     </>
   );
 }

@@ -19,6 +19,9 @@ function Postlist() {
   const posts = useSelector((state) => state.food);
   const foodLength = useSelector((state) => state.foodLength);
   const auth = useSelector((state) => state.user.isAuth);
+  const btnsubscribe = useSelector((state) => state.subscribe)
+
+  console.log()
 
   const submithandler = (e) => {
     e.preventDefault();
@@ -201,7 +204,7 @@ function Postlist() {
                     
                     <ul>
                       <li>
-                        <Link
+                        <Link className={`${btnsubscribe.find(e=>e==="Fruits")? 'btntagssub':''}`}
                           onClick={(e) =>
                             e.preventDefault(subcribeHandler(e.target.name))
                           }
@@ -212,7 +215,7 @@ function Postlist() {
                         </Link>
                       </li>
                       <li>
-                        <Link
+                        <Link className={`${btnsubscribe.find(e=>e==="Vegetables")? 'btntagssub':''}`}
                           onClick={(e) =>
                             e.preventDefault(subcribeHandler(e.target.name))
                           }
@@ -222,7 +225,7 @@ function Postlist() {
                         </Link>
                       </li>
                       <li>
-                        <Link
+                        <Link className={`${btnsubscribe.find(e=>e==="BabyFood")? 'btntagssub':''}`}
                           onClick={(e) =>
                             e.preventDefault(subcribeHandler(e.target.name))
                           }
@@ -232,7 +235,7 @@ function Postlist() {
                         </Link>
                       </li>
                       <li>
-                        <Link
+                        <Link className={`${btnsubscribe.find(e=>e==="HomeFood")? 'btntagssub':''}`}
                           onClick={(e) =>
                             e.preventDefault(subcribeHandler(e.target.name))
                           }
@@ -242,7 +245,7 @@ function Postlist() {
                         </Link>
                       </li>
                       <li>
-                        <Link
+                        <Link className={`${btnsubscribe.find(e=>e==="Cereals")? 'btntagssub':''}`}
                           onClick={(e) =>
                             e.preventDefault(subcribeHandler(e.target.name))
                           }
@@ -252,7 +255,7 @@ function Postlist() {
                         </Link>
                       </li>
                       <li>
-                        <Link
+                        <Link className={`${btnsubscribe.find(e=>e==="BakeryProducts")? 'btntagssub':''}`}
                           onClick={(e) =>
                             e.preventDefault(subcribeHandler(e.target.name))
                           }
@@ -262,7 +265,7 @@ function Postlist() {
                         </Link>
                       </li>
                       <li>
-                        <Link
+                        <Link className={`${btnsubscribe.find(e=>e==="MilkProducts")? 'btntagssub':''}`}
                           onClick={(e) =>
                             e.preventDefault(subcribeHandler(e.target.name))
                           }
@@ -272,7 +275,7 @@ function Postlist() {
                         </Link>
                       </li>
                       <li>
-                        <Link
+                        <Link className={`${btnsubscribe.find(e=>e==="Meet")? 'btntagssub':''}`}
                           onClick={(e) =>
                             e.preventDefault(subcribeHandler(e.target.name))
                           }
@@ -282,7 +285,7 @@ function Postlist() {
                         </Link>
                       </li>
                       <li>
-                        <Link
+                        <Link className={`${btnsubscribe.find(e=>e==="Beverages")? 'btntagssub':''}`}
                           onClick={(e) =>
                             e.preventDefault(subcribeHandler(e.target.name))
                           }
@@ -292,7 +295,7 @@ function Postlist() {
                         </Link>
                       </li>
                       <li>
-                        <Link
+                        <Link className={`${btnsubscribe.find(e=>e==="Canned")? 'btntagssub':''}`}
                           onClick={(e) =>
                             e.preventDefault(subcribeHandler(e.target.name))
                           }
