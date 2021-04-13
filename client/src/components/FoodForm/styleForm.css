@@ -250,7 +250,7 @@ input.email, input.text.w3lpass {
   border-color:#fff;
   /* unput file */
 }
-#root > div > div > div > form > input[type=file]:nth-child(6){
+#root > div > div > div > form > input[type=file]:nth-child(4){
   width: 94.5%;
   height:40px;
   opacity:0;
@@ -258,21 +258,21 @@ input.email, input.text.w3lpass {
   position:absolute;
   /* z-index:-1 */
 }
-#root > div > div > div > form > input[type=file]:nth-child(6):hover {
+#root > div > div > div > form > input[type=file]:nth-child(4):hover {
   cursor: pointer
 }
 
-  #root > div > div > div > form > input[type=file]:nth-child(6) + .js-labelFile{
+  #root > div > div > div > form > input[type=file]:nth-child(4) + .js-labelFile{
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
     padding:0 ;
     cursor:pointer
   }
-  #root > div > div > div > form > input[type=file]:nth-child(6) + .js-labelFile .icon:before{
+  #root > div > div > div > form > input[type=file]:nth-child(4) + .js-labelFile .icon:before{
     content:"\f093"
   }
-  #root > div > div > div > form > input[type=file]:nth-child(6) + .js-labelFile.has-file .icon:before{
+  #root > div > div > div > form > input[type=file]:nth-child(4) + .js-labelFile.has-file .icon:before{
     content:"\f00c";
     color:#5AAC7B
   }
@@ -468,14 +468,6 @@ input.checkbox:checked:after {
   /* position: absolute; */
   z-index: 2;
 }
-/* img-bubbles */
-.img-bubbles{
-  opacity: 0.3;
-  width: 80%;
-  padding-left: 10px;
-  padding-top: 10px ;
-}
-/* \img-bubbles */
 
 .colorlib-bubbles {
   /* position: absolute; */
@@ -492,7 +484,7 @@ input.checkbox:checked:after {
   display: block;
   width: 40px;
   height: 40px;
-  background-color: rgba(255, 255, 255, 0.10);
+  background-color: rgba(255, 255, 255, 0.15);
   bottom: -160px;
   -webkit-animation: square 20s infinite;
   -moz-animation: square 250s infinite;
@@ -592,8 +584,8 @@ input.checkbox:checked:after {
 
 .colorlib-bubbles li:nth-child(9) {
   left: 25%;
-  width: 30px;
-  height: 30px;
+  width: 10px;
+  height: 10px;
   -webkit-animation-delay: 2s;
   animation-delay: 2s;
   -webkit-animation-duration: 50s;

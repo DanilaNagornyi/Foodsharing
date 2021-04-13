@@ -5,6 +5,7 @@ import FileBase from "react-file-base64";
 import { Link } from "react-router-dom";
 import { addFood } from "../../redux/AC/foodAC";
 import { setError } from "../../redux/AC/errorAC";
+import './styleForm.css'
 
 const FoodForm = () => {
   const dispatch = useDispatch();
@@ -111,11 +112,7 @@ const FoodForm = () => {
                 value={inputs.city}
                 onChange={handleChange}
               />
-              {/* <input className="text email inputformdecor inputphoto input-file" id="file" type="file" name="photo" multiple accept="image/*" placeholder="Загрузить фото" required="" />
-              <label for="file" className="btn btn-tertiary js-labelFile">
-                <i className="icon fa fa-check"></i>
-                <span className="js-fileName"> Загрузить фото</span>
-              </label> */}
+              
               <FileBase
                 className="text email inputformdecor inputphoto input-file"
                 id="file"
@@ -123,6 +120,10 @@ const FoodForm = () => {
                 multiple={false}
                 onDone={({ base64 }) => setInputs({ ...inputs, photo: base64 })}
               />
+                <label for="file" className="btn btn-tertiary js-labelFile">
+                {inputs.photo ? <i class="bi bi-check2-square"></i> : <i className="icon fa fa-check"></i>}
+                <span className="js-fileName"> {inputs.photo ?" Фото загружено" :" Загрузить фото"}</span>
+              </label>
 
               <input
                 className="text email inputformdecor"
@@ -159,16 +160,16 @@ const FoodForm = () => {
           </div>
         </div>
         <ul className="colorlib-bubbles">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
+          <li><img className="img-bubbles" src="../../../assets/img/eggplant.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/pineapple.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/strawberry.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/apple.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/bananas.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/bell-pepper.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/broccoli.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/carrot.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/fruit.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/faviconavocado.svg"/></li>
         </ul>
       </div>
       {/* <!-- //main --> */}
