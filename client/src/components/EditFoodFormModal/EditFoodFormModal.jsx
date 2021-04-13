@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
 import { setError } from '../../redux/AC/errorAC'
+import FileBase from "react-file-base64";
+import './styleFormModal.css'
+
 
 const MODAL_STYLES = {
   position: 'fixed',
@@ -41,6 +44,7 @@ const EditFoodFormModal = ({ open, children, onClose, food, setProfile }) => {
   const history = useHistory()
   const dispatch = useDispatch()
   const [inputs, setInputs] = useState({ name: food?.name, description: food?.description, validUntil: food?.validUntil, geolocation: food?.geolocation, quantity: food?.quantity, photo: food?.photo })
+  const [checkbtnphoto, setCheckbtnphoto] = useState(true)
   const handleChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value })
   }
@@ -61,12 +65,12 @@ const EditFoodFormModal = ({ open, children, onClose, food, setProfile }) => {
           "Content-Type": "application/json"
         },
         credentials: 'include',
-        body: JSON.stringify({ name, description, quantity, validUntil, geolocation, coordinate, photo })
+        body: JSON.stringify({ name, description, quantity, validUntil, geolocation, coordinate })
       }))
       .then(response => {
         if (response.status === 200) {
           setProfile(prev => {
-            let product = prev.product.map(el => el._id === food._id ? { ...el, name, description, quantity, validUntil, geolocation, photo } : el)
+            let product = prev.product.map(el => el._id === food._id ? { ...el, name, description, quantity, validUntil, geolocation } : el)
             return {
               ...prev, product
             }
@@ -97,6 +101,20 @@ const EditFoodFormModal = ({ open, children, onClose, food, setProfile }) => {
             <input className="text email inputformdecor" type="text" name="geolocation" placeholder="Адрес" required="" value={inputs.geolocation} onChange={handleChange} />
             <input className="text email inputformdecor" type="text" name="quantity" placeholder="Количество" required="" value={inputs.quantity} onChange={handleChange} />
             <input className="text email inputformdecor" type="date" name="validUntil" placeholder="Действительно до" required="" value={inputs.validUntil} onChange={handleChange} />
+            {/* <FileBase
+                className="text email inputformdecor inputphoto input-file"
+                id="file"
+                type="file"
+                multiple={false}
+                onDone={({ base64 }) => setInputs({ ...inputs, photo: base64 })}
+                onDone={() => setCheckbtnphoto(false)}
+                
+              />
+              <label for="file" className="btn btn-tertiary js-labelFile">
+                {checkbtnphoto ? <i className="icon fa fa-check"></i> : <i class="bi bi-check2-square"></i>}
+
+                <span className="js-fileName">{checkbtnphoto ?" Обновить фото" :" Фото загружено"}</span>
+              </label> */}
             <button onClick={handleSubmit} className="btnlogin"> Сохранить изменения</button>
             <div className="wthree-text">
               <div className="clear"> </div>
@@ -108,16 +126,15 @@ const EditFoodFormModal = ({ open, children, onClose, food, setProfile }) => {
         </div>
 
         <ul className="colorlib-bubbles">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
+        <li><img className="img-bubbles" src="../../../assets/img/eggplant.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/pineapple.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/strawberry.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/apple.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/bananas.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/bell-pepper.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/broccoli.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/carrot.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/fruit.svg"/></li>
         </ul>
       </div>
     </>,

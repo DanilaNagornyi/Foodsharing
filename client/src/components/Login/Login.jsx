@@ -6,26 +6,19 @@ import { logUser } from "../../redux/AC/userAC";
 import { clearError, setError } from "../../redux/AC/errorAC";
 
 function Login() {
-  const error = useSelector(state => state.error)
   const dispatch = useDispatch();
-  useEffect(() => {
-    return () => {
-      dispatch(setError(''))
-    }
-  }, [])
   const history = useHistory();
   const [inputs, setInputs] = useState({ email: "", password: "" });
   const handleChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
-  console.log(error);
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(logUser(inputs));
     setInputs({ email: "", password: "" });
-    if (error) {
+  
       history.push("/profile")
-    }
   };
   return (
     <>
@@ -34,7 +27,6 @@ function Login() {
       {/* <!-- main --> */}
 
       <div className="main-w3layouts wrapper maindiv">
-        <h1>{error}</h1>
         <h1>Авторизация</h1>
         <div className="main-agileinfo">
           <div className="agileits-top formdesign">
@@ -83,16 +75,15 @@ function Login() {
           </div>
         </div>
         <ul className="colorlib-bubbles">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
+        <li><img className="img-bubbles" src="../../../assets/img/eggplant.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/pineapple.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/strawberry.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/apple.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/bananas.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/bell-pepper.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/broccoli.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/carrot.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/fruit.svg"/></li>
         </ul>
       </div>
       {/* <!-- //main --> */}

@@ -50,7 +50,7 @@ function MyProductCard({ item, setProfile }) {
           <div className="card" style={backgroundImage}>
             <div className="card-body">
               <h5 className="card-title">
-                <Link to="#">{item.name}</Link>
+                <Link to={`/food/${item._id}`}>{item.name}</Link>
               </h5>
               <p className="card-text">{item.description}</p>
               <div className="read-more">
@@ -69,7 +69,7 @@ function MyProductCard({ item, setProfile }) {
       ) : null}
 
       {isOpen ? <div style={BUTTON_WRAPPER_STYLES}>
-          <EditUserFormModal open={isOpen} onClose={() => setIsOpen(false)} food={item} />
+          <EditUserFormModal open={isOpen} onClose={() => setIsOpen(false)} food={item} setProfile={setProfile} />
         </div> : null}
     </>
   );
