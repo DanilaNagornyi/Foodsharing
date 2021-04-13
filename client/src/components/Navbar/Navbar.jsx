@@ -40,7 +40,8 @@ function Navbar() {
               </li>
               <li className="dropdown">
                 <Link>
-                  <span>Личный кабинет</span>{" "}
+                
+                  <span>{auth? "Личный кабинет" : "Вход" }</span>{" "}
                   <i className="bi bi-chevron-down"></i>
                 </Link>
                 <ul>
