@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import ReactDom from 'react-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
+import { setError } from '../../redux/AC/errorAC'
 
 const MODAL_STYLES = {
   position: 'fixed',
@@ -35,7 +36,8 @@ const BUTTON_CLOUSE_STYLES = {
 }
 
 
-const EditFoodFormModal = ({ open, children, onClose,food }) => {
+const EditFoodFormModal = ({ open, children, onClose, food, setProfile }) => {
+  const err = useSelector(state => state.error)
   const history = useHistory()
   const dispatch = useDispatch()
   const [inputs, setInputs] = useState({ name: food?.name, description: food?.description, validUntil: food?.validUntil, geolocation: food?.geolocation, quantity: food?.quantity, city: food?.city })
@@ -43,8 +45,8 @@ const EditFoodFormModal = ({ open, children, onClose,food }) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value })
   }
   const handleSubmit = (e) => {
+    console.log(food._id, '<<<<<<<=');
     e.preventDefault()
-    console.log('Djn n tyf');
     let { name, description, quantity, validUntil, geolocation } = inputs
     geolocation = `${geolocation}`
     fetch(`https://geocode-maps.yandex.ru/1.x/?apikey=c44f3c3e-02a3-4e09-8441-9da1eec78fa8&format=json&geocode=${geolocation}`)
@@ -53,16 +55,25 @@ const EditFoodFormModal = ({ open, children, onClose,food }) => {
         let coordinate = res.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
         return coordinate
       })
-      .then(coordinate => fetch('http://localhost:3001/products', {
-        method: "POST",
+      .then(coordinate => fetch(`http://localhost:3001/products/${food._id}`, {
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json"
         },
         credentials: 'include',
         body: JSON.stringify({ name, description, quantity, validUntil, geolocation, coordinate })
       }))
-      .then(response => response.status)
-      ///Допилить логику!!!
+      .then(response => {
+        if (response.status === 200) {
+          setProfile(prev => {
+            let product = prev.product.map(el => el._id === food._id ? { ...el, name, description, quantity, validUntil, geolocation } : el)
+            return {
+              ...prev, product
+            }
+          })
+        } else { dispatch(setError('Не удалось сохранить изменения')) }
+      })
+    ///Допилить логику!!!
   }
 
   // history.push('/')
@@ -71,30 +82,31 @@ const EditFoodFormModal = ({ open, children, onClose,food }) => {
   return ReactDom.createPortal(
     <>
       <main id="main"></main>
-  <div className="main-div main-w3layouts wrapper" style={OVERLAY_STYLES} />
-    <div className="two-div main-agileinfo" style={MODAL_STYLES}>
+      <div className="main-div main-w3layouts wrapper" style={OVERLAY_STYLES} />
+      <div className="two-div main-agileinfo" style={MODAL_STYLES}>
 
-    <div className="agileits-top formdesign">
+        <div className="agileits-top formdesign">
 
-      {children}
-      <form className="" onSubmit={handleSubmit}>
+          {children}
+          <form className="" onSubmit={handleSubmit}>
             <button onClick={onClose} style={BUTTON_CLOUSE_STYLES} ><i class="bi bi-x"></i></button>
+            {err}
             <input className="text inputformdecor" type="text" name="name" placeholder="Название" required="" value={inputs.name} onChange={handleChange} />
-              <input className="text email inputformdecor" type="text" name="description" placeholder="Описание" required="" value={inputs.description} onChange={handleChange} />
-              <input className="text email inputformdecor" type="text" name="geolocation" placeholder="Адрес" required="" value={inputs.geolocation} onChange={handleChange} />
-              <input className="text email inputformdecor" type="text" name="quantity" placeholder="Количество" required="" value={inputs.quantity} onChange={handleChange} />
-              <input className="text email inputformdecor" type="date" name="validUntil" placeholder="Действительно до" required="" value={inputs.validUntil} onChange={handleChange} />
-              <button onClick={handleSubmit} className="btnlogin"> Сохранить изменения</button>
-              <div className="wthree-text">
-                <div className="clear"> </div>
-              </div>
-        </form>
-              <p>Вы передумали? <Link onClick={onClose} to="/profile"> Выйти</Link></p>
-      <div>
-    </div>
-    </div>
+            <input className="text email inputformdecor" type="text" name="description" placeholder="Описание" required="" value={inputs.description} onChange={handleChange} />
+            <input className="text email inputformdecor" type="text" name="geolocation" placeholder="Адрес" required="" value={inputs.geolocation} onChange={handleChange} />
+            <input className="text email inputformdecor" type="text" name="quantity" placeholder="Количество" required="" value={inputs.quantity} onChange={handleChange} />
+            <input className="text email inputformdecor" type="date" name="validUntil" placeholder="Действительно до" required="" value={inputs.validUntil} onChange={handleChange} />
+            <button onClick={handleSubmit} className="btnlogin"> Сохранить изменения</button>
+            <div className="wthree-text">
+              <div className="clear"> </div>
+            </div>
+          </form>
+          <p>Вы передумали? <Link onClick={onClose} to="/profile"> Выйти</Link></p>
+          <div>
+          </div>
+        </div>
 
-      <ul className="colorlib-bubbles">
+        <ul className="colorlib-bubbles">
           <li></li>
           <li></li>
           <li></li>
@@ -106,9 +118,9 @@ const EditFoodFormModal = ({ open, children, onClose,food }) => {
           <li></li>
           <li></li>
         </ul>
-    </div>
-      </>,
-      document.getElementById('portal')
+      </div>
+    </>,
+    document.getElementById('portal')
   );
 
 }

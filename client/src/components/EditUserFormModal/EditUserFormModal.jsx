@@ -39,7 +39,9 @@ function EditUserModal({ open, children, onClose, user, setProfile }) {
   console.log('user', user);
   const history = useHistory()
 
+  
   const [inputs, setInputs] = useState({ name: user?.name, surname: user?.surname, phone: user?.phone, city: user?.city, telegram: user?.telegram })
+
 
  const handlerStateInput = () => {
 

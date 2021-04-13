@@ -53,14 +53,14 @@ router.post("/registergoogle", async (req, res, next) => {
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (err) {
-      return res.send(info.message);
+      return res.sendStatus(404);
     }
     if (!user) {
-      return res.send(info.message);
+      return res.sendStatus(404);
     }
     req.logIn(user, (err) => {
       if (err) {
-        return res.send(info.message);
+        return res.sendStatus(404);
       }
       return res.json({ name: user.name });
     });

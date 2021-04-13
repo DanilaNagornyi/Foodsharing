@@ -8,6 +8,7 @@ const initState = {
   subscribe: [],
   loading: false,
   isLoaded: false,
+  error: ''
 }
 
 export default initState

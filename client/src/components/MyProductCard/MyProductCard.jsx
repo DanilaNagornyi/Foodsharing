@@ -45,9 +45,9 @@ function MyProductCard({ item, setProfile }) {
   return (
     <>
 
-        <div style={BUTTON_WRAPPER_STYLES}>
-          <EditUserFormModal open={isOpen} onClose={() => setIsOpen(false)} food={item} />
-        </div>
+      <div style={BUTTON_WRAPPER_STYLES}>
+        <EditUserFormModal open={isOpen} onClose={() => setIsOpen(false)} food={item} setProfile={setProfile} />
+      </div>
 
       {item.status ? (
         <div className="col-md-6 d-flex align-items-stretch" data-aos="fade-up">

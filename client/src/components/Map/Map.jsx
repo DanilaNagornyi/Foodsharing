@@ -1,11 +1,19 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { useHistory } from 'react-router';
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
 
 function Mapy() {
+  const history = useHistory()
   const coordinateFromredux = useSelector(state => state.food)
   let coordinateFromdb = coordinateFromredux.map(el => el.coordinate).map(el => el.split(' ').map(el => Number(el)).reverse())
   let final = coordinateFromdb;
+
+  const handlerclick = (e) => {
+    let tmp = e.reverse().map(el => String(el)).join(' ')
+    let mark = coordinateFromredux.find(el => el.coordinate === tmp)
+    history.push(`/food/${mark._id}`)
+  }
   //Тут необходимо тянуть все геометки из базы и отражать их на карте
   return (
 
@@ -14,7 +22,7 @@ function Mapy() {
     <YMaps query={{ load: "package.full" }}>
       <div>
         <Map defaultState={{ center: [55.75, 37.57], zoom: 9 }} width="100%" height="100vh">
-          {final.map(coordinate => <Placemark geometry={coordinate} />)}
+          {final.map(coordinate => <Placemark geometry={coordinate} onClick={(e) => handlerclick(coordinate)} />)}
         </Map>
       </div>
     </YMaps>

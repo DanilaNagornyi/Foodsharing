@@ -27,6 +27,7 @@ function Profile() {
   const handlerArchive = () => {
     setArchive(true)
   }
+  console.log(profile, '========');
   return (
     <div>
       Profile
@@ -38,7 +39,7 @@ function Profile() {
       </div>
       {archive
         ? <ArhivMyProductList setProfile={setProfile} profile={profile} />
-        
+
         : <MyProductList setProfile={setProfile} profile={profile} />
       }
     </div>
