@@ -13,7 +13,6 @@ function Login() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputs);
     dispatch(logUser(inputs));
     setInputs({ email: "", password: "" });
     history.push("/profile");

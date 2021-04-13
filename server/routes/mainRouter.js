@@ -50,18 +50,46 @@ router.post("/products", async (req, res) => {
       },
       { safe: true, upsert: true, new: true }
     );
-    let curcategory = await Categories.findOne({ name: newProduct.category }).populate('subscribers')
-    let arr = curcategory.subscribers.map(el => el.telegramid)
-    console.log(arr);
-    Promise.all(arr.map(url =>
-      fetch(`https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage?chat_id=${url}&text=New+post+in+your+selected+category+http://localhost:3000/food/${newProduct._id}`)
-    ))
-      .then(data => console.log(data))
-      .catch((e) => console.log(e))
+    let curcategory = await Categories.findOne({
+      name: newProduct.category,
+    }).populate("subscribers");
+    let arr = curcategory.subscribers.map((el) => el.telegramid);
+    Promise.all(
+      arr.map((url) =>
+        fetch(
+          `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage?chat_id=${url}&text=New+post+in+your+selected+category+http://localhost:3000/food/${newProduct._id}`
+        )
+      )
+    )
+      .then((data) => console.log(data))
+      .catch((e) => console.log(e));
 
     res.json(newProduct);
   } else {
     res.sendStatus(400);
+  }
+});
+
+router.patch("/products/:id", async (req, res) => {
+  if (req.session.passport) {
+    try {
+      const product = await Products.findById(req.params.id);
+      if (String(req.session.passport.user) === String(product.owner)) {
+        product.geolocation = req.body.geolocation;
+        product.name = req.body.name;
+        product.description = req.body.description;
+        product.quantity = req.body.quantity;
+        product.coordinate = req.body.coordinate;
+        product.save();
+        res.json(200);
+      } else {
+        res.sendStatus(403);
+      }
+    } catch (error) {
+      res.sendStatus(404);
+    }
+  } else {
+    res.sendStatus(401);
   }
 });
 
@@ -74,7 +102,6 @@ router.patch("/products", async (req, res) => {
         category.productsList = category.productsList.filter(
           (el) => String(el) !== String(product._id)
         );
-        console.log(category);
         product.status = false;
         await product.save();
         await category.save();
