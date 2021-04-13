@@ -1,20 +1,20 @@
-import { ADD_SUBSCRIBE, DELETE_SUBSCRIBE, GET_SUBCRIBE } from "../types/subcribeTypes"
-
+import {
+  ADD_SUBSCRIBE,
+  DELETE_SUBSCRIBE,
+  GET_SUBCRIBE,
+} from "../types/subcribeTypes";
 
 function subscribeReducer(state = [], action) {
-  console.log(state);
   switch (action.type) {
     case DELETE_SUBSCRIBE:
-      return state.filter(el => el !== action.payload)
+      return state.filter((el) => el !== action.payload);
     case GET_SUBCRIBE:
-      return action.payload
+      return action.payload;
     case ADD_SUBSCRIBE:
-      return [...state, action.payload]
+      return [...state, action.payload];
     default:
-      return state
+      return state;
   }
-
 }
 
-
-export default subscribeReducer
+export default subscribeReducer;
