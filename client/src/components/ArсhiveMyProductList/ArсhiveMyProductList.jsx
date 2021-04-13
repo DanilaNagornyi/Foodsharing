@@ -13,10 +13,7 @@ function ArсhiveMyProductList({ profile, setProfile }) {
             <div className="section-title" data-aos="fade-up">
               <h2>Архив продуктов</h2>
               <p>
-                Magnam dolores commodi suscipit. Necessitatibus eius consequatur
-                ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam
-                quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
-                Quia fugiat sit in iste officiis commodi quidem hic quas.
+                Ниже отображены продукты, которые вы сняли с публикации, вы можете снова опубликовать продукт, изменив детали
               </p>
             </div>
 

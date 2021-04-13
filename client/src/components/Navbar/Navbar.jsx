@@ -24,7 +24,7 @@ function Navbar() {
             <ul>
               <li><Link className="active" to="/">На главную</Link></li>
               <li><Link to="/food">Еда</Link></li>
-              <li className="dropdown"><Link ><span>Личный кабинет</span> <i className="bi bi-chevron-down"></i></Link>
+              <li className="dropdown"><Link ><span>{auth ? "Личный кабинет": "Вход"}</span> <i className="bi bi-chevron-down"></i></Link>
                 <ul>
                   {auth ?
                     <> <li><Link to="/profile">Кабинет</Link></li>
@@ -38,8 +38,12 @@ function Navbar() {
               </li>
               <li><Link to="/contacts">Контакты</Link></li>
 
+              {auth ?
+              <li><Link className="getstarted" to="/addfood">Добавить продукт</Link></li>
+              :
+              <li><Link className="getstarted" to="/rules">Принять участие</Link></li>
 
-              <li><Link className="getstarted" to="rules">Принять участие</Link></li>
+            }
             </ul>
             <i className="bi bi-list mobile-nav-toggle"></i>
           </nav>

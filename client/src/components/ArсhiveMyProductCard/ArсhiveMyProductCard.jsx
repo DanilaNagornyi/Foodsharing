@@ -37,7 +37,7 @@ function ArсhiveMyProductCard({ item, setProfile }) {
       {
         !item.status ?
           <div className="col-md-6 d-flex align-items-stretch" data-aos="fade-up">
-            <div className="card" style={backgroundImage} >
+            <div className="card card-archive" style={backgroundImage} >
               <div className="card-body">
                 <h5 className="card-title"><Link to="#">{item.name}</Link></h5>
                 <p className="card-text">{item.description}</p>

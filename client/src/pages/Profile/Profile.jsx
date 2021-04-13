@@ -38,6 +38,7 @@ function Profile() {
       </div>
       {archive
         ? <ArhivMyProductList setProfile={setProfile} profile={profile} />
+        
         : <MyProductList setProfile={setProfile} profile={profile} />
       }
     </div>

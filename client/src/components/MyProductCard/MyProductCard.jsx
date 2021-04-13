@@ -3,8 +3,20 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import EditFoodForm from "../EditFoodForm.js/EditFoodForm";
+import EditUserFormModal from '../EditFoodFormModal/EditFoodFormModal'
+
+const BUTTON_WRAPPER_STYLES = {
+  position: 'relative',
+  zIndex: 1
+}
 
 function MyProductCard({ item, setProfile }) {
+
+  const [isOpen, setIsOpen] = useState(false)
+  const clickHandler = (id) => {
+    setIsOpen(true)
+  }
+
   const [editProduct, setEditProduct] = useState(false);
 
   const handlerChangeStatus = async () => {
@@ -25,9 +37,6 @@ function MyProductCard({ item, setProfile }) {
       });
     }
   };
-  const handlerChange = () => {
-    setEditProduct((prev) => !prev);
-  };
 
   const backgroundImage = {
     backgroundImage: `url(${item.photo})`,
@@ -35,6 +44,11 @@ function MyProductCard({ item, setProfile }) {
 
   return (
     <>
+
+        <div style={BUTTON_WRAPPER_STYLES}>
+          <EditUserFormModal open={isOpen} onClose={() => setIsOpen(false)} food={item} />
+        </div>
+
       {item.status ? (
         <div className="col-md-6 d-flex align-items-stretch" data-aos="fade-up">
           <div className="card" style={backgroundImage}>
@@ -49,7 +63,7 @@ function MyProductCard({ item, setProfile }) {
                 </Link>
               </div>
               <div className="read-more">
-                <Link to="#" onClick={handlerChange}>
+                <Link to="#" onClick={clickHandler}>
                   <i className="bi bi-arrow-right"></i>Изменить
                 </Link>
               </div>

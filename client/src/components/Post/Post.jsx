@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Post.css";
+import Loader from "../Loader/Loader"
 
 function Post({ post }) {
   return (
+    <>
+    {post ? 
     <article className="entry">
       <div className="entry-img">
         <Link to={`/food/${post._id}`}>
@@ -38,10 +41,14 @@ function Post({ post }) {
       <div className="entry-content">
         <p>{post.description}</p>
         <div className="read-more">
-          <Link to={`/food/${post._id}`}>Read More</Link>
+          <Link to={`/food/${post._id}`}>Подробнее</Link>
         </div>
       </div>
     </article>
+    :
+    <Loader />
+  }
+  </>
   );
 }
 

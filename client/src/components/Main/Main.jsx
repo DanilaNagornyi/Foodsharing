@@ -8,8 +8,8 @@ function Main() {
        {/* <!-- ======= Hero Section ======= --> */}
   <section id="hero">
     <div className="hero-container" data-aos="fade-up">
-      <h1>Welcome to FruitNinja</h1>
-      <h2>Шаг на пути к независимости от системы безумного потребления</h2>
+      <h1>Welcome to FruitoNinja</h1>
+      <h2>Шаг на пути к независимости от системы избыточного потребления</h2>
       <a href="#services" className="btn-get-started scrollto">Присоединиться</a>
     </div>
   </section>

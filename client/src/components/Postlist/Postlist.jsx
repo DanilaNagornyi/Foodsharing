@@ -18,6 +18,8 @@ function Postlist() {
   const [map, setMap] = useState(false);
   const posts = useSelector((state) => state.food);
   const foodLength = useSelector((state) => state.foodLength);
+  const auth = useSelector((state) => state.user.isAuth);
+
   const submithandler = (e) => {
     e.preventDefault();
     dispatch(productSearch(value));
@@ -47,10 +49,7 @@ function Postlist() {
               <div className="breadcrumb-hero">
                 <h2>ЕДА</h2>
                 <p>
-                  Est dolorum ut non facere possimus quibusdam eligendi
-                  voluptatem. Quia id aut similique quia voluptas sit quaerat
-                  debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo
-                  harum praesentium.{" "}
+                Наш сервис помогает организациям и простым людям перестать выбрасывать еду, а нуждающимся людям — получать её абсолютно бесплатно для себя и близких.
                 </p>
               </div>
             </div>
@@ -195,8 +194,11 @@ function Postlist() {
                     {map ? "Скрыть карту" : "Посмотреть на карте"}
                   </button>
 
+                    {auth?
+                    <>
                   <h3 className="sidebar-title">Подписаться на категорию</h3>
                   <div className="sidebar-item tags">
+                    
                     <ul>
                       <li>
                         <Link
@@ -301,8 +303,12 @@ function Postlist() {
                       </li>
                     </ul>
                   </div>
+                  </>
+                    :
+                    null
+                  }
+                  </div>
                   {/* <!-- End sidebar tags--> */}
-                </div>
                 {/* <!-- End sidebar --> */}
               </div>
               {/* <!-- End blog sidebar --> */}

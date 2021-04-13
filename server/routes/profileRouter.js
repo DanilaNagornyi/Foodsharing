@@ -19,6 +19,7 @@ router.get("/", async (req, res) => {
             telegram: user.telegram,
             city: user.city,
             photo: user.photo,
+            telegramid: user.telegramid,
           },
           product: productsArr,
         });
@@ -63,6 +64,7 @@ router.get("/:id", async (req, res) => {
         telegram: user.telegram,
         city: user.city,
         photo: user.photo,
+        geolocation: user.geolocation,
       });
     } else {
       res.sendStatus(404);

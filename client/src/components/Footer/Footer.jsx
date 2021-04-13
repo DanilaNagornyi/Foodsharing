@@ -10,7 +10,7 @@ const Footer = () => {
             <div className="row">
 
               <div className="col-lg-3 col-md-6 footer-info">
-                <h3>Fruitninja</h3>
+                <h3>Fruitoninja</h3>
                 <p>Фудшеринг - это социально-экологическое движение, которое помогает решить проблему нерационального использования ресурсов планеты</p>
               </div>
 
@@ -58,11 +58,11 @@ const Footer = () => {
 
         <div className="container">
           <div className="copyright">
-            &copy; Copyright <strong><span>Fruitninja</span></strong>. All Rights Reserved
+            &copy; Copyright <strong><span>Fruitoninja</span></strong>. All Rights Reserved
           </div>
           <div className="credits">
           
-            Designed by <a href="/">Fruitninja Team</a>
+            Designed by <a href="/">Fruitoninja Team</a>
           </div>
         </div>
       </footer>

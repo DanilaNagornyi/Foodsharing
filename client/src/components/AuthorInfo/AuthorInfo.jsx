@@ -26,12 +26,16 @@ function AuthorInfo({ id }) {
               </div>
               <div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
                 <h3>{author.name}&nbsp;{author.surname}</h3>
-                <p class="fst-italic">
-                  Телефон {author.phone}
-                </p>
+                <p>Свяжитесь с автором, позвонив ему по телефону, или отправьте личное сообщение</p>
+                <a href={`tel:${author.phone}`}  >
+                <i className="bi bi-phone"></i>
+                   {author.phone}
+                </a>
+                <br />
                 <p>
-                  <a href={`https://t.me/${author.telegram}`}>{`t.me/${author.telegram}`} </a>
+                  <a href={`https://t.me/${author.telegram}`}><i className="bi bi-telegram"></i> {author.telegram} </a>
                 </p>
+
 
               </div>
             </div>

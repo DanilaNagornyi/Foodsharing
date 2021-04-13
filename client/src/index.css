@@ -148,3 +148,14 @@ justify-content: center;
   margin-bottom: 10px !important;
 }
 /* \logo navbar */
+
+/* card-archive */
+.card-archive{
+  opacity: 0.4;
+  transition: 0.8s;
+}
+.card-archive:hover {
+  opacity: 1;
+}
+/* \card-archive */
+
