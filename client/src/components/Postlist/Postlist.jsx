@@ -9,7 +9,7 @@ import {
 } from "../../redux/AC/foodAC";
 import { Link, useParams } from "react-router-dom";
 import Loader from "../Loader/Loader";
-import { getSubscribe, addSubscribe } from "../../redux/AC/subscribeAC";
+import { getSubscribe, changeSubscribe } from "../../redux/AC/subscribeAC";
 import { setError } from "../../redux/AC/errorAC";
 
 function Postlist() {
@@ -30,7 +30,7 @@ function Postlist() {
     dispatch(productSearch(value));
   };
   const subcribeHandler = (data) => {
-    dispatch(addSubscribe(data));
+    dispatch(changeSubscribe(data));
   };
   useEffect(() => {
     name ? dispatch(changeCategories(name)) : dispatch(getAllFoodFromServer());
