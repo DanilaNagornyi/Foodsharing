@@ -53,7 +53,9 @@ function AboutMe({ profile, setProfile }) {
 
                 <div className="row content">
                   <div className="col-md-5" data-aos="fade-right">
-                    <img src={user?.photo} className="img-fluid" alt="" />
+                    <img src={user?.photo ? user?.photo : '../../../assets/img/logouserbrocol.jpeg'} className="img-fluid" alt="" />
+                    {/* <img src={'../../../assets/img/logouserbrocol.jpeg'} className="img-fluid" alt="" /> */}
+
                   </div>
                   <div className="col-md-7 pt-4" data-aos="fade-left">
                     {/* <h3>{user?.city}</h3> */}

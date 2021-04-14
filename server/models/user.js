@@ -10,7 +10,7 @@ const userSchema = new Schema({
   phone: String,
   telegram: String,
   city: String,
-  photo: { type: String, default: 'https://image.freepik.com/vetores-gratis/ilustracao-engracada-de-desenhos-animados-vegetais-de-brocolis_11460-1232.jpg' },
+  photo: String,
   products: { type: Array, default: [] },
   password: String,
   telegramid: String,

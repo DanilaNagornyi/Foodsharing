@@ -94,7 +94,7 @@ const EditFoodFormModal = ({ open, children, onClose, food, setProfile }) => {
 
           {children}
           <form className="" onSubmit={handleSubmit}>
-            <button onClick={onClose} style={BUTTON_CLOUSE_STYLES} ><i class="bi bi-x"></i></button>
+            <button onClick={onClose} style={BUTTON_CLOUSE_STYLES} ><i className="bi bi-x"></i></button>
             {err}
             <input className="text inputformdecor" type="text" name="name" placeholder="Название" required="" value={inputs.name} onChange={handleChange} />
             <input className="text email inputformdecor" type="text" name="description" placeholder="Описание" required="" value={inputs.description} onChange={handleChange} />
@@ -111,7 +111,7 @@ const EditFoodFormModal = ({ open, children, onClose, food, setProfile }) => {
                 
               />
               <label for="file" className="btn btn-tertiary js-labelFile">
-                {checkbtnphoto ? <i className="icon fa fa-check"></i> : <i class="bi bi-check2-square"></i>}
+                {checkbtnphoto ? <i className="icon fa fa-check"></i> : <i className="bi bi-check2-square"></i>}
 
                 <span className="js-fileName">{checkbtnphoto ?" Обновить фото" :" Фото загружено"}</span>
               </label> */}

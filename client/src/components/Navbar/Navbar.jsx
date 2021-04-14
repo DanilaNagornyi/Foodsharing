@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/AC/userAC";
 import { useHistory } from "react-router-dom";
@@ -21,7 +21,7 @@ function Navbar() {
         <div className="container d-flex align-items-center justify-content-between">
           <div className="logo">
             <h1 className="text-light">
-              <img className="imglogo" src="assets/img/logo-harvest.svg"></img>{" "}
+              <img className="imglogo" src="/assets/img/logo-harvest.svg"></img>{" "}
               <a className="navtext" href="/">
                 Foodsharing
               </a>
@@ -31,45 +31,45 @@ function Navbar() {
           <nav id="navbar" className="navbar">
             <ul>
               <li>
-                <Link className="active" to="/">
+                <NavLink activeClassName="active"  exact to="/">
                   На главную
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link to="/food">Еда</Link>
+                <NavLink exact to="/food" activeClassName="active" >Еда</NavLink>
               </li>
               <li className="dropdown">
-                <Link>
+                <NavLink activeClassName="active"  exact to="/profile">
                   <span>{auth ? "Личный кабинет": "Вход"}</span>{" "}
                   <i className="bi bi-chevron-down"></i>
-                </Link>
+                </NavLink>
                 <ul>
                   {auth ? (
                     <>
                       {" "}
                       <li>
-                        <Link to="/profile">Кабинет</Link>
+                        <NavLink   to="/profile">Кабинет</NavLink>
                       </li>
                       <li>
-                        <Link to="#" onClick={handlerlogout}>
+                        <NavLink to="" onClick={handlerlogout}>
                           Выйти
-                        </Link>
+                        </NavLink>
                       </li>
                     </>
                   ) : (
                     <>
                       <li>
-                        <Link to="/registration">Регистрация</Link>
+                        <NavLink to="/registration">Регистрация</NavLink>
                       </li>
                       <li>
-                        <Link to="/login">Авторизация</Link>
+                        <NavLink to="/login">Авторизация</NavLink>
                       </li>
                     </>
                   )}
                 </ul>
               </li>
               <li>
-                <Link to="/contacts">Контакты</Link>
+                <NavLink to="/contacts">Контакты</NavLink>
               </li>
 
               {auth ? (
