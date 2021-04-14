@@ -42,10 +42,7 @@ const FoodForm = () => {
       category: "",
       city: "",
     });
-    setTimeout(() => {
       history.push("/food");
-    }, 3000)
-
   };
 
   return (
@@ -78,11 +75,15 @@ const FoodForm = () => {
                 <option default>Выберите категорию</option>
                 <option value="Fruits">Фрукты</option>
                 <option value="Vegetables">Овощи</option>
+                <option value="Meat">Мяско</option>
+                <option value="Canned">Консервированные продукты</option>
                 <option value="Cereals">Крупы</option>
                 <option value="BakeryProducts">Хлебобулочные изделия</option>
                 <option value="BabyFood">Детское питание</option>
                 <option value="Beverages">Напитки</option>
                 <option value="MilkProducts">Молочные продукты</option>
+                <option value="HomeFood">Домашняя кухня</option>
+
               </select>
 
               <input

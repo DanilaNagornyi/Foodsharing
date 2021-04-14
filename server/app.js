@@ -56,17 +56,19 @@ bot.use(async (ctx, next) => {
     await next();
   } catch (error) {
     console.log(error);
-    await ctx.reply('Что-то пошло не так');
+    await ctx.reply('Что-то пошло не так 😢, уже чиним🥷');
   }
 });
 bot.start(async ctx => {
   const { from: { id: telegramId, username } } = ctx.update.message;
   const user = await getOrCreateUser(telegramId, username);
-  await user.save()
-  ctx.reply('Здорово, что ты хочешь поучаствовать в фудшеринге! Теперь бот будет присылать тебе уведомления о новых постах в избранных тобой категориях.')
-})
-
-
+  try {
+    await user.save();
+  } catch (error) {
+    console.log(error);
+  }
+  ctx.reply('🥕 Здорово, что ты хочешь поучаствовать в фудшеринге!🥑 \n \n 🥗 Теперь бот будет присылать тебе уведомления о новых постах в избранных тобой категориях 🍓');
+});
 
 app.listen(process.env.PORT, () => {
   console.log("Server App on port", process.env.PORT);
@@ -81,7 +83,7 @@ app.listen(process.env.PORT, () => {
       poolSize: 10,
       bufferMaxEntries: 0,
     },
-    console.log("DB Started")
+    console.log("DB Started");
   );
   bot.launch();
 });

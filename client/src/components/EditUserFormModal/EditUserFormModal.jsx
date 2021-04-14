@@ -82,16 +82,15 @@ function EditUserModal({ user, open, children, onClose, setProfile }) {
           </form>
           <p>Вы передумали? <Link onClick={onClose} to="/profile"> Выйти</Link></p>
           <ul className="colorlib-bubbles">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li><img className="img-bubbles" src="../../../assets/img/eggplant.svg"/></li>
+            <li><img className="img-bubbles" src="../../../assets/img/pineapple.svg"/></li>
+            <li><img className="img-bubbles" src="../../../assets/img/strawberry.svg"/></li>
+            <li><img className="img-bubbles" src="../../../assets/img/apple.svg"/></li>
+            <li><img className="img-bubbles" src="../../../assets/img/bananas.svg"/></li>
+            <li><img className="img-bubbles" src="../../../assets/img/bell-pepper.svg"/></li>
+            <li><img className="img-bubbles" src="../../../assets/img/broccoli.svg"/></li>
+            <li><img className="img-bubbles" src="../../../assets/img/carrot.svg"/></li>
+            <li><img className="img-bubbles" src="../../../assets/img/fruit.svg"/></li>
           </ul>
         </div>
       </div>
