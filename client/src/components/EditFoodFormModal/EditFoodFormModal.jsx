@@ -43,7 +43,7 @@ const EditFoodFormModal = ({ open, children, onClose, food, setProfile }) => {
   const err = useSelector(state => state.error)
   const history = useHistory()
   const dispatch = useDispatch()
-  const [inputs, setInputs] = useState({ name: food?.name, description: food?.description, validUntil: food?.validUntil, geolocation: food?.geolocation, quantity: food?.quantity, photo: food?.photo })
+  const [inputs, setInputs] = useState({ name: food?.name, description: food?.description, geolocation: food?.geolocation, quantity: food?.quantity, photo: food?.photo })
   const [checkbtnphoto, setCheckbtnphoto] = useState(true)
   const handleChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value })
@@ -51,7 +51,7 @@ const EditFoodFormModal = ({ open, children, onClose, food, setProfile }) => {
   const handleSubmit = (e) => {
     console.log(food._id, '<<<<<<<=');
     e.preventDefault()
-    let { name, description, quantity, validUntil, geolocation, photo } = inputs
+    let { name, description, quantity, geolocation, photo } = inputs
     geolocation = `${geolocation}`
     fetch(`https://geocode-maps.yandex.ru/1.x/?apikey=c44f3c3e-02a3-4e09-8441-9da1eec78fa8&format=json&geocode=${geolocation}`)
       .then(res => res.json())
@@ -65,12 +65,12 @@ const EditFoodFormModal = ({ open, children, onClose, food, setProfile }) => {
           "Content-Type": "application/json"
         },
         credentials: 'include',
-        body: JSON.stringify({ name, description, quantity, validUntil, geolocation, coordinate })
+        body: JSON.stringify({ name, description, quantity, geolocation, coordinate })
       }))
       .then(response => {
         if (response.status === 200) {
           setProfile(prev => {
-            let product = prev.product.map(el => el._id === food._id ? { ...el, name, description, quantity, validUntil, geolocation } : el)
+            let product = prev.product.map(el => el._id === food._id ? { ...el, name, description, quantity, photo, geolocation } : el)
             return {
               ...prev, product
             }
@@ -100,7 +100,6 @@ const EditFoodFormModal = ({ open, children, onClose, food, setProfile }) => {
             <input className="text email inputformdecor" type="text" name="description" placeholder="Описание" required="" value={inputs.description} onChange={handleChange} />
             <input className="text email inputformdecor" type="text" name="geolocation" placeholder="Адрес" required="" value={inputs.geolocation} onChange={handleChange} />
             <input className="text email inputformdecor" type="text" name="quantity" placeholder="Количество" required="" value={inputs.quantity} onChange={handleChange} />
-            <input className="text email inputformdecor" type="date" name="validUntil" placeholder="Действительно до" required="" value={inputs.validUntil} onChange={handleChange} />
             {/* <FileBase
                 className="text email inputformdecor inputphoto input-file"
                 id="file"

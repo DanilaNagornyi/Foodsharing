@@ -1,6 +1,12 @@
 import './App.css';
 import { useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from 'react-router-dom';
 import FoodItem from './pages/FoodItem/FoodItem';
 import { useDispatch } from 'react-redux';
 import Profile from './pages/Profile/Profile';
@@ -16,6 +22,7 @@ import { userAuth } from './redux/AC/userAC';
 import CompletionOfRegistration from './components/CompletionOfRegistration/CompletionOfRegistration';
 import FoodForm from './components/FoodForm/FoodForm';
 import RulesPage from './pages/RulesPage/RulesPage';
+import Unknown from './components/404/404';
 
 function App() {
   const dispatch = useDispatch();
@@ -84,6 +91,11 @@ function App() {
         <PrivateRoute exact path="/addfood">
           <FoodForm />
         </PrivateRoute>
+
+        <Route path="/404">
+          <Unknown />
+        </Route>
+        <Redirect to="/404" />
       </Switch>
       <Footer />
     </Router>
