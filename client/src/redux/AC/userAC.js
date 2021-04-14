@@ -11,10 +11,7 @@ const regUser = (data) => {
       credentials: "include",
       body: JSON.stringify(data),
     })
-      .then((response) =>
-        response.status === 200
-          ? dispatch(userAuth(data.name))
-          : dispatch(setError("Ошибка при регистрации")))
+    .then(res => dispatch(userAuth(data.name)))
   };
 };
 
@@ -45,8 +42,8 @@ const logUser = (data) => {
       credentials: "include",
       body: JSON.stringify(data),
     })
-      .then(res => res.json())
-      .then(res => dispatch(userAuth(res.name)))
+      .then(res=> res.json())
+      .then(res=>dispatch(userAuth(res.name)))
 
   }
 }

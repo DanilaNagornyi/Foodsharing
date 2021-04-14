@@ -8,11 +8,11 @@ router.post("/register", (req, res, next) => {
       return next(400);
     }
     if (!user) {
-      return res.sendStatus(400);
+      return res.sendStatus(401);
     }
     req.logIn(user, (err) => {
       if (err) {
-        return res.sendStatus(400);
+        return res.sendStatus(402);
       }
       req.session.user = user._id;
       return res.sendStatus(200);

@@ -16,6 +16,7 @@ passport.deserializeUser((id, done) => {
 });
 
 const authUser = async (req, email, pass, done) => {
+  console.log(req.body.name, req.body.phone, req.body.city);
   try {
     if (/login/.test(req.path)) {
       const user = await User.findOne({ email }).lean().exec();
@@ -28,6 +29,7 @@ const authUser = async (req, email, pass, done) => {
       const user = await User.findOne({ email }).lean().exec();
       if (!user) {
         try {
+          console.log('ya pitalsya');
           const hashPass = await bcrypt.hash(pass, 10);
           const newUser = new User({
             name: req.body.name,
@@ -39,6 +41,7 @@ const authUser = async (req, email, pass, done) => {
             password: hashPass,
             photo: req.body.photo,
           });
+          console.log(newUser);
           await newUser.save();
           return done(null, newUser);
         } catch (error) {

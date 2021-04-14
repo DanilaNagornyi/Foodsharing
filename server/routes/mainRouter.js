@@ -3,10 +3,13 @@ const Products = require("../models/product");
 const User = require("../models/user");
 const Categories = require("../models/categories");
 const fetch = require("node-fetch");
+const bot = require('../app')
 
 router.get("/products", async (req, res) => {
+  bot.on('text', (ctx) => ctx.replyWithHTML('<b>Hello</b>'))
+  console.log(bot);
   try {
-    let arrProducts = await Products.find();
+    let arrProducts = await Products.find(); 
     arrProducts = arrProducts.filter((el) => el.status);
     const categories = await Categories.find();
     if (arrProducts.length && categories.length) {
@@ -53,16 +56,18 @@ router.post("/products", async (req, res) => {
     let curcategory = await Categories.findOne({
       name: newProduct.category,
     }).populate("subscribers");
-    let arr = curcategory.subscribers.map((el) => el.telegramid);
-    Promise.all(
-      arr.map((url) =>
-        fetch(
-          `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage?chat_id=${url}&text=New+post+in+your+selected+category+http://localhost:3000/food/${newProduct._id}`
-        )
-      )
-    )
-      .then((data) => console.log(data))
-      .catch((e) => console.log(e));
+
+    //let arr = curcategory.subscribers.map((el) => el.telegramid);
+    bot.on('text', (ctx) => ctx.replyWithHTML('<b>Hello</b>'))
+    // Promise.all(
+    //   arr.map((url) =>
+    //     fetch(
+    //       `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage?chat_id=${url}&text=New+post+in+your+selected+category+http://localhost:3000/food/${newProduct._id}`
+    //     )
+    //   )
+    // )
+    //   .then((data) => console.log(data))
+    //   .catch((e) => console.log(e));
 
     res.json(newProduct);
   } else {
@@ -71,18 +76,20 @@ router.post("/products", async (req, res) => {
 });
 
 router.patch("/products/:id", async (req, res) => {
+  console.log('reqbody----->', req.body);
   if (req.session.passport) {
     try {
       const product = await Products.findById(req.params.id);
       if (String(req.session.passport.user) === String(product.owner)) {
         product.geolocation = req.body.geolocation;
         product.name = req.body.name;
+        product.validUntil = req.body.validUntil;
         product.description = req.body.description;
         product.quantity = req.body.quantity;
         product.coordinate = req.body.coordinate;
-        product.photo = req.body.photo;
-        product.save();
-        res.json(200);
+        // product.photo = req.body.photo;
+        await product.save();
+        res.sendStatus(200);
       } else {
         res.sendStatus(403);
       }
