@@ -82,7 +82,7 @@ function Registration() {
                 onDone={({ base64 }) => setInputs({ ...inputs, photo: base64 })}
               />
               <label for="file" className="btn btn-tertiary js-labelFile">
-                {inputs.photo ? <i class="bi bi-check2-square"></i> : <i className="icon fa fa-check"></i>}
+                {inputs.photo ? <i className="bi bi-check2-square"></i> : <i className="icon fa fa-check"></i>}
 
                 <span className="js-fileName">{inputs.photo ?" Фото загружено" :" Загрузить фото"}</span>
               </label>

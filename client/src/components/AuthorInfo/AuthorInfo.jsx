@@ -11,17 +11,17 @@ function AuthorInfo({ id }) {
     <>
       <main id="main">
         {/* <!-- ======= Our Skills Section ======= --> */}
-        <section id="skills" class="skills section-bg">
-          <div class="container">
-            <div class="section-title" data-aos="fade-up">
+        <section id="skills" className="skills section-bg">
+          <div className="container">
+            <div className="section-title" data-aos="fade-up">
               <h2>Об авторе</h2>
             </div>
 
-            <div class="row">
-              <div class="col-lg-6" data-aos="fade-right">
-                <img src={author.photo} class="img-fluid" alt="" />
+            <div className="row">
+              <div className="col-lg-6" data-aos="fade-right">
+                <img src={author.photo} className="img-fluid" alt="" />
               </div>
-              <div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
+              <div className="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
                 <h3>{author.name}&nbsp;{author.surname}</h3>
                 <p>Свяжитесь с автором, позвонив ему по телефону, или отправьте личное сообщение</p>
                 <a href={`tel:${author.phone}`}  >

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import EditFoodForm from "../EditFoodForm.js/EditFoodForm";
 import EditUserFormModal from '../EditFoodFormModal/EditFoodFormModal'
 
 const BUTTON_WRAPPER_STYLES = {
