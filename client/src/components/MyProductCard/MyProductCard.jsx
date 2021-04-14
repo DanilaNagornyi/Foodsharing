@@ -41,7 +41,7 @@ function MyProductCard({ item, setProfile }) {
   return (
     <>
       {item.status ? (
-        <div className="col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+        <div className="col-md-6 d-flex align-items-stretch mt-4" data-aos="fade-up">
           <div className="card" style={backgroundImage}>
             <div className="card-body">
               <h5 className="card-title">

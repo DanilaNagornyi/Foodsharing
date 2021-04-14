@@ -83,7 +83,7 @@ app.listen(process.env.PORT, () => {
       poolSize: 10,
       bufferMaxEntries: 0,
     },
-    console.log("DB Started");
+    console.log("DB Started")
   );
   bot.launch();
 });
