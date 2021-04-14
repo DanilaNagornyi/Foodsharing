@@ -4,7 +4,7 @@ import { YMaps, Map, Placemark } from 'react-yandex-maps';
 
 function MapMini({ coordinate }) {
   const history = useHistory()
-  let coordinateFromdb = coordinate.split(' ').map(el => Number(el)).reverse()
+  let coordinateFromdb = coordinate?.split(' ').map(el => Number(el)).reverse()
   const coordinates = [coordinateFromdb];
   // const clickHandler = () => {
   //   history.push('/')

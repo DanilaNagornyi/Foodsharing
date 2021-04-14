@@ -96,6 +96,7 @@ function App() {
           <Unknown />
         </Route>
         <Redirect to="/404" />
+        
       </Switch>
       <Footer />
     </Router>
