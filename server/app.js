@@ -3,11 +3,11 @@ const cors = require("cors");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo")(session);
-const { Telegraf } = require('telegraf');
+const { Telegraf } = require("telegraf");
 const logger = require("morgan");
 const User = require("./models/user");
 const passport = require("passport");
-const { getOrCreateUser } = require('./helpers/helpers');
+const { getOrCreateUser } = require("./helpers/helpers");
 const mainRouter = require("./routes/mainRouter");
 const userRouter = require("./routes/userRouter");
 const profileRouter = require("./routes/profileRouter");
@@ -50,24 +50,29 @@ app.use("/user", userRouter);
 app.use("/profile", profileRouter);
 app.use("/subscribe", subscribeRouter);
 
-const bot = new Telegraf(process.env.BOT_TOKEN)
+const bot = new Telegraf(process.env.BOT_TOKEN);
+
 bot.use(async (ctx, next) => {
   try {
     await next();
   } catch (error) {
     console.log(error);
-    await ctx.reply('Что-то пошло не так 😢, уже чиним🥷');
+    await ctx.reply("Что-то пошло не так 😢, уже чиним🥷");
   }
 });
-bot.start(async ctx => {
-  const { from: { id: telegramId, username } } = ctx.update.message;
+bot.start(async (ctx) => {
+  const {
+    from: { id: telegramId, username },
+  } = ctx.update.message;
   const user = await getOrCreateUser(telegramId, username);
   try {
     await user.save();
   } catch (error) {
     console.log(error);
   }
-  ctx.reply('🥕 Здорово, что ты хочешь поучаствовать в фудшеринге!🥑 \n \n 🥗 Теперь бот будет присылать тебе уведомления о новых постах в избранных тобой категориях 🍓');
+  ctx.reply(
+    "🥕 Здорово, что ты хочешь поучаствовать в фудшеринге!🥑 \n \n 🥗 Теперь бот будет присылать тебе уведомления о новых постах в избранных тобой категориях 🍓"
+  );
 });
 
 app.listen(process.env.PORT, () => {
@@ -83,9 +88,7 @@ app.listen(process.env.PORT, () => {
       poolSize: 10,
       bufferMaxEntries: 0,
     },
-    console.log("DB Started");
+    console.log("DB Started")
   );
   bot.launch();
 });
-
-

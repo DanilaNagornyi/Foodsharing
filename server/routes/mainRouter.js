@@ -20,7 +20,6 @@ router.get("/products", async (req, res) => {
 });
 
 router.post("/products", async (req, res) => {
-  // try {
   if (req.session.passport) {
     const newProduct = new Products({
       category: req.body.category,
@@ -55,14 +54,11 @@ router.post("/products", async (req, res) => {
     }).populate("subscribers");
 
     let arr = curcategory.subscribers.map((el) => el.telegramid);
-    Promise.all(
-      arr.map((url) =>
-        fetch(
-          `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage?chat_id=${url}&text=New+post+in+your+selected+category+http://localhost:3000/food/${newProduct._id}`
-        )
-      )
+
+    fetch(
+      `http://localhost:3001/subscribe/message/${newProduct.category}/${newProduct._id}`
     )
-      .then((data) => console.log(data))
+      .then((data) => console.log(data.status))
       .catch((e) => console.log(e));
 
     res.json(newProduct);

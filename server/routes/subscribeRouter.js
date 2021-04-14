@@ -1,9 +1,11 @@
 const router = require("express").Router();
 const fetch = require("node-fetch");
+const { Telegraf } = require("telegraf");
 const User = require("../models/user");
 const Products = require("../models/product");
 const Categories = require("../models/categories");
-const user = require("../models/user");
+
+const bot = new Telegraf("1714842459:AAEURksRGz6e97Yf4wsppoxddL8iCzoyFJw");
 
 router.get("/", async (req, res) => {
   if (req.session.passport) {
@@ -78,6 +80,40 @@ router.delete("/", async (req, res) => {
     }
   } else {
     res.sendStatus(401);
+  }
+});
+
+router.get("/message/:category/:id", async (req, res) => {
+  const categories = {
+    Fruits: "фрукты",
+    Vegetables: "овощи",
+    BabyFood: "детское питание",
+    BakeryProducts: "хлеб и выпечка",
+    Beverages: "напитки",
+    MilkProducts: "молочные продукты",
+    Canned: "консервированные",
+    Meat: "мясо, рыба",
+    HomeFood: "домашняя кухня",
+    Cereals: "крупы",
+  };
+  try {
+    const category = await Categories.findOne({ name: req.params.category });
+    category.subscribers.forEach(async (e) => {
+      const user = await User.findById(e);
+      const product = await Products.findById(req.params.id);
+      bot.telegram.sendMessage(
+        Number(user.telegramid),
+        `🥷 В категории ${
+          categories[req.params.category]
+        } новый пост загляни это ${product.name} по адресу:📍${
+          product.geolocation
+        } \n http://localhost:3000/food/${req.params.id}`
+      );
+      // bot.telegram.sendPhoto(Number(user.telegramid), product.photo);
+    });
+    res.sendStatus(200);
+  } catch (error) {
+    res.sendStatus(500);
   }
 });
 

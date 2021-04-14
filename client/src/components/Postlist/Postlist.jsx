@@ -320,14 +320,14 @@ function Postlist() {
                           <li>
                             <Link
                               className={`${
-                                btnsubscribe.find((e) => e === "Meet")
+                                btnsubscribe.find((e) => e === "Meat")
                                   ? "btntagssub"
                                   : ""
                               }`}
                               onClick={(e) =>
                                 e.preventDefault(subcribeHandler(e.target.name))
                               }
-                              name="Meet"
+                              name="Meat"
                             >
                               Мясо,рыба
                             </Link>
