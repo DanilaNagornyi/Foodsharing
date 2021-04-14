@@ -147,7 +147,7 @@ h1 {
 
 .inputformdecor {
   font-size: 1.1em;
-  color: #fff;
+  color: #fff !important;
   font-weight: 500;
   width: 94.5%;
   display: block;

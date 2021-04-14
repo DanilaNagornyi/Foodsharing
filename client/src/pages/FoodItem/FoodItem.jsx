@@ -5,7 +5,6 @@ import AuthorInfo from "../../components/AuthorInfo/AuthorInfo";
 import MapMini from "../../components/MapMini/MapMini";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Footer from "../../components/Footer/Footer";
 
 function FoodItem() {
   let { id } = useParams();
@@ -13,12 +12,11 @@ function FoodItem() {
   const product = post.find((el) => el._id === id);
 
   const dispatch = useDispatch();
-  useEffect(() => {}, []);
   return (
     <div>
       <AboutProduct curProduct={product} />
-      <AuthorInfo id={product.owner} />
-      <MapMini coordinate={product.coordinate} />
+      <AuthorInfo id={product?.owner} />
+      <MapMini coordinate={product?.coordinate} />
     </div>
   );
 }

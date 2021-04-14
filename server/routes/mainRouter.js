@@ -53,6 +53,7 @@ router.post("/products", async (req, res) => {
     let curcategory = await Categories.findOne({
       name: newProduct.category,
     }).populate("subscribers");
+
     let arr = curcategory.subscribers.map((el) => el.telegramid);
     Promise.all(
       arr.map((url) =>
@@ -71,18 +72,20 @@ router.post("/products", async (req, res) => {
 });
 
 router.patch("/products/:id", async (req, res) => {
+  console.log("reqbody----->", req.body);
   if (req.session.passport) {
     try {
       const product = await Products.findById(req.params.id);
       if (String(req.session.passport.user) === String(product.owner)) {
         product.geolocation = req.body.geolocation;
         product.name = req.body.name;
+        product.validUntil = req.body.validUntil;
         product.description = req.body.description;
         product.quantity = req.body.quantity;
         product.coordinate = req.body.coordinate;
-        product.photo = req.body.photo;
-        product.save();
-        res.json(200);
+        // product.photo = req.body.photo;
+        await product.save();
+        res.sendStatus(200);
       } else {
         res.sendStatus(403);
       }
@@ -106,7 +109,7 @@ router.patch("/products", async (req, res) => {
         product.status = false;
         await product.save();
         await category.save();
-        res.json(200);
+        res.sendStatus(200);
       } else {
         res.sendStatus(403);
       }

@@ -33,7 +33,7 @@ function AboutProduct({ curProduct }) {
                   <div className="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
                     <div className="count-box py-5">
                       <i className="bi bi-calendar-check"></i>
-                      <span data-purecounter-start="0" data-purecounter-end="65" className="purecounter">{curProduct.publishedBy.slice(0, 10)}</span>
+                      <span>{curProduct.publishedBy.slice(0, 10)}</span>
                       <p>Опубликовано</p>
                     </div>
                   </div>
@@ -41,7 +41,7 @@ function AboutProduct({ curProduct }) {
                   <div className="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
                     <div className="count-box py-5">
                       <i className="bi bi-calendar-x"></i>
-                      <span data-purecounter-start="0" data-purecounter-end="85" className="purecounter">{curProduct.validUntil}</span>
+                      <span>{curProduct.validUntil}</span>
                       <p>Действительно до</p>
                     </div>
                   </div>
@@ -49,7 +49,7 @@ function AboutProduct({ curProduct }) {
                   <div className="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
                     <div className="count-box pb-5 pt-0 pt-lg-5">
                       <i className="bi bi-basket"></i>
-                      <span data-purecounter-start="0" data-purecounter-end="27" className="purecounter">{curProduct.quantity}</span>
+                      <span data-purecounter-start="0" data-purecounter-end={curProduct.quantity} className="purecounter">{curProduct.quantity}</span>
                       <p>Количество</p>
                     </div>
                   </div>
@@ -57,7 +57,7 @@ function AboutProduct({ curProduct }) {
                   <div className="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
                     <div className="count-box pb-5 pt-0 pt-lg-5">
                       <i className="bi bi-tags"></i>
-                      <span data-purecounter-start="0" data-purecounter-end="22" className="purecounter">{curProduct.category}</span>
+                      <span>{curProduct.category}</span>
                       <p>Категория</p>
                     </div>
                   </div>
