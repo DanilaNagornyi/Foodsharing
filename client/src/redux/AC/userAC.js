@@ -13,7 +13,7 @@ const regUser = (data) => {
     }).then((response) =>
       response.status === 200
         ? dispatch(userAuth(data.name))
-        : dispatch(setError('Ошибка при регистрации'))
+        : dispatch(setError("Ошибка при регистрации"))
     );
   };
 };
@@ -45,11 +45,10 @@ const logUser = (data) => {
       credentials: "include",
       body: JSON.stringify(data),
     })
-      .then(res => res.status)
-      .then(res => res === 404 ? dispatch(setError('Неправильно введен логин и/или пароль')) : res.JSON().then(dispatch(userAuth(res.name))))
-
-  }
-}
+      .then((res) => res.json())
+      .then((res) => dispatch(userAuth(res.name)));
+  };
+};
 
 export const logout = () => {
   return (dispatch) => {

@@ -6,26 +6,23 @@ import { logUser } from "../../redux/AC/userAC";
 import { clearError, setError } from "../../redux/AC/errorAC";
 
 function Login() {
-  const error = useSelector(state => state.error)
+  const error = useSelector((state) => state.error);
   const dispatch = useDispatch();
   useEffect(() => {
     return () => {
-      dispatch(setError(''))
-    }
-  }, [])
+      dispatch(setError(""));
+    };
+  }, []);
   const history = useHistory();
   const [inputs, setInputs] = useState({ email: "", password: "" });
   const handleChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
-  console.log(error);
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(logUser(inputs));
-    setInputs({ email: "", password: "" });
-    if (error) {
-      history.push("/profile")
-    }
+
+    history.push("/profile");
   };
   return (
     <>

@@ -81,8 +81,8 @@ router.patch("/products/:id", async (req, res) => {
         product.quantity = req.body.quantity;
         product.coordinate = req.body.coordinate;
         product.photo = req.body.photo;
-        product.save();
-        res.json(200);
+        await product.save();
+        res.sendStatus(200);
       } else {
         res.sendStatus(403);
       }
@@ -106,7 +106,7 @@ router.patch("/products", async (req, res) => {
         product.status = false;
         await product.save();
         await category.save();
-        res.json(200);
+        res.sendStatus(200);
       } else {
         res.sendStatus(403);
       }

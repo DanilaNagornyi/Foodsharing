@@ -3,21 +3,18 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import EditFoodForm from "../EditFoodForm.js/EditFoodForm";
-import EditUserFormModal from '../EditFoodFormModal/EditFoodFormModal'
+import EditUserFormModal from "../EditFoodFormModal/EditFoodFormModal";
 
 const BUTTON_WRAPPER_STYLES = {
-  position: 'relative',
-  zIndex: 1
-}
+  position: "relative",
+  zIndex: 1,
+};
 
 function MyProductCard({ item, setProfile }) {
-
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
   const clickHandler = (id) => {
-    setIsOpen(true)
-  }
-
-  // const [editProduct, setEditProduct] = useState(false);
+    setIsOpen(true);
+  };
 
   const handlerChangeStatus = async () => {
     const resp = await fetch("http://localhost:3001/products", {
@@ -44,7 +41,6 @@ function MyProductCard({ item, setProfile }) {
 
   return (
     <>
-
       {item.status ? (
         <div className="col-md-6 d-flex align-items-stretch" data-aos="fade-up">
           <div className="card" style={backgroundImage}>
@@ -68,9 +64,16 @@ function MyProductCard({ item, setProfile }) {
         </div>
       ) : null}
 
-      {isOpen ? <div style={BUTTON_WRAPPER_STYLES}>
-          <EditUserFormModal open={isOpen} onClose={() => setIsOpen(false)} food={item} />
-        </div> : null}
+      {isOpen ? (
+        <div style={BUTTON_WRAPPER_STYLES}>
+          <EditUserFormModal
+            open={isOpen}
+            onClose={() => setIsOpen(false)}
+            food={item}
+            setProfile={setProfile}
+          />
+        </div>
+      ) : null}
     </>
   );
 }
