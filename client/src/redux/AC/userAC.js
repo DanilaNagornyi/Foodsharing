@@ -10,8 +10,7 @@ const regUser = (data) => {
       },
       credentials: "include",
       body: JSON.stringify(data),
-    })
-    .then(res => dispatch(userAuth(data.name)))
+    }).then((res) => dispatch(userAuth(data.name)));
   };
 };
 
@@ -42,11 +41,10 @@ const logUser = (data) => {
       credentials: "include",
       body: JSON.stringify(data),
     })
-      .then(res=> res.json())
-      .then(res=>dispatch(userAuth(res.name)))
-
-  }
-}
+      .then((res) => res.json())
+      .then((res) => dispatch(userAuth(res.name)));
+  };
+};
 
 export const logout = () => {
   return (dispatch) => {
