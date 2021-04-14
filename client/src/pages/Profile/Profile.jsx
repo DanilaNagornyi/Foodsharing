@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import AboutMe from '../../components/AboutMe/AboutMe'
 import ArhivMyProductList from '../../components/ArсhiveMyProductList/ArсhiveMyProductList'
-import Footer from '../../components/Footer/Footer'
 import MyProductList from '../../components/MyProductList/MyProductList'
-import Navbar from '../../components/Navbar/Navbar'
 import { userAuth } from '../../redux/AC/userAC'
 
 function Profile() {

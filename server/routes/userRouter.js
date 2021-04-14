@@ -1,9 +1,12 @@
 const router = require("express").Router();
 const passport = require("passport");
 const User = require("../models/user");
+const uploadMulter = require('../multerConfig')
 
 router.post("/register", (req, res, next) => {
+  console.log(req.body, 'from register ruchka');
   passport.authenticate("local", (err, user, info) => {
+    console.log(user, 'user from router');
     if (err) {
       return next(400);
     }

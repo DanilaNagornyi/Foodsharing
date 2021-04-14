@@ -3,16 +3,16 @@ const Products = require("../models/product");
 const User = require("../models/user");
 const Categories = require("../models/categories");
 const fetch = require("node-fetch");
-const bot = require('../app')
+const bot = require('../app');
+const uploadMulter = require("../multerConfig");
 
 router.get("/products", async (req, res) => {
-  bot.on('text', (ctx) => ctx.replyWithHTML('<b>Hello</b>'))
-  console.log(bot);
   try {
-    let arrProducts = await Products.find(); 
+    let arrProducts = await Products.find();
     arrProducts = arrProducts.filter((el) => el.status);
     const categories = await Categories.find();
     if (arrProducts.length && categories.length) {
+      console.log(arrProducts);
       res.json({ products: arrProducts, categories });
     } else {
       res.sendStatus(503);
@@ -23,13 +23,13 @@ router.get("/products", async (req, res) => {
 });
 
 router.post("/products", async (req, res) => {
+  console.log(req.body);
   // try {
   if (req.session.passport) {
     const newProduct = new Products({
       category: req.body.category,
       name: req.body.name,
       description: req.body.description,
-      photo: req.body.photo,
       geolocation: req.body.geolocation,
       quantity: req.body.quantity,
       validUntil: req.body.validUntil.split("-").reverse().join("."),
@@ -57,17 +57,16 @@ router.post("/products", async (req, res) => {
       name: newProduct.category,
     }).populate("subscribers");
 
-    //let arr = curcategory.subscribers.map((el) => el.telegramid);
-    bot.on('text', (ctx) => ctx.replyWithHTML('<b>Hello</b>'))
-    // Promise.all(
-    //   arr.map((url) =>
-    //     fetch(
-    //       `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage?chat_id=${url}&text=New+post+in+your+selected+category+http://localhost:3000/food/${newProduct._id}`
-    //     )
-    //   )
-    // )
-    //   .then((data) => console.log(data))
-    //   .catch((e) => console.log(e));
+    let arr = curcategory.subscribers.map((el) => el.telegramid);
+    Promise.all(
+      arr.map((url) =>
+        fetch(
+          `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage?chat_id=${url}&text=New+post+in+your+selected+category+http://localhost:3000/food/${newProduct._id}`
+        )
+      )
+    )
+      .then((data) => console.log(data))
+      .catch((e) => console.log(e));
 
     res.json(newProduct);
   } else {
@@ -76,7 +75,6 @@ router.post("/products", async (req, res) => {
 });
 
 router.patch("/products/:id", async (req, res) => {
-  console.log('reqbody----->', req.body);
   if (req.session.passport) {
     try {
       const product = await Products.findById(req.params.id);
@@ -113,7 +111,7 @@ router.patch("/products", async (req, res) => {
         product.status = false;
         await product.save();
         await category.save();
-        res.json(200);
+        res.sendStatus(200);
       } else {
         res.sendStatus(403);
       }
@@ -178,5 +176,26 @@ router.get("/products/search/:data", async (req, res) => {
     res.sendStatus(500);
   }
 });
+
+router.post('/avatar/:id', uploadMulter.single('file'), async (req, res) => {
+  console.log('popal v avatar');
+  try {
+    if (!req.file) {
+      res.send('File was not found');
+      return;
+    }
+    const { filename } = req.file;
+    const product = await Products.findById(req.params.id);
+    const imgPuth = 'http://localhost:3001/img/';
+    product.photo = imgPuth + filename;
+    await product.save();
+    return res.json(product);
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({ message: 'Upload avatar error' });
+  }
+});
+
+
 
 module.exports = router;

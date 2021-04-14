@@ -5,10 +5,12 @@ import {
   GET_ALL_FOOD,
 } from "../types/foodTypes";
 
-function foodReducer(state = {}, action) {
+function foodReducer(state = [], action) {
+  console.log(state);
   switch (action.type) {
     case ADD_FOOD:
-      return { ...state, food: [...state.food, action.payload] };
+      // return { ...state, food: [...state.food, action.payload] };
+      return [...state, action.payload]
     case GET_ALL_FOOD:
       return action.payload.products;
     case CHANGE_CATEGORY:

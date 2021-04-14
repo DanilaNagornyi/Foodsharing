@@ -14,7 +14,7 @@ function MapMini({ coordinate }) {
       <YMaps>
         <div>
           <Map defaultState={{ center: [55.75, 37.57], zoom: 9 }} width="100%" >
-            {coordinates.map(coordinate => <Placemark geometry={coordinate}  />)}
+            {coordinates.map(coordinate => <Placemark key={coordinate} geometry={coordinate}  />)}
           </Map>
         </div>
       </YMaps>

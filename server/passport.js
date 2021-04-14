@@ -16,7 +16,8 @@ passport.deserializeUser((id, done) => {
 });
 
 const authUser = async (req, email, pass, done) => {
-  console.log(req.body.name, req.body.phone, req.body.city);
+  console.log('zzzzz');
+  console.log(req.body, '====', email, '====', pass);
   try {
     if (/login/.test(req.path)) {
       const user = await User.findOne({ email }).lean().exec();
@@ -26,6 +27,7 @@ const authUser = async (req, email, pass, done) => {
       return done(null, false, { message: "Неверный логин или пароль" });
     }
     if ((email && pass && req.body.name, req.body.phone, req.body.city)) {
+      console.log(email && pass && req.body.name, req.body.phone, req.body.city, 'in if');
       const user = await User.findOne({ email }).lean().exec();
       if (!user) {
         try {
@@ -39,7 +41,6 @@ const authUser = async (req, email, pass, done) => {
             telegram: req.body.telegram,
             city: req.body.city,
             password: hashPass,
-            photo: req.body.photo,
           });
           console.log(newUser);
           await newUser.save();

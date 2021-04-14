@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/user");
 const Products = require("../models/product");
+const uploadMulter = require("../multerConfig");
 
 router.get("/", async (req, res) => {
   try {
@@ -52,6 +53,29 @@ router.patch("/", async (req, res) => {
     res.sendStatus(401);
   }
 });
+
+router.post('/avatar', uploadMulter.single('file'), async (req, res) => {
+  console.log('popal v avatar');
+  try {
+    if (!req.file) {
+      res.send('File was not found');
+      return;
+    }
+    const { filename } = req.file;
+    const user = await User.findById(req.session.passport.user);
+    const imgPuth = 'http://localhost:3001/img/';
+    user.photo = imgPuth + filename;
+    await user.save();
+    return res.json(user);
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({ message: 'Upload avatar error' });
+  }
+});
+
+
+
+
 
 router.get("/:id", async (req, res) => {
   try {

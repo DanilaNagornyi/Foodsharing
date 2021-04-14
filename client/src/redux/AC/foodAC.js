@@ -8,6 +8,7 @@ import {
 import { setError } from "./errorAC";
 
 export const addFood = (data) => {
+  console.log(data);
   let {
     category,
     name,
@@ -19,38 +20,41 @@ export const addFood = (data) => {
     city,
   } = data;
   geolocation = `${geolocation}, ${city}`;
-  return (dispatch, getState) => {
-    fetch(
+  return async (dispatch, getState) => {
+    const res = await fetch(
       `https://geocode-maps.yandex.ru/1.x/?apikey=c44f3c3e-02a3-4e09-8441-9da1eec78fa8&format=json&geocode=${geolocation}`
     )
-      .then((res) => res.json())
-      .then((res) => {
-        let coordinate =
-          res.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos;
-        return coordinate;
-      })
-      .then((coordinate) =>
-        fetch("http://localhost:3001/products", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify({
-            category,
-            name,
-            description,
-            photo,
-            quantity,
-            validUntil,
-            geolocation,
-            coordinate,
-          }),
-        })
-      )
-      .then(res => res.status === 400 ? dispatch(setError('Не удалось добавить публикацию')) : res.json().then(res => addFoodToState(res)))
-  };
-};
+    let coord = await res.json()
+    let coordinate = coord.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos;
+    const dataToServer = await fetch("http://localhost:3001/products", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        category,
+        name,
+        description,
+        quantity,
+        validUntil,
+        geolocation,
+        coordinate,
+      }),
+    })
+    let datagromdb = await dataToServer.json()
+    console.log('datagromdb', datagromdb);
+    let registrPh = await fetch(`http://localhost:3001/avatar/${datagromdb._id}`, {
+      method: "POST",
+      credentials: "include",
+      body: photo,
+    });
+    let resultPg = await registrPh.json();
+    console.log(resultPg, 'with photo');
+    dispatch(addFoodToState(resultPg))
+
+  }
+}
 
 export const addFoodToState = (data) => {
   return {

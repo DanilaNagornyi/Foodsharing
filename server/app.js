@@ -1,5 +1,7 @@
 const express = require("express");
 const cors = require("cors");
+
+const path = require('path');
 const session = require("express-session");
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo")(session);
@@ -44,11 +46,17 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(express.static(path.join(__dirname, 'public')));
 app.use("/", mainRouter);
 app.use("/user", userRouter);
 app.use("/profile", profileRouter);
 app.use("/subscribe", subscribeRouter);
+
+
+
+
+
+
 
 
 
@@ -75,10 +83,6 @@ bot.start(async ctx => {
   ctx.reply('🥕 Здорово, что ты хочешь поучаствовать в фудшеринге!🥑 \n \n 🥗 Теперь бот будет присылать тебе уведомления о новых постах в избранных тобой категориях 🍓');
 });
 
-
-
-
-
 app.listen(process.env.PORT, () => {
   console.log("Server App on port", process.env.PORT);
   mongoose.connect(
@@ -98,4 +102,4 @@ app.listen(process.env.PORT, () => {
 });
 
 
-module.exports =  bot 
+module.exports = bot

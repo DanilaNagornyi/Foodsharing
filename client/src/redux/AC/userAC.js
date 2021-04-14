@@ -2,16 +2,27 @@ import { AUTH, LOGOUT } from "../types/userTypes";
 import { setError } from "./errorAC";
 
 const regUser = (data) => {
-  return (dispatch) => {
-    fetch("http://localhost:3001/user/register", {
+  console.log(data);
+  console.log({ name: data.name, surname: data.surname, phone: data.phone, city: data.city, password: data.password, telegram: data.telegram, email: data.email }, "Это на бек");
+  return async (dispatch) => {
+    const res = await fetch("http://localhost:3001/user/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       credentials: "include",
-      body: JSON.stringify(data),
+      body: JSON.stringify({ name: data.name, surname: data.surname, phone: data.phone, city: data.city, password: data.password, telegram: data.telegram, email: data.email }),
     })
-    .then(res => dispatch(userAuth(data.name)))
+    if (res.status === 200) {
+      const result = await fetch(`http://localhost:3001/profile/avatar`, {
+        method: "POST",
+        credentials: "include",
+        body: data.photo,
+      });
+      const responseFromServ = await result.json();
+      dispatch(userAuth(data.name))
+    }
+
   };
 };
 
@@ -42,11 +53,10 @@ const logUser = (data) => {
       credentials: "include",
       body: JSON.stringify(data),
     })
-      .then(res=> res.json())
-      .then(res=>dispatch(userAuth(res.name)))
-
-  }
-}
+      .then((res) => res.json())
+      .then((res) => dispatch(userAuth(res.name)));
+  };
+};
 
 export const logout = () => {
   return (dispatch) => {
