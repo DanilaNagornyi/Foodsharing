@@ -29,21 +29,22 @@ const FoodForm = () => {
   const handleChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(addFood(inputs));
-    setInputs({
-      name: "",
-      description: "",
-      photo: "",
-      validUntil: "",
-      geolocation: "",
-      quantity: "",
-      category: "",
-      city: "",
-    });
-      history.push("/food");
+    console.log(inputs, 'eto inputs');
+    await dispatch(addFood(inputs));
+    history.push("/food");
   };
+  const uploadHandler = async (file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    setInputs({ ...inputs, photo: formData })
+  }
+  const inputAvatarHandler = (e) => {
+    const file = e.target.files[0];
+    console.log(file);
+    uploadHandler(file);
+  }
 
   return (
     <>
@@ -113,17 +114,11 @@ const FoodForm = () => {
                 value={inputs.city}
                 onChange={handleChange}
               />
-              
-              <FileBase
-                className="text email inputformdecor inputphoto input-file"
-                id="file"
-                type="file"
-                multiple={false}
-                onDone={({ base64 }) => setInputs({ ...inputs, photo: base64 })}
-              />
-                <label for="file" className="btn btn-tertiary js-labelFile">
+
+              <input className="inputphoto input-file" id="file" onChange={(e) => inputAvatarHandler(e)} accept='image/*' type='file' name='photo' />
+              <label for="file" className="btn btn-tertiary js-labelFile">
                 {inputs.photo ? <i className="bi bi-check2-square"></i> : <i className="icon fa fa-check"></i>}
-                <span className="js-fileName"> {inputs.photo ?" Фото загружено" :" Загрузить фото"}</span>
+                <span className="js-fileName"> {inputs.photo ? " Фото загружено" : " Загрузить фото"}</span>
               </label>
 
               <input
@@ -161,16 +156,16 @@ const FoodForm = () => {
           </div>
         </div>
         <ul className="colorlib-bubbles">
-          <li><img className="img-bubbles" src="../../../assets/img/eggplant.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/pineapple.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/strawberry.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/apple.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/bananas.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/bell-pepper.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/broccoli.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/carrot.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/fruit.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/faviconavocado.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/eggplant.svg" /></li>
+          <li><img className="img-bubbles" src="../../../assets/img/pineapple.svg" /></li>
+          <li><img className="img-bubbles" src="../../../assets/img/strawberry.svg" /></li>
+          <li><img className="img-bubbles" src="../../../assets/img/apple.svg" /></li>
+          <li><img className="img-bubbles" src="../../../assets/img/bananas.svg" /></li>
+          <li><img className="img-bubbles" src="../../../assets/img/bell-pepper.svg" /></li>
+          <li><img className="img-bubbles" src="../../../assets/img/broccoli.svg" /></li>
+          <li><img className="img-bubbles" src="../../../assets/img/carrot.svg" /></li>
+          <li><img className="img-bubbles" src="../../../assets/img/fruit.svg" /></li>
+          <li><img className="img-bubbles" src="../../../assets/img/faviconavocado.svg" /></li>
         </ul>
       </div>
       {/* <!-- //main --> */}

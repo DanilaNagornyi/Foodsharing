@@ -2,15 +2,28 @@ import { AUTH, LOGOUT } from "../types/userTypes";
 import { setError } from "./errorAC";
 
 const regUser = (data) => {
-  return (dispatch) => {
-    fetch("http://localhost:3001/user/register", {
+  return async (dispatch) => {
+    const res = await fetch("http://localhost:3001/user/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       credentials: "include",
-      body: JSON.stringify(data),
-    }).then((res) => dispatch(userAuth(data.name)));
+      body: JSON.stringify({ name: data.name, surname: data.surname, phone: data.phone, city: data.city, password: data.password, telegram: data.telegram, email: data.email }),
+    })
+    if (res.status === 200 && data.photo) {
+      const result = await fetch(`http://localhost:3001/profile/avatar`, {
+        method: "POST",
+        credentials: "include",
+        body: data.photo,
+      });
+      const responseFromServ = await result.json();
+    }
+    if (res.status === 200) {
+      dispatch(userAuth(data.name))
+    } else {
+      console.log("Error registration");
+    }
   };
 };
 

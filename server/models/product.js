@@ -6,7 +6,7 @@ const productSchema = new Schema({
   category: { type: String, required: true },
   name: { type: String, required: true },
   description: { type: String, required: true },
-  photo: { type: String, required: true },
+  photo: String,
   geolocation: { type: String, required: true },
   quantity: { type: Number, required: true },
   status: { type: Boolean, default: true },
