@@ -249,24 +249,24 @@ input.email, input.text.w3lpass {
   color: #fff;
   border-color:#fff;
 }
-.input-file{
+#portal > div.two-div.main-agileinfo > div > form > input[type=file]:nth-child(6){
   width:.1px;
   height:.1px;
   opacity:0;
   overflow:hidden;
   position:absolute;
   z-index:-1}
-.input-file + .js-labelFile{
+  #portal > div.two-div.main-agileinfo > div > form > input[type=file]:nth-child(6) + .js-labelFile{
   overflow:hidden;
   text-overflow:ellipsis;
   white-space:nowrap;
   padding:0 ;
   cursor:pointer
 }
-.input-file + .js-labelFile .icon:before{
+#portal > div.two-div.main-agileinfo > div > form > input[type=file]:nth-child(6) + .js-labelFile .icon:before{
   content:"\f093"
 }
-.input-file + .js-labelFile.has-file .icon:before{
+#portal > div.two-div.main-agileinfo > div > form > input[type=file]:nth-child(6) + .js-labelFile.has-file .icon:before{
   content:"\f00c";
   color:#5AAC7B
 }

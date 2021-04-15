@@ -75,11 +75,9 @@ router.patch("/products/:id", async (req, res) => {
       if (String(req.session.passport.user) === String(product.owner)) {
         product.geolocation = req.body.geolocation;
         product.name = req.body.name;
-        product.validUntil = req.body.validUntil;
         product.description = req.body.description;
         product.quantity = req.body.quantity;
         product.coordinate = req.body.coordinate;
-        // product.photo = req.body.photo;
         await product.save();
         res.sendStatus(200);
       } else {

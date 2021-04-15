@@ -249,29 +249,41 @@ input.email, input.text.w3lpass {
   color: #fff;
   border-color:#fff;
 }
-#portal > div.two-div.main-agileinfo > div > form > input[type=file]:nth-child(7){
+/* style btn reloaded photo */
+#portal > div.two-div.main-agileinfo > div > form > input[type=file]:nth-child(6){
   width: 94.5%;
   height:40px;
   opacity:0;
   overflow:hidden;
   position:absolute;
-
+  z-index: 1;
+  
 }
-  #portal > div.two-div.main-agileinfo > div > form > input[type=file]:nth-child(7) + .js-labelFile{
+#portal > div.two-div.main-agileinfo > div > form > input[type=file]:nth-child(6) + .js-labelFile{
   overflow:hidden;
   text-overflow:ellipsis;
   white-space:nowrap;
   padding:0 ;
   cursor:pointer
 }
-#portal > div.two-div.main-agileinfo > div > form > input[type=file]:nth-child(7) + .js-labelFile .icon:before{
+
+#root > div > div > div > form > input[type=file]:nth-child(6):hover {
+  cursor: pointer
+}
+
+#portal > div.two-div.main-agileinfo > div > form > input[type=file]:nth-child(6) + .js-labelFile .icon:before{
   content:"\f093"
 }
-#portal > div.two-div.main-agileinfo > div > form > input[type=file]:nth-child(7) + .js-labelFile.has-file .icon:before{
+#portal > div.two-div.main-agileinfo > div > form > input[type=file]:nth-child(6) + .js-labelFile.has-file .icon:before{
   content:"\f00c";
   color:#5AAC7B
 }
 
+#portal > div.two-div.main-agileinfo > div > form > label {
+  cursor: pointer;
+}
+
+/* \style btn reloaded photo */
 
 
 
