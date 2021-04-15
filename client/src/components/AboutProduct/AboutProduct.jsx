@@ -66,7 +66,7 @@ function AboutProduct({ curProduct }) {
                   <div className="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
                     <div className="count-box pb-5 pt-0 pt-lg-5">
                       <i className="bi bi-tags"></i>
-                      <span>{curProduct.category}</span>
+                      <span>{categories[curProduct.category]}</span>
                       <p>Категория</p>
                     </div>
                   </div>

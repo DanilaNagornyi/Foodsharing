@@ -48,6 +48,7 @@ const EditFoodFormModal = ({ open, children, onClose, food, setProfile }) => {
   const handleChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value })
   }
+  
   const handleSubmit = (e) => {
     console.log(food._id, '<<<<<<<=');
     e.preventDefault()
@@ -100,7 +101,8 @@ const EditFoodFormModal = ({ open, children, onClose, food, setProfile }) => {
             <input className="text email inputformdecor" type="text" name="description" placeholder="Описание" required="" value={inputs.description} onChange={handleChange} />
             <input className="text email inputformdecor" type="text" name="geolocation" placeholder="Адрес" required="" value={inputs.geolocation} onChange={handleChange} />
             <input className="text email inputformdecor" type="text" name="quantity" placeholder="Количество" required="" value={inputs.quantity} onChange={handleChange} />
-            <input className="text email inputformdecor" type="date" name="validUntil" placeholder="Действительно до" required="" value={inputs.validUntil} onChange={handleChange} />
+            {/* <input onChange={(e) => inputAvatarHandler(e)} accept='image/*' type='file' hidden name='photo' /> */}
+            {/* <input className="text email inputformdecor" type="date" name="validUntil" placeholder="Действительно до" required="" value={inputs.validUntil} onChange={handleChange} /> */}
             {/* <FileBase
                 className="text email inputformdecor inputphoto input-file"
                 id="file"
@@ -126,15 +128,15 @@ const EditFoodFormModal = ({ open, children, onClose, food, setProfile }) => {
         </div>
 
         <ul className="colorlib-bubbles">
-        <li><img className="img-bubbles" src="../../../assets/img/eggplant.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/pineapple.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/strawberry.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/apple.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/bananas.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/bell-pepper.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/broccoli.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/carrot.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/fruit.svg"/></li>
+          <li><img className="img-bubbles" src="../../../assets/img/eggplant.svg" /></li>
+          <li><img className="img-bubbles" src="../../../assets/img/pineapple.svg" /></li>
+          <li><img className="img-bubbles" src="../../../assets/img/strawberry.svg" /></li>
+          <li><img className="img-bubbles" src="../../../assets/img/apple.svg" /></li>
+          <li><img className="img-bubbles" src="../../../assets/img/bananas.svg" /></li>
+          <li><img className="img-bubbles" src="../../../assets/img/bell-pepper.svg" /></li>
+          <li><img className="img-bubbles" src="../../../assets/img/broccoli.svg" /></li>
+          <li><img className="img-bubbles" src="../../../assets/img/carrot.svg" /></li>
+          <li><img className="img-bubbles" src="../../../assets/img/fruit.svg" /></li>
         </ul>
       </div>
     </>,

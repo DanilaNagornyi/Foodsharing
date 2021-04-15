@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const path = require('path');
 const session = require("express-session");
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo")(session);
@@ -44,7 +45,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(express.static(path.join(__dirname, 'public')));
 app.use("/", mainRouter);
 app.use("/user", userRouter);
 app.use("/profile", profileRouter);
@@ -92,3 +93,6 @@ app.listen(process.env.PORT, () => {
   );
   bot.launch();
 });
+
+
+module.exports = bot

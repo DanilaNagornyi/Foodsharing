@@ -10,7 +10,7 @@ const userSchema = new Schema({
   phone: String,
   telegram: String,
   city: String,
-  photo: String,
+  photo: { type: String },
   products: { type: Array, default: [] },
   password: String,
   telegramid: String,

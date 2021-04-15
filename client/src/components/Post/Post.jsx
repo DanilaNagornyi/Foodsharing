@@ -23,7 +23,6 @@ function Post({ post }) {
         <article className="entry">
           <div className="entry-img">
             <Link to={`/food/${post._id}`}>
-              <time dateTime="2020-01-01">{post.publishedBy.slice(0, 17)}</time>
               <img src={post.photo} alt="" className="img-fluid" />
             </Link>
           </div>

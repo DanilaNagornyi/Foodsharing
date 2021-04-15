@@ -103,10 +103,8 @@ router.get("/message/:category/:id", async (req, res) => {
       const product = await Products.findById(req.params.id);
       bot.telegram.sendMessage(
         Number(user.telegramid),
-        `🥷 В категории ${
-          categories[req.params.category]
-        } новый пост загляни это ${product.name} по адресу:📍${
-          product.geolocation
+        `🥷 В категории ${categories[req.params.category]
+        } новый пост загляни это ${product.name} по адресу:📍${product.geolocation
         } \n http://localhost:3000/food/${req.params.id}`
       );
       // bot.telegram.sendPhoto(Number(user.telegramid), product.photo);
