@@ -250,7 +250,7 @@ input.email, input.text.w3lpass {
   border-color:#fff;
   /* unput file */
 }
-#root > div > div > div > form > input[type=file]:nth-child(4){
+.input-file{
   width: 94.5%;
   height:40px;
   opacity:0;
@@ -258,21 +258,21 @@ input.email, input.text.w3lpass {
   position:absolute;
   /* z-index:-1 */
 }
-#root > div > div > div > form > input[type=file]:nth-child(4):hover {
+.input-file:hover {
   cursor: pointer
 }
 
-  #root > div > div > div > form > input[type=file]:nth-child(4) + .js-labelFile{
+.input-file + .js-labelFile{
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
     padding:0 ;
     cursor:pointer
   }
-  #root > div > div > div > form > input[type=file]:nth-child(4) + .js-labelFile .icon:before{
+ .input-file + .js-labelFile .icon:before{
     content:"\f093"
   }
-  #root > div > div > div > form > input[type=file]:nth-child(4) + .js-labelFile.has-file .icon:before{
+  .input-file + .js-labelFile.has-file .icon:before{
     content:"\f00c";
     color:#5AAC7B
   }
