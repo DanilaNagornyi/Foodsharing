@@ -37,7 +37,6 @@ const authUser = async (req, email, pass, done) => {
             telegram: req.body.telegram,
             city: req.body.city,
             password: hashPass,
-            photo: req.body.photo,
           });
           await newUser.save();
           return done(null, newUser);

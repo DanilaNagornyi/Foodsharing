@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import EditUserFormModal from '../EditFoodFormModal/EditFoodFormModal'
+import { changeStatus } from "../../redux/AC/foodAC";
 
 const BUTTON_WRAPPER_STYLES = {
   position: "relative",
@@ -10,6 +11,7 @@ const BUTTON_WRAPPER_STYLES = {
 };
 
 function MyProductCard({ item, setProfile }) {
+  const dispatch = useDispatch()
   const [isOpen, setIsOpen] = useState(false);
   const clickHandler = (id) => {
     setIsOpen(true);
@@ -31,6 +33,7 @@ function MyProductCard({ item, setProfile }) {
         );
         return { ...prev, product };
       });
+      dispatch(changeStatus(item._id))
     }
   };
 

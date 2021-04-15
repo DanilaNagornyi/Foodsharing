@@ -8,7 +8,6 @@ import { regUser } from "../../redux/AC/userAC";
 import "./styleForm.css";
 
 function Registration() {
-  const err = useSelector((state) => state.error);
   const history = useHistory();
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
@@ -31,14 +30,21 @@ function Registration() {
     await dispatch(regUser(inputs));
     history.push("/profile");
   };
-
+  const uploadHandler = async (file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    setInputs({ ...inputs, photo: formData })
+  }
+  const inputAvatarHandler = (e) => {
+    const file = e.target.files[0];
+    uploadHandler(file);
+  }
   return (
     <>
       <main id="main"></main>
 
       {/* <!-- main --> */}
       <div className="main-w3layouts wrapper maindiv">
-        <h1>{err}</h1>
 
         <h1>Регистрация</h1>
         <div className="main-agileinfo">
@@ -72,13 +78,7 @@ function Registration() {
                 onChange={handleChange}
               />
               {/* <input className="text email inputformdecor inputphoto input-file" id="file" type="file" name="photo" multiple accept="image/*" placeholder="Загрузить фото" required="" value={inputs.photo}> */}
-              <FileBase
-                className="text email inputformdecor inputphoto input-file"
-                id="file"
-                type="file"
-                multiple={false}
-                onDone={({ base64 }) => setInputs({ ...inputs, photo: base64 })}
-              />
+              <input className="inputphoto input-file" id="file" onChange={(e) => inputAvatarHandler(e)} accept='image/*' type='file' name='photo' />
               <label for="file" className="btn btn-tertiary js-labelFile">
                 {inputs.photo ? (
                   <i class="bi bi-check2-square"></i>
@@ -90,6 +90,26 @@ function Registration() {
                   {inputs.photo ? " Фото загружено" : " Загрузить фото"}
                 </span>
               </label>
+              {/* <input type='text' name='photo' /> */}
+
+              {/* <FileBase
+                className="text email inputformdecor inputphoto input-file"
+                id="file"
+                type="file"
+                multiple={false}
+                onDone={({ base64 }) => setInputs({ ...inputs, photo: base64 })}
+              /> */}
+              {/* <label for="file" className="btn btn-tertiary js-labelFile">
+                {inputs.photo ? (
+                  <i class="bi bi-check2-square"></i>
+                ) : (
+                  <i className="icon fa fa-check"></i>
+                )}
+
+                <span className="js-fileName">
+                  {inputs.photo ? " Фото загружено" : " Загрузить фото"}
+                </span>
+              </label> */}
 
               {/* <input className="text email inputformdecor inputphoto input-file" id="file" type="file" name="photo" multiple accept="image/*" placeholder="Загрузить фото" required="" value={inputs.photo}> */}
 

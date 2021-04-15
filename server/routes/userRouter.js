@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const passport = require("passport");
 const User = require("../models/user");
+const uploadMulter = require('../multerConfig')
 
 router.post("/register", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
@@ -8,13 +9,12 @@ router.post("/register", (req, res, next) => {
       return next(400);
     }
     if (!user) {
-      return res.sendStatus(400);
+      return res.sendStatus(401);
     }
     req.logIn(user, (err) => {
       if (err) {
-        return res.sendStatus(400);
+        return res.sendStatus(402);
       }
-      req.session.user = user._id;
       return res.sendStatus(200);
     });
   })(req, res, next);
