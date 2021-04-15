@@ -3,51 +3,105 @@ import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
+
+import useInputs from "../../customHooks/useInput";
 import { clearError, setError } from "../../redux/AC/errorAC";
-import { regUser, regUserByGoogle } from "../../redux/AC/userAC";
+import { regUser } from "../../redux/AC/userAC";
 import "./styleForm.css";
+import {
+  checkName,
+  checkSurname,
+  checkEmail,
+  checkPhone,
+  checkCity,
+  checkTelegram,
+  checkPassword,
+  checkConfirmPassword,
+} from '../../helpers/validateFormFunc';
 
 function Registration() {
-  const err = useSelector(state => state.error)
+  const err = useSelector((state) => state.error);
   const history = useHistory();
   const dispatch = useDispatch();
-  const [inputs, setInputs] = useState({
-    name: "",
-    surname: "",
-    email: "",
-    password: "",
-    phone: "",
-    city: "",
-    telegram: "",
+
+  const [photo, setPhoto] = useState({
     photo: "",
   });
 
-  const handleChange = (e) => {
-    setInputs({ ...inputs, [e.target.name]: e.target.value });
-  };
+  const inputs = [
+
+    useInputs({
+      placeholder: 'Введите имя',
+      type: 'text',
+      name: 'name',
+      emptyRequired: true,
+      validateFunc: checkName,
+    }),
+
+    useInputs({
+      placeholder: 'Введите фамилию',
+      type: 'text',
+      name: 'surname',
+      validateFunc: checkSurname
+    }),
+
+    useInputs({
+      placeholder: 'Введите email',
+      type: 'email',
+      name: 'email',
+      emptyRequired: true,
+      validateFunc: checkEmail
+    }),
+
+    useInputs({
+      placeholder: 'Введите телефон',
+      type: 'text',
+      name: 'phone',
+      emptyRequired: true,
+      validateFunc: checkPhone
+    }),
+
+    useInputs({
+      placeholder: 'Введите телеграм ник',
+      type: 'text',
+      name: 'telegram',
+      emptyRequired: true,
+      validateFunc: checkTelegram
+    }),
+
+    useInputs({
+      placeholder: 'Введите город',
+      type: 'text',
+      name: 'city',
+      validateFunc: checkCity
+    }),
+
+    useInputs({
+      placeholder: 'Введите пароль',
+      type: 'password',
+      name: 'password',
+      emptyRequired: true,
+      validateFunc: checkPassword
+    }),
+
+    useInputs({
+      placeholder: 'Повторите пароль',
+      type: 'Password',
+      name: 'confirmPassword',
+      emptyRequired: true,
+      validateFunc: checkConfirmPassword
+    })
+  ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(regUser(inputs));
-    if (err) {
+    if (inputs.every(input => input.isValid())) {
+      await dispatch(regUser(inputs));
       history.push("/profile");
+      inputs.forEach(input => input.clear())
     }
-    setInputs({
-      name: "",
-      surname: "",
-      email: "",
-      password: "",
-      phone: "",
-      city: "",
-      telegram: "",
-    });
   };
 
-  useEffect(() => {
-    return () => {
-      dispatch(setError(''))
-    }
-  }, [])
   return (
     <>
       <main id="main"></main>
@@ -60,93 +114,49 @@ function Registration() {
         <div className="main-agileinfo">
           <div className="agileits-top formdesign">
             <form className="" onSubmit={handleSubmit}>
-              <input
-                className="text inputformdecor"
-                type="text"
-                name="name"
-                placeholder="Имя"
-                required=""
-                value={inputs.name}
-                onChange={handleChange}
-              />
-              <input
-                className="text email inputformdecor"
-                type="text"
-                name="surname"
-                placeholder="Фамилия"
-                required=""
-                value={inputs.surname}
-                onChange={handleChange}
-              />
-              <input
-                className="text email inputformdecor"
-                type="email"
-                name="email"
-                placeholder="Email"
-                required=""
-                value={inputs.email}
-                onChange={handleChange}
-              />
-              {/* <input className="text email inputformdecor inputphoto input-file" id="file" type="file" name="photo" multiple accept="image/*" placeholder="Загрузить фото" required="" value={inputs.photo}> */}
-              <FileBase
+
+
+              {
+                inputs.map((input, i) => (
+                  <div
+                    key={i}
+                  >
+                    <div className="div-form-test">
+                      {
+                        input.error ? <span className="input-test-index">{input.error}</span> : ''
+                      }
+                    </div>
+                    <input
+                      {...input.forTag}
+                      className="text email inputformdecor "
+                      // className={`text inputformdecor ${!input.error ? 'inputSuccses ' : 'inputError'}`}
+                    />
+                  </div>
+                ))
+              }
+
+              {/* <input className="text email inputformdecor inputphoto input-file" id="file" type="file" name="photo" multiple accept="image/*" placeholder="Загрузить фото" required="" value={inputs.photo}> */ }
+              < FileBase
                 className="text email inputformdecor inputphoto input-file"
                 id="file"
                 type="file"
                 multiple={false}
-                onDone={({ base64 }) => setInputs({ ...inputs, photo: base64 })}
+                onDone={({ base64 }) => setPhoto(base64)}
               />
               <label for="file" className="btn btn-tertiary js-labelFile">
-                {inputs.photo ? <i class="bi bi-check2-square"></i> : <i className="icon fa fa-check"></i>}
+                {inputs.photo ? (
+                  <i class="bi bi-check2-square"></i>
+                ) : (
+                  <i className="icon fa fa-check"></i>
+                )}
 
-                <span className="js-fileName">{inputs.photo ?" Фото загружено" :" Загрузить фото"}</span>
+                <span className="js-fileName">
+                  {inputs.photo ? " Фото загружено" : " Загрузить фото"}
+                </span>
               </label>
 
               {/* <input className="text email inputformdecor inputphoto input-file" id="file" type="file" name="photo" multiple accept="image/*" placeholder="Загрузить фото" required="" value={inputs.photo}> */}
 
-              <input
-                className="text email inputformdecor"
-                type="text"
-                name="phone"
-                placeholder="Телефон"
-                required=""
-                value={inputs.phone}
-                onChange={handleChange}
-              />
-              <input
-                className="text email inputformdecor"
-                type="text"
-                name="telegram"
-                placeholder="Telegram user name @"
-                required=""
-                value={inputs.telegram}
-                onChange={handleChange}
-              />
-              <input
-                className="text email inputformdecor"
-                type="text"
-                name="city"
-                placeholder="Город"
-                required=""
-                value={inputs.city}
-                onChange={handleChange}
-              />
-              <input
-                className="text inputformdecor"
-                type="password"
-                name="password"
-                placeholder="Пароль"
-                required=""
-                value={inputs.password}
-                onChange={handleChange}
-              />
-
-              <input
-                className="text w3lpass inputformdecor"
-                type="password"
-                name="password"
-                placeholder="Повторите пароль"
-                required=""
-              />
               <div className="wthree-text">
                 <label className="anim">
                   <input type="checkbox" className="checkbox" required="" />
@@ -173,16 +183,51 @@ function Registration() {
           </div>
         </div>
         <ul className="colorlib-bubbles">
-          <li><img className="img-bubbles" src="../../../assets/img/eggplant.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/pineapple.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/strawberry.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/apple.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/bananas.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/bell-pepper.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/broccoli.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/carrot.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/fruit.svg"/></li>
-          <li><img className="img-bubbles" src="../../../assets/img/faviconavocado.svg"/></li>
+          <li>
+            <img
+              className="img-bubbles"
+              src="../../../assets/img/eggplant.svg"
+            />
+          </li>
+          <li>
+            <img
+              className="img-bubbles"
+              src="../../../assets/img/pineapple.svg"
+            />
+          </li>
+          <li>
+            <img
+              className="img-bubbles"
+              src="../../../assets/img/strawberry.svg"
+            />
+          </li>
+          <li>
+            <img className="img-bubbles" src="../../../assets/img/apple.svg" />
+          </li>
+          <li>
+            <img
+              className="img-bubbles"
+              src="../../../assets/img/bananas.svg"
+            />
+          </li>
+          <li>
+            <img
+              className="img-bubbles"
+              src="../../../assets/img/bell-pepper.svg"
+            />
+          </li>
+          <li>
+            <img
+              className="img-bubbles"
+              src="../../../assets/img/broccoli.svg"
+            />
+          </li>
+          <li>
+            <img className="img-bubbles" src="../../../assets/img/carrot.svg" />
+          </li>
+          <li>
+            <img className="img-bubbles" src="../../../assets/img/fruit.svg" />
+          </li>
         </ul>
       </div>
       {/* <!-- //main --> */}

@@ -1,5 +1,5 @@
 function checkName(name) {
-  const regexForName = /^[А-Яа-яЁё\s]+$/g
+  const regexForName = /^[А-Яа-яЁё\s]+$/
   return regexForName.test(name)
 };
 

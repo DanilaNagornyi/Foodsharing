@@ -32,7 +32,7 @@ function Post({ post }) {
           <li className="d-flex align-items-center">
             <i className="bi bi-clock"></i>{" "}
             <Link to={`/food/${post._id}`}>
-              <time datetime="2020-01-01">{post.publishedBy.slice(0, 17)}</time>
+              <time dateTime="2020-01-01">{post.publishedBy.slice(0, 17)}</time>
             </Link>
           </li>
         </ul>

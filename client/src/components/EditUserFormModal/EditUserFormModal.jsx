@@ -73,7 +73,7 @@ function EditUserModal({ user, open, children, onClose, setProfile }) {
 
           {children}
           <form className="" onSubmit={handleSubmit}>
-            <button onClick={onClose} style={BUTTON_CLOUSE_STYLES} ><i class="bi bi-x"></i></button>
+            <button onClick={onClose} style={BUTTON_CLOUSE_STYLES} ><i className="bi bi-x"></i></button>
             <input className="text inputformdecor" type="text" name="name" placeholder="Имя" required="" value={inputs?.name} onChange={handleChange} />
             <input className="text email inputformdecor" type="text" name="surname" placeholder="Фамилия" required="" value={inputs?.surname} onChange={handleChange} />
             <input className="text email inputformdecor" type="text" name="phone" placeholder="Телефон" required="" value={inputs?.phone} onChange={handleChange} />

@@ -6,11 +6,17 @@ import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './redux/reducers/rootReducer';
-import initState from './redux/initState'
+import initState from './redux/initState';
 import { Provider } from 'react-redux';
 
-const store = createStore(rootReducer, initState, composeWithDevTools(applyMiddleware(thunk)))
-
+const store = createStore(
+  rootReducer,
+  initState(),
+  composeWithDevTools(applyMiddleware(thunk))
+);
+store.subscribe(() => {
+  window.localStorage.setItem('redux', JSON.stringify(store.getState()));
+});
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,4 +26,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-

@@ -1,4 +1,4 @@
-const { Schema, model, pluralize } = require("mongoose");
+const { Schema, model, pluralize } = require('mongoose');
 
 pluralize(null);
 
@@ -14,7 +14,7 @@ const userSchema = new Schema({
   products: { type: Array, default: [] },
   password: String,
   telegramid: String,
-  subscribes: { type: Array, default: [] }
+  subscribes: { type: Array, default: [] },
 });
 
-module.exports = model("users", userSchema);
+module.exports = model('users', userSchema);

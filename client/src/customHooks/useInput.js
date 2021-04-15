@@ -14,8 +14,8 @@ function useInputs({
   const [error, setError] = useState(false)
 
   const errorMessages = {
-    empty: 'поле не может быть пустым',
-    wrong: 'неверный формат данных',
+    empty: '* поле не может быть пустым',
+    wrong: '* неверный формат данных',
   }
 
   const required = emptyRequired;
