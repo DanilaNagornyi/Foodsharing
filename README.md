@@ -75,8 +75,10 @@ npm start
 ## Команда проекта 🥷
 
 <a href="https://github.com/Ulitkau">
-  <img align="left" alt="Ulitkau" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/github.svg" />
-  <h3>Ulviya Karakhmazli</h3>
+  <div>
+   <img align="left" alt="Ulitkau" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/github.svg" />
+   <h3>Ulviya Karakhmazli</h3>
+  </div>
 </a>
 
 
