@@ -81,8 +81,6 @@ npm start
   </div>
 </a>
 
-<br/>
-
 <a href="https://github.com/gamz420">
   <div>
    <img align="left" alt="Gamz" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/github.svg" />
@@ -90,16 +88,12 @@ npm start
   </div>
 </a>
 
-<br/>
-
 <a href="https://github.com/AlexandrBatrakov">
   <div>
    <img align="left" alt="Alexandr Batrakov" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/github.svg" />
    <h3><a href="https://github.com/AlexandrBatrakov">Alexandr Batrakov</a></h3>
   </div>
 </a>
-
-<br/>
 
 <a href="https://github.com/DanilaNagornyi">
   <div>
