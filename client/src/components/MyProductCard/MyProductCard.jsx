@@ -18,7 +18,7 @@ function MyProductCard({ item, setProfile }) {
   };
 
   const handlerChangeStatus = async () => {
-    const resp = await fetch("https://fruitoninja.herokuapp.com/products", {
+    const resp = await fetch("/products", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

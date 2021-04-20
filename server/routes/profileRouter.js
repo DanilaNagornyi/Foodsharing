@@ -62,7 +62,7 @@ router.post('/avatar', uploadMulter.single('file'), async (req, res) => {
     }
     const { filename } = req.file;
     const user = await User.findById(req.session.passport.user);
-    const imgPuth = 'https://fruitoninja.herokuapp.com/img/';
+    const imgPuth = '/img/';
     user.photo = imgPuth + filename;
     await user.save();
     return res.json(user);

@@ -56,9 +56,7 @@ router.post('/products', async (req, res) => {
 
     let arr = curcategory.subscribers.map((el) => el.telegramid);
 
-    fetch(
-      `https://fruitoninja.herokuapp.com/subscribe/message/${newProduct.category}/${newProduct._id}`
-    )
+    fetch(`/subscribe/message/${newProduct.category}/${newProduct._id}`)
       .then((data) => console.log(data.status))
       .catch((e) => console.log(e));
 
@@ -178,7 +176,7 @@ router.post('/avatar/:id', uploadMulter.single('file'), async (req, res) => {
     }
     const { filename } = req.file;
     const product = await Products.findById(req.params.id);
-    const imgPuth = 'https://fruitoninja.herokuapp.com/img/';
+    const imgPuth = '/img/';
     product.photo = imgPuth + filename;
     await product.save();
     return res.json(product);

@@ -147,7 +147,7 @@ function Registration() {
               <button className="btnlogin">ЗАРЕГИСТРИРОВАТЬСЯ</button>
             </form>
             <button className="btngoogle">
-              <a href="https://fruitoninja.herokuapp.com/user/google">
+              <a href="/user/google">
                 ВОЙТИ ЧЕРЕЗ{" "}
                 <img
                   src="../../../assets/img/google-logo.png"

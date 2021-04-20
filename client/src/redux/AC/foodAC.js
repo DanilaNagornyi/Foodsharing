@@ -28,35 +28,29 @@ export const addFood = (data) => {
     let coord = await res.json();
     let coordinate =
       coord.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos;
-    const dataToServer = await fetch(
-      'https://fruitoninja.herokuapp.com/products',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify({
-          category,
-          name,
-          description,
-          quantity,
-          validUntil,
-          geolocation,
-          coordinate,
-        }),
-      }
-    );
+    const dataToServer = await fetch('/products', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify({
+        category,
+        name,
+        description,
+        quantity,
+        validUntil,
+        geolocation,
+        coordinate,
+      }),
+    });
     let datagromdb = await dataToServer.json();
     console.log('datagromdb', datagromdb);
-    let registrPh = await fetch(
-      `https://fruitoninja.herokuapp.com/avatar/${datagromdb._id}`,
-      {
-        method: 'POST',
-        credentials: 'include',
-        body: photo,
-      }
-    );
+    let registrPh = await fetch(`/avatar/${datagromdb._id}`, {
+      method: 'POST',
+      credentials: 'include',
+      body: photo,
+    });
     let resultPg = await registrPh.json();
     console.log(resultPg, 'with photo');
     dispatch(addFoodToState(resultPg));
@@ -71,7 +65,7 @@ export const addFoodToState = (data) => {
 };
 export const changeCategories = (data) => {
   return (dispatch, getState) => {
-    fetch(`https://fruitoninja.herokuapp.com/products/${data}`)
+    fetch(`/products/${data}`)
       .then((response) => response.json())
       .then((response) => dispatch(changeCategoriesFromServer(response)));
   };
@@ -79,7 +73,7 @@ export const changeCategories = (data) => {
 
 export const getAllFoodFromServer = () => {
   return async (dispatch) => {
-    const resp = await fetch('https://fruitoninja.herokuapp.com/products', {
+    const resp = await fetch('/products', {
       credentials: 'include',
     });
     const data = await resp.json();
@@ -97,7 +91,7 @@ export const getAllFoodFromServer = () => {
 
 export const productSearch = (data) => {
   return (dispatch) => {
-    fetch(`https://fruitoninja.herokuapp.com/products/search/${data}`, {
+    fetch(`/products/search/${data}`, {
       credentials: 'include',
     })
       .then((response) => response.json())

@@ -61,7 +61,7 @@ function Login() {
               <button className="btnlogin">ВОЙТИ</button>
             </form>
             <button className="btngoogle">
-              <a href="https://fruitoninja.herokuapp.com/user/google">
+              <a href="/user/google">
                 ВОЙТИ ЧЕРЕЗ{" "}
                 <img
                   src="../../../assets/img/google-logo.png"

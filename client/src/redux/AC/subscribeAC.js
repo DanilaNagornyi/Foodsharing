@@ -7,7 +7,7 @@ import {
 
 export const changeSubscribe = (category) => {
   return (dispatch, getState) => {
-    fetch('https://fruitoninja.herokuapp.com/subscribe', {
+    fetch('/subscribe', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export const changeSubscribe = (category) => {
 
 export const deleteSubscribe = (category) => {
   return (dispatch, getState) => {
-    fetch('https://fruitoninja.herokuapp.com/subscribe', {
+    fetch('/subscribe', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export const deleteSubscribe = (category) => {
 
 export const getSubscribe = (category) => {
   return (dispatch, getState) => {
-    fetch('https://fruitoninja.herokuapp.com/subscribe', {
+    fetch('/subscribe', {
       credentials: 'include',
     })
       .then((res) => res.json())

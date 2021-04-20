@@ -3,7 +3,7 @@ import { setError } from './errorAC';
 
 const regUser = (data) => {
   return async (dispatch) => {
-    const res = await fetch('https://fruitoninja.herokuapp.com/user/register', {
+    const res = await fetch('/user/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -20,14 +20,11 @@ const regUser = (data) => {
       }),
     });
     if (res.status === 200 && data.photo) {
-      const result = await fetch(
-        `https://fruitoninja.herokuapp.com/profile/avatar`,
-        {
-          method: 'POST',
-          credentials: 'include',
-          body: data.photo,
-        }
-      );
+      const result = await fetch(`/profile/avatar`, {
+        method: 'POST',
+        credentials: 'include',
+        body: data.photo,
+      });
       const responseFromServ = await result.json();
     }
     if (res.status === 200) {
@@ -40,7 +37,7 @@ const regUser = (data) => {
 
 const regUserGoogle = (data) => {
   return (dispatch) => {
-    fetch('https://fruitoninja.herokuapp.com/user/registergoogle', {
+    fetch('/user/registergoogle', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -57,7 +54,7 @@ const regUserGoogle = (data) => {
 
 const logUser = (data) => {
   return (dispatch) => {
-    fetch('https://fruitoninja.herokuapp.com/user/login', {
+    fetch('/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -72,7 +69,7 @@ const logUser = (data) => {
 
 export const logout = () => {
   return (dispatch) => {
-    fetch('https://fruitoninja.herokuapp.com/user/logout', {
+    fetch('/user/logout', {
       credentials: 'include',
     }).then((response) =>
       response.status === 200

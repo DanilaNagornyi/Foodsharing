@@ -27,7 +27,7 @@ import Unknown from './components/404/404';
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    fetch('https://fruitoninja.herokuapp.com/user/checkAuth', {
+    fetch('/user/checkAuth', {
       credentials: 'include',
     }).then((res) => {
       if (res.status === 200) {

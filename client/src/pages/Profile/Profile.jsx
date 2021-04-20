@@ -8,7 +8,7 @@ function Profile() {
   const [profile, setProfile] = useState({});
   const [archive, setArchive] = useState(false);
   useEffect(() => {
-    fetch("https://fruitoninja.herokuapp.com/profile", {
+    fetch("/profile", {
       credentials: "include",
     })
       .then((response) => response.json())

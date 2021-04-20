@@ -47,7 +47,7 @@ function EditUserModal({ user, open, children, onClose, setProfile }) {
   }
   const handleSubmit = async (e) => {
     e.preventDefault()
-    let resp = await fetch("https://fruitoninja.herokuapp.com/profile", {
+    let resp = await fetch("/profile", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
