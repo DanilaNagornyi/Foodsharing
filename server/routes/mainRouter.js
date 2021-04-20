@@ -1,12 +1,12 @@
-const router = require("express").Router();
-const Products = require("../models/product");
-const User = require("../models/user");
-const Categories = require("../models/categories");
-const fetch = require("node-fetch");
+const router = require('express').Router();
+const Products = require('../models/product');
+const User = require('../models/user');
+const Categories = require('../models/categories');
+const fetch = require('node-fetch');
 const bot = require('../app');
-const uploadMulter = require("../multerConfig");
+const uploadMulter = require('../multerConfig');
 
-router.get("/products", async (req, res) => {
+router.get('/products', async (req, res) => {
   try {
     let arrProducts = await Products.find();
     arrProducts = arrProducts.filter((el) => el.status).reverse();
@@ -21,7 +21,7 @@ router.get("/products", async (req, res) => {
   }
 });
 
-router.post("/products", async (req, res) => {
+router.post('/products', async (req, res) => {
   if (req.session.passport) {
     const newProduct = new Products({
       category: req.body.category,
@@ -29,7 +29,7 @@ router.post("/products", async (req, res) => {
       description: req.body.description,
       geolocation: req.body.geolocation,
       quantity: req.body.quantity,
-      validUntil: req.body.validUntil.split("-").reverse().join("."),
+      validUntil: req.body.validUntil.split('-').reverse().join('.'),
       owner: req.session.passport.user,
       coordinate: req.body.coordinate,
     });
@@ -52,12 +52,12 @@ router.post("/products", async (req, res) => {
     );
     let curcategory = await Categories.findOne({
       name: newProduct.category,
-    }).populate("subscribers");
+    }).populate('subscribers');
 
     let arr = curcategory.subscribers.map((el) => el.telegramid);
 
     fetch(
-      `http://localhost:3001/subscribe/message/${newProduct.category}/${newProduct._id}`
+      `https://fruitoninja.herokuapp.com/subscribe/message/${newProduct.category}/${newProduct._id}`
     )
       .then((data) => console.log(data.status))
       .catch((e) => console.log(e));
@@ -68,7 +68,7 @@ router.post("/products", async (req, res) => {
   }
 });
 
-router.patch("/products/:id", async (req, res) => {
+router.patch('/products/:id', async (req, res) => {
   if (req.session.passport) {
     try {
       const product = await Products.findById(req.params.id);
@@ -91,10 +91,10 @@ router.patch("/products/:id", async (req, res) => {
   }
 });
 
-router.patch("/products", async (req, res) => {
+router.patch('/products', async (req, res) => {
   if (req.session.passport) {
     try {
-      const product = await Products.findById(req.body.id).populate("owner");
+      const product = await Products.findById(req.body.id).populate('owner');
       if (String(req.session.passport.user) === String(product.owner._id)) {
         let category = await Categories.findOne({ name: product.category });
         category.productsList = category.productsList.filter(
@@ -115,7 +115,7 @@ router.patch("/products", async (req, res) => {
   }
 });
 
-router.get("/products/:categories", async (req, res) => {
+router.get('/products/:categories', async (req, res) => {
   try {
     let categoriesProducts = await Products.find({
       category: `${req.params.categories}`,
@@ -131,9 +131,9 @@ router.get("/products/:categories", async (req, res) => {
   }
 });
 
-router.get("/products/info/:id", async (req, res) => {
+router.get('/products/info/:id', async (req, res) => {
   try {
-    const product = await Products.findById(req.params.id).populate("owner");
+    const product = await Products.findById(req.params.id).populate('owner');
     if (
       req.session.passport &&
       req.session.passport.user === product.owner._id
@@ -153,10 +153,10 @@ router.get("/products/info/:id", async (req, res) => {
   }
 });
 
-router.get("/products/search/:data", async (req, res) => {
+router.get('/products/search/:data', async (req, res) => {
   const data = req.params.data;
   try {
-    const nameRegexp = new RegExp(`^${data}.*`, "i");
+    const nameRegexp = new RegExp(`^${data}.*`, 'i');
     const dataProducts = await Products.find();
     let result = dataProducts.filter((el) => nameRegexp.test(el.name));
     if (result) {
@@ -178,7 +178,7 @@ router.post('/avatar/:id', uploadMulter.single('file'), async (req, res) => {
     }
     const { filename } = req.file;
     const product = await Products.findById(req.params.id);
-    const imgPuth = 'http://localhost:3001/img/';
+    const imgPuth = 'https://fruitoninja.herokuapp.com/img/';
     product.photo = imgPuth + filename;
     await product.save();
     return res.json(product);
@@ -187,7 +187,5 @@ router.post('/avatar/:id', uploadMulter.single('file'), async (req, res) => {
     return res.status(400).json({ message: 'Upload avatar error' });
   }
 });
-
-
 
 module.exports = router;

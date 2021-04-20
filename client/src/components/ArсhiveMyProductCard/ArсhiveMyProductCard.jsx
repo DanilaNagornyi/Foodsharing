@@ -7,7 +7,7 @@ import EditFoodForm from '../EditFoodFormModal/EditFoodFormModal';
 function ArсhiveMyProductCard({ item, setProfile }) {
   const [editProduct, setEditProduct] = useState(false)
   const handlerChangeStatus = async () => {
-    const resp = await fetch("http://localhost:3001/products", {
+    const resp = await fetch("https://fruitoninja.herokuapp.com/products", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json"

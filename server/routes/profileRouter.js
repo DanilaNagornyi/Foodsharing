@@ -1,9 +1,9 @@
-const router = require("express").Router();
-const User = require("../models/user");
-const Products = require("../models/product");
-const uploadMulter = require("../multerConfig");
+const router = require('express').Router();
+const User = require('../models/user');
+const Products = require('../models/product');
+const uploadMulter = require('../multerConfig');
 
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     if (req.session.passport) {
       const user = await User.findById(req.session.passport.user);
@@ -35,7 +35,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.patch("/", async (req, res) => {
+router.patch('/', async (req, res) => {
   if (req.session.passport) {
     try {
       const user = await User.findById(req.session.passport.user);
@@ -62,7 +62,7 @@ router.post('/avatar', uploadMulter.single('file'), async (req, res) => {
     }
     const { filename } = req.file;
     const user = await User.findById(req.session.passport.user);
-    const imgPuth = 'http://localhost:3001/img/';
+    const imgPuth = 'https://fruitoninja.herokuapp.com/img/';
     user.photo = imgPuth + filename;
     await user.save();
     return res.json(user);
@@ -72,11 +72,7 @@ router.post('/avatar', uploadMulter.single('file'), async (req, res) => {
   }
 });
 
-
-
-
-
-router.get("/:id", async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (user) {

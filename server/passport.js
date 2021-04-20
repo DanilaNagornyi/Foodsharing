@@ -1,9 +1,9 @@
-const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const bcrypt = require("bcrypt");
-var ObjectID = require("mongodb").ObjectID;
-const User = require("./models/user");
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const bcrypt = require('bcrypt');
+var ObjectID = require('mongodb').ObjectID;
+const User = require('./models/user');
 
 passport.serializeUser((user, done) => {
   done(null, user._id);
@@ -20,9 +20,9 @@ const authUser = async (req, email, pass, done) => {
     if (/login/.test(req.path)) {
       const user = await User.findOne({ email }).lean().exec();
       if (!user)
-        return done(null, false, { message: "Неверный логин или пароль" });
+        return done(null, false, { message: 'Неверный логин или пароль' });
       if (await bcrypt.compare(pass, user.password)) return done(null, user);
-      return done(null, false, { message: "Неверный логин или пароль" });
+      return done(null, false, { message: 'Неверный логин или пароль' });
     }
     if ((email && pass && req.body.name, req.body.phone, req.body.city)) {
       const user = await User.findOne({ email }).lean().exec();
@@ -41,13 +41,13 @@ const authUser = async (req, email, pass, done) => {
           await newUser.save();
           return done(null, newUser);
         } catch (error) {
-          return done(null, false, { message: "Error" });
+          return done(null, false, { message: 'Error' });
         }
       } else {
-        return done(null, false, { message: "Mail is already used" });
+        return done(null, false, { message: 'Mail is already used' });
       }
     }
-    return done(null, false, { message: "Error" });
+    return done(null, false, { message: 'Error' });
   } catch (error) {
     done(error);
   }
@@ -56,7 +56,7 @@ const authUser = async (req, email, pass, done) => {
 passport.use(
   new LocalStrategy(
     {
-      usernameField: "email",
+      usernameField: 'email',
       passReqToCallback: true,
     },
     authUser
@@ -68,7 +68,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:3001/user/google/callback",
+      callbackURL: 'https://fruitoninja.herokuapp.com/user/google/callback',
     },
     (accessToken, refreshToken, profile, done) => {
       User.findOne({ googleId: profile.id }).then((currentUser) => {

@@ -27,7 +27,7 @@ import Unknown from './components/404/404';
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    fetch('http://localhost:3001/user/checkAuth', {
+    fetch('https://fruitoninja.herokuapp.com/user/checkAuth', {
       credentials: 'include',
     }).then((res) => {
       if (res.status === 200) {
@@ -96,7 +96,6 @@ function App() {
           <Unknown />
         </Route>
         <Redirect to="/404" />
-        
       </Switch>
       <Footer />
     </Router>

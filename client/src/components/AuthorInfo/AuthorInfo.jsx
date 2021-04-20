@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 function AuthorInfo({ id }) {
   const [author, setAuthor] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:3001/profile/${id}`)
+    fetch(`https://fruitoninja.herokuapp.com/profile/${id}`)
       .then((res) => res.json())
       .then((res) => setAuthor(res));
   }, []);

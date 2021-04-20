@@ -10,7 +10,7 @@ function EditUserForm({ user, setChange, setProfile }) {
   }
   const handleSubmit = async (e) => {
     e.preventDefault()
-    let resp = await fetch("http://localhost:3001/profile", {
+    let resp = await fetch("https://fruitoninja.herokuapp.com/profile", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

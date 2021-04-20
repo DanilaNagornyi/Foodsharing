@@ -1,48 +1,48 @@
-import { setError } from "./errorAC";
+import { setError } from './errorAC';
 import {
   CHANGE_SUBSCRIBE,
   DELETE_SUBSCRIBE,
   GET_SUBCRIBE,
-} from "../types/subcribeTypes";
+} from '../types/subcribeTypes';
 
 export const changeSubscribe = (category) => {
   return (dispatch, getState) => {
-    fetch("http://localhost:3001/subscribe", {
-      method: "POST",
+    fetch('https://fruitoninja.herokuapp.com/subscribe', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-      credentials: "include",
+      credentials: 'include',
       body: JSON.stringify({ category }),
     }).then((res) =>
       res.status === 200
         ? dispatch(changeSubscribetoState(category))
-        : dispatch(setError("Не удалось подписаться на категорию"))
+        : dispatch(setError('Не удалось подписаться на категорию'))
     );
   };
 };
 
 export const deleteSubscribe = (category) => {
   return (dispatch, getState) => {
-    fetch("http://localhost:3001/subscribe", {
-      method: "DELETE",
+    fetch('https://fruitoninja.herokuapp.com/subscribe', {
+      method: 'DELETE',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-      credentials: "include",
+      credentials: 'include',
       body: JSON.stringify({ category }),
     }).then((res) =>
       res.status === 200
         ? dispatch(deleteSubscribefromState(category))
-        : dispatch(setError("Не удалось отписаться от категории"))
+        : dispatch(setError('Не удалось отписаться от категории'))
     );
   };
 };
 
 export const getSubscribe = (category) => {
   return (dispatch, getState) => {
-    fetch("http://localhost:3001/subscribe", {
-      credentials: "include",
+    fetch('https://fruitoninja.herokuapp.com/subscribe', {
+      credentials: 'include',
     })
       .then((res) => res.json())
       .then((res) => dispatch(getSubscribeToState(res.subscribe)));

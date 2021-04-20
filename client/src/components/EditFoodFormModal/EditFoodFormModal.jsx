@@ -60,7 +60,7 @@ const EditFoodFormModal = ({ open, children, onClose, food, setProfile }) => {
         let coordinate = res.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
         return coordinate
       })
-      .then(coordinate => fetch(`http://localhost:3001/products/${food._id}`, {
+      .then(coordinate => fetch(`https://fruitoninja.herokuapp.com/products/${food._id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json"

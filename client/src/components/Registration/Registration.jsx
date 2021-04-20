@@ -90,29 +90,7 @@ function Registration() {
                   {inputs.photo ? " Фото загружено" : " Загрузить фото"}
                 </span>
               </label>
-              {/* <input type='text' name='photo' /> */}
-
-              {/* <FileBase
-                className="text email inputformdecor inputphoto input-file"
-                id="file"
-                type="file"
-                multiple={false}
-                onDone={({ base64 }) => setInputs({ ...inputs, photo: base64 })}
-              /> */}
-              {/* <label for="file" className="btn btn-tertiary js-labelFile">
-                {inputs.photo ? (
-                  <i class="bi bi-check2-square"></i>
-                ) : (
-                  <i className="icon fa fa-check"></i>
-                )}
-
-                <span className="js-fileName">
-                  {inputs.photo ? " Фото загружено" : " Загрузить фото"}
-                </span>
-              </label> */}
-
-              {/* <input className="text email inputformdecor inputphoto input-file" id="file" type="file" name="photo" multiple accept="image/*" placeholder="Загрузить фото" required="" value={inputs.photo}> */}
-
+            
               <input
                 className="text email inputformdecor"
                 type="text"
@@ -169,7 +147,7 @@ function Registration() {
               <button className="btnlogin">ЗАРЕГИСТРИРОВАТЬСЯ</button>
             </form>
             <button className="btngoogle">
-              <a href="http://localhost:3001/user/google">
+              <a href="https://fruitoninja.herokuapp.com/user/google">
                 ВОЙТИ ЧЕРЕЗ{" "}
                 <img
                   src="../../../assets/img/google-logo.png"
