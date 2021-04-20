@@ -19,5 +19,5 @@
 <br/>
 <br/>
 
-<img width="900" alt="Снимок экрана 2021-04-20 в 19 01 24" src="https://user-images.githubusercontent.com/64028251/115428285-e9c05200-a20a-11eb-9cda-71271a71ed15.png">
+<img width="800" alt="Снимок экрана 2021-04-20 в 19 01 24" src="https://user-images.githubusercontent.com/64028251/115428285-e9c05200-a20a-11eb-9cda-71271a71ed15.png">
 
