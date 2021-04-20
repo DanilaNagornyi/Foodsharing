@@ -12,3 +12,11 @@
 
 
 ![Video-Gif720p](https://user-images.githubusercontent.com/74073463/115406975-554cf400-a1f8-11eb-9bde-af02fe599781.gif)
+
+
+На главной странице нашего приложения есть информация о нашей миссии  и правила сервиса, с которыми необходимо ознакомиться и согласиться перед регистрацией.
+
+<br/>
+<br/>
+
+![video-registr-Gif](https://user-images.githubusercontent.com/64028251/115427558-3bb4a800-a20a-11eb-9902-00115f5f9d79.gif)
