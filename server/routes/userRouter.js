@@ -1,10 +1,10 @@
-const router = require("express").Router();
-const passport = require("passport");
-const User = require("../models/user");
-const uploadMulter = require('../multerConfig')
+const router = require('express').Router();
+const passport = require('passport');
+const User = require('../models/user');
+const uploadMulter = require('../multerConfig');
 
-router.post("/register", (req, res, next) => {
-  passport.authenticate("local", (err, user, info) => {
+router.post('/register', (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
     if (err) {
       return next(400);
     }
@@ -20,7 +20,7 @@ router.post("/register", (req, res, next) => {
   })(req, res, next);
 });
 
-router.post("/registergoogle", async (req, res, next) => {
+router.post('/registergoogle', async (req, res, next) => {
   try {
     if (req.session.passport) {
       if (req.body.phone && req.body.city) {
@@ -50,8 +50,8 @@ router.post("/registergoogle", async (req, res, next) => {
   }
 });
 
-router.post("/login", (req, res, next) => {
-  passport.authenticate("local", (err, user, info) => {
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
     if (err) {
       return res.sendStatus(404);
     }
@@ -68,21 +68,21 @@ router.post("/login", (req, res, next) => {
 });
 
 router.get(
-  "/google",
-  passport.authenticate("google", {
-    scope: ["profile", "email"],
+  '/google',
+  passport.authenticate('google', {
+    scope: ['profile', 'email'],
   })
 );
 
-router.get("/google/callback", passport.authenticate("google"), (req, res) => {
+router.get('/google/callback', passport.authenticate('google'), (req, res) => {
   if (req.user.city) {
-    res.redirect("http://localhost:3000");
+    res.redirect('/');
   } else {
-    res.redirect("http://localhost:3000/completionofregistration");
+    res.redirect('/completionofregistration');
   }
 });
 
-router.get("/checkAuth", (req, res) => {
+router.get('/checkAuth', (req, res) => {
   try {
     req.session.passport ? res.sendStatus(200) : res.sendStatus(401);
   } catch (error) {
@@ -90,10 +90,10 @@ router.get("/checkAuth", (req, res) => {
   }
 });
 
-router.get("/logout", (req, res) => {
+router.get('/logout', (req, res) => {
   try {
     req.session.destroy();
-    res.clearCookie(req.app.get("cookieName")).sendStatus(200);
+    res.clearCookie(req.app.get('cookieName')).sendStatus(200);
   } catch (error) {
     req.sendStatus(500);
   }

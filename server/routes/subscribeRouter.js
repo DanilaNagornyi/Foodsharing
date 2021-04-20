@@ -1,13 +1,13 @@
-const router = require("express").Router();
-const fetch = require("node-fetch");
-const { Telegraf } = require("telegraf");
-const User = require("../models/user");
-const Products = require("../models/product");
-const Categories = require("../models/categories");
+const router = require('express').Router();
+const fetch = require('node-fetch');
+const { Telegraf } = require('telegraf');
+const User = require('../models/user');
+const Products = require('../models/product');
+const Categories = require('../models/categories');
 
-const bot = new Telegraf("1714842459:AAEURksRGz6e97Yf4wsppoxddL8iCzoyFJw");
+const bot = new Telegraf('1714842459:AAEURksRGz6e97Yf4wsppoxddL8iCzoyFJw');
 
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   if (req.session.passport) {
     try {
       const user = await User.findById(req.session.passport.user);
@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
   if (req.session.passport) {
     try {
       const user = await User.findById(req.session.passport.user);
@@ -61,7 +61,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.delete("/", async (req, res) => {
+router.delete('/', async (req, res) => {
   if (req.session.passport) {
     try {
       const user = await User.findById(req.session.passport.user);
@@ -83,18 +83,18 @@ router.delete("/", async (req, res) => {
   }
 });
 
-router.get("/message/:category/:id", async (req, res) => {
+router.get('/message/:category/:id', async (req, res) => {
   const categories = {
-    Fruits: "фрукты",
-    Vegetables: "овощи",
-    BabyFood: "детское питание",
-    BakeryProducts: "хлеб и выпечка",
-    Beverages: "напитки",
-    MilkProducts: "молочные продукты",
-    Canned: "консервированные",
-    Meat: "мясо, рыба",
-    HomeFood: "домашняя кухня",
-    Cereals: "крупы",
+    Fruits: 'фрукты',
+    Vegetables: 'овощи',
+    BabyFood: 'детское питание',
+    BakeryProducts: 'хлеб и выпечка',
+    Beverages: 'напитки',
+    MilkProducts: 'молочные продукты',
+    Canned: 'консервированные',
+    Meat: 'мясо, рыба',
+    HomeFood: 'домашняя кухня',
+    Cereals: 'крупы',
   };
   try {
     const category = await Categories.findOne({ name: req.params.category });
@@ -103,9 +103,11 @@ router.get("/message/:category/:id", async (req, res) => {
       const product = await Products.findById(req.params.id);
       bot.telegram.sendMessage(
         Number(user.telegramid),
-        `🥷 В категории ${categories[req.params.category]
-        } новый пост загляни это ${product.name} по адресу:📍${product.geolocation
-        } \n http://localhost:3000/food/${req.params.id}`
+        `🥷 В категории ${
+          categories[req.params.category]
+        } новый пост загляни это ${product.name} по адресу:📍${
+          product.geolocation
+        } \n //food/${req.params.id}`
       );
       // bot.telegram.sendPhoto(Number(user.telegramid), product.photo);
     });
