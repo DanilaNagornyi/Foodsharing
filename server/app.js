@@ -49,6 +49,13 @@ app.use("/user", userRouter);
 app.use("/profile", profileRouter);
 app.use("/subscribe", subscribeRouter);
 
+const root = path.join(__dirname, '../', 'client', 'build');
+
+app.use(express.static(root));
+app.get('*', (req, res) => {
+  res.sendFile('index.html', { root });
+});
+
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
 bot.use(async (ctx, next) => {
