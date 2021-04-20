@@ -19,4 +19,5 @@
 <br/>
 <br/>
 
-![video-registr-Gif](https://user-images.githubusercontent.com/64028251/115427558-3bb4a800-a20a-11eb-9902-00115f5f9d79.gif)
+<img width="1680" alt="Снимок экрана 2021-04-20 в 19 01 24" src="https://user-images.githubusercontent.com/64028251/115428285-e9c05200-a20a-11eb-9cda-71271a71ed15.png">
+
