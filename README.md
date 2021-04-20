@@ -71,3 +71,12 @@ npm start
 <br/>
 <br/>
 ⚠️ Вам необходимы токены для переменных в файл .env, который вам нужно создать. Имена переменных есть в файле .env-examples ⚠️
+
+## Команда проекта 🥷
+
+<a href="https://github.com/Ulitkau">
+  <img align="left" alt="Ulitkau" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/github.svg" />
+  <h3>Ulviya Karakhmazli</h3>
+</a>
+
+
