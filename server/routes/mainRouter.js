@@ -9,7 +9,7 @@ const uploadMulter = require("../multerConfig");
 router.get("/products", async (req, res) => {
   try {
     let arrProducts = await Products.find();
-    arrProducts = arrProducts.filter((el) => el.status);
+    arrProducts = arrProducts.filter((el) => el.status).reverse();
     const categories = await Categories.find();
     if (arrProducts.length && categories.length) {
       res.json({ products: arrProducts, categories });

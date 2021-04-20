@@ -141,7 +141,7 @@ function Postlist() {
                       <li>
                         <Link to="/category/Fruits">
                           Фрукты{" "}
-                          <span>({foodLength[0]?.productsList.length || 0})</span>
+                          <span>({foodLength[5]?.productsList.length || 0})</span>
                         </Link>
                       </li>
                       <li>
@@ -153,31 +153,31 @@ function Postlist() {
                       <li>
                         <Link to="/category/BabyFood">
                           Детское питание{" "}
-                          <span>({foodLength[2]?.productsList.length || 0})</span>
+                          <span>({foodLength[6]?.productsList.length || 0})</span>
                         </Link>
                       </li>
                       <li>
                         <Link to="/category/BakeryProducts">
                           Хлеб и выпечка{" "}
-                          <span>({foodLength[3]?.productsList.length || 0})</span>
+                          <span>({foodLength[0]?.productsList.length || 0})</span>
                         </Link>
                       </li>
                       <li>
                         <Link to="/category/Beverages">
                           Напитки{" "}
-                          <span>({foodLength[4]?.productsList.length || 0})</span>
+                          <span>({foodLength[2]?.productsList.length || 0})</span>
                         </Link>
                       </li>
                       <li>
                         <Link to="/category/MilkProducts">
                           Молочные продукты{" "}
-                          <span>({foodLength[5]?.productsList.length || 0})</span>
+                          <span>({foodLength[4]?.productsList.length || 0})</span>
                         </Link>
                       </li>
                       <li>
                         <Link to="/category/Canned">
                           Консервированные{" "}
-                          <span>({foodLength[6]?.productsList.length || 0})</span>
+                          <span>({foodLength[3]?.productsList.length || 0})</span>
                         </Link>
                       </li>
                       <li>
@@ -189,13 +189,13 @@ function Postlist() {
                       <li>
                         <Link to="/category/HomeFood">
                           Домашняя кухня{" "}
-                          <span>({foodLength[8]?.productsList.length || 0})</span>
+                          <span>({foodLength[9]?.productsList.length || 0})</span>
                         </Link>
                       </li>
                       <li>
                         <Link to='/category/Cereals"'>
                           Крупы{" "}
-                          <span>({foodLength[9]?.productsList.length || 0})</span>
+                          <span>({foodLength[8]?.productsList.length || 0})</span>
                         </Link>
                       </li>
                     </ul>

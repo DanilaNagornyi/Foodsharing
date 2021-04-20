@@ -36,8 +36,8 @@ function Main() {
           <div className="row">
 
             <div className="col-lg-6 video-box align-self-baseline position-relative">
-              <img src="assets/img/about.jpg" className="img-fluid" alt="" />
-              <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" className="glightbox play-btn mb-4"></a>
+              <img src="assets/img/main_image_osn.jpg" className="img-fluid" alt="" />
+              <a href="https://www.youtube.com/watch?v=VuAyn2RSym4&ab_channel=%D0%94%D0%B0%D0%BD%D0%B8%D0%BB%D0%B0%D0%9D%D0%B0%D0%B3%D0%BE%D1%80%D0%BD%D1%8B%D0%B9" className="glightbox play-btn mb-4"></a>
             </div>
 
             <div className="col-lg-6 pt-3 pt-lg-0 content">
