@@ -5,7 +5,6 @@ const session = require("express-session");
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo")(session);
 const { Telegraf } = require("telegraf");
-const logger = require("morgan");
 const User = require("./models/user");
 const passport = require("passport");
 const { getOrCreateUser } = require("./helpers/helpers");
@@ -26,7 +25,6 @@ app.use(
   })
 );
 
-app.use(logger("dev"));
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.set("trust proxy", 1);
