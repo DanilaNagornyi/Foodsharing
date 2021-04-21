@@ -1,9 +1,12 @@
 
-
-
-
-
 # FOODSHARING ABOUT 🥑
+
+<a href="https://fruitoninja.herokuapp.com/">
+  <div>
+   <img align="left" alt="fruitoninja" width="22px" src="https://i.ya-webdesign.com/images/internet-transparent-globe-8.png" />
+   <h3><a href="https://fruitoninja.herokuapp.com/">Сайт проекта  FruitoNinja </a></h3>
+  </div>
+</a>
 
 Веб приложение для социально-экологического движения фудшеринг. 
 <br/>
