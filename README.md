@@ -85,10 +85,16 @@ npm start
   <img alt="git" src="https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white" />
   <img alt="npm" src="https://img.shields.io/badge/-NPM-CB3837?style=flat-square&logo=npm&logoColor=white" />
   <img alt="html5" src="https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" />
-  <img alt="Prettier" src="https://img.shields.io/badge/-Prettier-F7B93E?style=flat-square&logo=prettier&logoColor=white" />
+  <img alt="Passport" src="https://img.shields.io/badge/-PassportJs-F7B93E?style=flat-square&logo=passport&logoColor=white" />
   <img alt="MongoDB" src="https://img.shields.io/badge/-MongoDB-13aa52?style=flat-square&logo=mongodb&logoColor=white" />
   <img alt="Nodejs" src="https://img.shields.io/badge/-Nodejs-43853d?style=flat-square&logo=Node.js&logoColor=white" />
   <img alt="Bootstrap" src="https://img.shields.io/badge/-Bootstrap-430098?style=flat-square&logo=bootstrap&logoColor=white" />
+  <img alt="Express" src="https://img.shields.io/badge/-ExpressJs-F7B93E?style=flat-square&logo=express&logoColor=white" />
+  <img alt="Telegram" src="https://img.shields.io/badge/-Telegram-2088FF?style=flat-square&logo=telegram&logoColor=white" />
+  <img alt="Yandex" src="https://img.shields.io/badge/-YandexMap-CB3837?style=flat-square&logo=yandex&logoColor=white" />
+  
+  
+  
   
 </p>
 
