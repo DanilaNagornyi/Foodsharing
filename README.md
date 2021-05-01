@@ -53,10 +53,10 @@
 
 Для короткой презентации мировой проблемы с продуктами и концепцией проекта фудшеринг предлагаем вам посмотреть короткий видеоролик по ссылке ниже:
 
-<a href="https://www.youtube.com/watch?v=VuAyn2RSym4">
+<a href="https://www.youtube.com/watch?v=VuAyn2RSym4" target="_blank">
   <div>
     <img align="left" alt="Foodsharing | youtube" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/youtube.svg" />
-    <h3><a href="https://www.youtube.com/watch?v=VuAyn2RSym4">Intro-video - FruitoNinja | Youtube</a></h3>
+    <h3><a href="https://www.youtube.com/watch?v=VuAyn2RSym4" target="_blank">Intro-video - FruitoNinja | Youtube</a></h3>
   </div>
 </a>
 
