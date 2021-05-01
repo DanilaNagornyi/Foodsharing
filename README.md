@@ -39,6 +39,20 @@
 <br/>
 <br/>
 
+![Food-gif](https://user-images.githubusercontent.com/64028251/116779101-41698380-aa7d-11eb-9525-71405bfe27ee.gif)
+
+<br/>
+<br/>
+
+Для короткой презентации мировой проблемы с продуктами и концепцией проекта фудшеринг предлагаем вам посмотреть короткий видеоролик по ссылке ниже:
+
+<a href="https://www.youtube.com/watch?v=VuAyn2RSym4">
+  <img align="left" alt="Foodsharing | youtube" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/youtube.svg" />
+  <h3><a href="https://fruitoninja.herokuapp.com/">Intro-video - FruitoNinja | Youtube</a></h3>
+</a>
+
+<br/>
+<br/>
 ## Запуск проекта ⏯
 <br/>
 <br/>
